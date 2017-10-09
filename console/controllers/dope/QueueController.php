@@ -1,5 +1,5 @@
 <?php
-namespace console\controllers;
+namespace console\controllers\dope;
 
 declare(ticks=1);
 
@@ -7,7 +7,7 @@ use yii\console\Controller;
 use Yii;
 use swoole_process;
 
-class LogController extends Controller
+abstract class QueueController extends Controller
 {
     // 最大进程数
     protected $maxProcesses = 2;
@@ -16,7 +16,7 @@ class LogController extends Controller
     protected $process = 0;
 
     // 消息队列Redis键值
-    protected $queueKey = Sys::REDIS_KEY_QUEUE_KEY;
+    protected $queueKey = '';
 
     // 延时消息队列的Redis键值 zset
     protected $delayKey = '';
@@ -26,7 +26,8 @@ class LogController extends Controller
 
     protected $processHandleMaxNumber = 1000;
 
-    public function actionHandle()
+
+    protected function mainAction()
     {
         ini_set('default_socket_timeout', -1);
         if (!extension_loaded('swoole')) {
@@ -39,6 +40,14 @@ class LogController extends Controller
         set_time_limit(0);
         $redis = Yii::$app->redis;
         while (true) {
+            // 监听延时队列
+            if (!empty($this->delayKey) && $delay_data = $redis->zrangebyscore($this->delayKey, 0, time())) {
+                foreach ($delay_data as $data) {
+                    // 把可以执行的消息压入队列中
+                    $redis->lpush($this->queueKey, $data);
+                    $redis->zrem($this->delayKey, $data);
+                }
+            }
             // 监听消息队列
             if ($this->process < $this->maxProcesses) {
                 // 无任务时,阻塞等待
@@ -67,6 +76,14 @@ class LogController extends Controller
             }
         }
     }
+
+    /**
+     * @desc   消息队列 业务逻辑处理
+     * @author limx
+     * @param $recv
+     * @return mixed
+     */
+    abstract protected function handle($recv);
 
     /**
      * @desc   主进程中操作数据
@@ -143,30 +160,6 @@ class LogController extends Controller
                 $this->handle($data[1]);
             }
         }
-    }
-
-    public function handle($data)
-    {
-        $request = json_decode($data, true);
-        dump($request);
-    }
-
-    /**
-     * 测试数据
-     */
-    public function actionTest()
-    {
-        $redis = Yii::$app->redis;
-        $data = [
-            'name' => 'xiaolin',
-            'email' => '462441355@qq.com',
-            'password' => uniqid(),
-        ];
-        $redis->lpush($this->queueKey, json_encode($data));
-//        while (true){
-//            $data = $redis->brpop($this->queueKey, 3);
-//            dump($data);
-//        }
     }
 
 }
