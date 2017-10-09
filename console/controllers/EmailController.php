@@ -26,7 +26,15 @@ class EmailController extends QueueController
 
     protected $processHandleMaxNumber = 1000;
 
+    protected function onConstruct()
+    {
 
+    }
+
+    /**
+     * 任务脚本
+     * @param $data
+     */
     protected function handle($data)
     {
         $request = json_decode($data, true);
