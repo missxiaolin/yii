@@ -27,11 +27,6 @@ class EmailController extends QueueController
     protected $processHandleMaxNumber = 1000;
 
 
-    public function actionHandle()
-    {
-        $this->mainAction();
-    }
-
     protected function handle($data)
     {
         $request = json_decode($data, true);
