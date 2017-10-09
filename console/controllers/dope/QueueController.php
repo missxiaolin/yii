@@ -26,11 +26,6 @@ abstract class QueueController extends Controller
 
     protected $processHandleMaxNumber = 1000;
 
-    public function actionGetbegindate(){
-        echo '2015-05-20';
-
-    }
-
     /**
      * 执行脚本
      */
