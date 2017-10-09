@@ -1,8 +1,11 @@
 <?php
 namespace console\controllers;
 
+declare(ticks=1);
+
 use yii\console\Controller;
 use Yii;
+use swoole_process;
 
 class LogController extends Controller
 {
@@ -34,7 +37,7 @@ class LogController extends Controller
         }
 
         // install signal handler for dead kids
-        pcntl_signal(SIGCHLD, [&$this, "signalHandler"]);
+        pcntl_signal(SIGCHLD, [$this, "signalHandler"]);
         set_time_limit(0);
         $redis = Yii::$app->redis;
         while (true) {
@@ -50,7 +53,7 @@ class LogController extends Controller
                     continue;
                 }
                 if (isset($data[1])) {
-                    $process = new \swoole_process([$this, 'task']);
+                    $process = new swoole_process([$this, 'task']);
                     $process->write($this->rewrite($data[1]));
                     $pid = $process->start();
                     if ($pid === false) {
@@ -60,7 +63,6 @@ class LogController extends Controller
                     }
                 }
             } else {
-                dump('结束');
                 if (is_int($this->waittime) && $this->waittime > 0) {
                     sleep($this->waittime);
                 }
@@ -90,7 +92,7 @@ class LogController extends Controller
     {
         switch ($signo) {
             case SIGCHLD:
-                while (\swoole_process::wait(false)) {
+                while (swoole_process::wait(false)) {
                     $this->process--;
                 }
 
@@ -104,14 +106,14 @@ class LogController extends Controller
      * @author limx
      * @param swoole_process $worker
      */
-    public function task(\swoole_process $worker)
+    public function task(swoole_process $worker)
     {
-        \swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
+        swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
             // 从主进程中读取到的数据
             $recv = $worker->read();
             $this->again($recv);
             $worker->exit(0);
-            \swoole_event_del($pipe);
+            swoole_event_del($pipe);
         });
     }
 
