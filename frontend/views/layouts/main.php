@@ -43,7 +43,16 @@ AppAsset::register($this);
 
 <script src="<?= $this->params['host'] ?? '' ?>/js/lib/require.js"></script>
 <script src="<?= $this->params['host'] ?? '' ?>/js/lib/config.js"></script>
+<?php
+\frontend\assets\AppAsset::addParams(
+    [
+        'baseData' => $this->params['base_data'] ?? [],
+    ]);
+?>
 <script>
+    define('page.params', function () {
+        return <?= json_encode(\frontend\assets\AppAsset::getParams()) ?>;
+    });
     require.config({
         <?php if ($this->params['debug']){ ?>
             waitSeconds: 0,
@@ -51,9 +60,7 @@ AppAsset::register($this);
         <?php } ?>
         baseUrl: '<?= $this->params['base_url'] ?>'
     });
-    define('page.params', function () {
-        return <?= json_encode( \frontend\controllers\Resource::getAllParams()) ?>;
-    });
+
 </script>
 
 <?php if (isset($this->params['file_js']) && $this->params['file_js']) { ?>
