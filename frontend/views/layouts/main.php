@@ -4,11 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -18,63 +14,51 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <meta name="author" content="">
+    <meta name="Keywords" content="<?= Html::encode($this->params['meta_keyword'] ?? '') ?>"/>
+    <meta name="Description" content="<?= Html::encode($this->params['meta_description'] ?? '') ?>"/>
+
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->params['title'] ?? '小林') ?></title>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
+<div id="top">
+    头部
+</div>
+<div id="container">
+    <?= $content ?>
 </div>
 
 <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
+    底部
 </footer>
+
+<?php if (isset($this->params['file_css']) && $this->params['file_css']) { ?>
+    <link href="<?= $this->params['host'] ?? '' ?>/<?= $this->params['file_css'] ?>.css?v=<?= time() ?>" rel="stylesheet"/>
+<?php } ?>
+
+<script src="<?= $this->params['host'] ?? '' ?>/js/lib/require.js"></script>
+<script src="<?= $this->params['host'] ?? '' ?>/js/lib/config.js"></script>
+<script>
+    require.config({
+        <?php if ($this->params['debug']){ ?>
+            waitSeconds: 0,
+            urlArgs: "v=" + (new Date()).getTime(),
+        <?php } ?>
+        baseUrl: '<?= $this->params['base_url'] ?>'
+    });
+    define('page.params', function () {
+        return <?= json_encode( \frontend\controllers\Resource::getAllParams()) ?>;
+    });
+</script>
+
+<?php if (isset($this->params['file_js']) && $this->params['file_js']) { ?>
+    <script src="<?= $this->params['host'] ?? '' ?>/<?= $this->params['file_js'] ?>.js?v=<?= time() ?>"></script>
+<?php } ?>
 
 <?php $this->endBody() ?>
 </body>
