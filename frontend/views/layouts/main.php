@@ -27,14 +27,12 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <div id="top">
-    头部
 </div>
 <div id="container">
     <?= $content ?>
 </div>
 
 <footer class="footer">
-    底部
 </footer>
 
 <?php if (isset($this->params['file_css']) && $this->params['file_css']) { ?>
