@@ -1,5 +1,5 @@
 <?php
-namespace console\controllers;
+namespace console\controllers\Test;
 
 
 use console\controllers\contract\JobInterface;

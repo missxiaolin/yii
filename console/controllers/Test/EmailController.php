@@ -1,8 +1,9 @@
 <?php
-namespace console\controllers;
+namespace console\controllers\Test;
 
 
 use console\controllers\dope\QueueController;
+use console\controllers\Sys;
 use yii\console\Controller;
 use Yii;
 use swoole_process;
