@@ -21,13 +21,13 @@ return [
             'csrfParam' => '_csrf-api',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'api\modules\v1\src\Model\support\service\UserService',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity_api', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            'name' => 'advanced-api',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -52,7 +52,7 @@ return [
 
                     ],
                 ],
-//                'GET  v1/users/index' => 'v1/users/index',
+                'GET  v1/user/index' => 'v1/user/index',
             ],
         ],
     ],
