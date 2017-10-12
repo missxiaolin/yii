@@ -116,7 +116,7 @@ abstract class WebSocket extends Controller
     protected function ready(swoole_websocket_server $server)
     {
         echo "-------------------------------------------" . PHP_EOL;
-        echo "     WebSocket服务器开启 端口：{$this->port} " . PHP_EOL;
+        echo "     WebSocket服务器开启 端口：" . $this->prot . PHP_EOL;
         echo "-------------------------------------------" . PHP_EOL;
     }
 }

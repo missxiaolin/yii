@@ -26,6 +26,7 @@ class WebSocketController extends WebSocket
     protected function connect(swoole_websocket_server $server, $request)
     {
         // TODO: Implement connect() method.
+        echo "server: handshake success with fd{$request->fd}.\n";
     }
 
     /**
@@ -37,6 +38,10 @@ class WebSocketController extends WebSocket
     protected function message(swoole_websocket_server $server, swoole_websocket_frame $frame)
     {
         // TODO: Implement message() method.
+        // 循环当前的所有连接，并把接收到的客户端信息全部发送
+        foreach ($server->connections as $fd) {
+            $server->push($fd, $frame->data);
+        }
     }
 
     /**
@@ -49,6 +54,7 @@ class WebSocketController extends WebSocket
     protected function close($ser, $fd)
     {
         // TODO: Implement close() method.
+        echo "client {$fd} closed.\n";
     }
 
 
