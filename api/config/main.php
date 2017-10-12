@@ -21,7 +21,7 @@ return [
             'csrfParam' => '_csrf-api',
         ],
         'user' => [
-            'identityClass' => 'api\modules\v1\src\Model\support\service\UserService',
+            'identityClass' => 'api\modules\v1\src\support\service\UserService',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity_api', 'httpOnly' => true],
         ],

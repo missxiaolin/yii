@@ -7,14 +7,14 @@ use yii\helpers\ArrayHelper;
 
 class UserController extends BaseController
 {
-//    public function behaviors()
-//    {
-//        return ArrayHelper::merge(parent::behaviors(), [
-//            'authenticator' => [
-//                'class' => QueryParamAuth::className(),
-//            ],
-//        ]);
-//    }
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'authenticator' => [
+                'class' => QueryParamAuth::className(),
+            ],
+        ]);
+    }
 
     public function actionIndex()
     {
