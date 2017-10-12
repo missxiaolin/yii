@@ -45,7 +45,8 @@ class CsController extends Controller
      */
     public function actionOrder()
     {
-        Yii::$app->resque->createJob(Yii2Resque::QUEUE_ORDERS, OrderJob::class, ["id" => 100]);
+        $work = Yii::$app->resque->createJob(Yii2Resque::QUEUE_ORDERS, OrderJob::class, ["id" => 100]);
+        dump($work);
     }
 
     /**
