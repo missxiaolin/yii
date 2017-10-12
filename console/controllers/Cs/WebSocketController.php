@@ -1,5 +1,5 @@
 <?php
-namespace console\controllers;
+namespace console\controllers\Cs;
 
 use Yii;
 use yii\helpers\ArrayHelper;

@@ -98,6 +98,7 @@ abstract class QueueController extends Controller
     abstract protected function handle($recv);
 
     /**
+     * 基本参数
      * @return mixed
      */
     abstract protected function onConstruct();
