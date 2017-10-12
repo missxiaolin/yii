@@ -3,9 +3,11 @@ namespace console\controllers\Cs;
 
 declare(ticks = 1);
 
+use common\components\Yii2Resque;
 use console\controllers\Email;
 use console\controllers\Sys;
 use console\controllers\utils\Queue;
+use console\jobs\OrderJob;
 use yii\console\Controller;
 use Yii;
 
@@ -36,6 +38,22 @@ class CsController extends Controller
     {
         $email = new Email(1,2,3);
         Queue::delay($email, 5);
+    }
+
+    /**
+     * 测试需要即时消费的订单任务
+     */
+    public function actionOrder()
+    {
+        Yii::$app->resque->createJob(Yii2Resque::QUEUE_ORDERS, OrderJob::class, ["id" => 100]);
+    }
+
+    /**
+     * 测试需要延时消费的订单任务
+     */
+    public function actionDelayOrder()
+    {
+        Yii::$app->resque->enqueueJobIn(10, Yii2Resque::QUEUE_ORDERS, OrderJob::class, ["id" => 666]); //延迟10s执行
     }
 
 }
