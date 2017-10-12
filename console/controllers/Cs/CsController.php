@@ -3,6 +3,8 @@ namespace console\controllers\Cs;
 
 declare(ticks = 1);
 
+use console\controllers\Email;
+use console\controllers\Sys;
 use console\controllers\utils\Queue;
 use yii\console\Controller;
 use Yii;
