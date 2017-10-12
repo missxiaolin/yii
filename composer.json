@@ -25,7 +25,9 @@
         "qiniu/php-sdk": "7.0.*",
         "moonlandsoft/yii2-phpexcel": "*",
         "phpoffice/phpexcel": "*",
-        "riverslei/payment": "~3.1"
+        "riverslei/payment": "~3.1",
+        "chrisboulton/php-resque": "^1.2",
+        "chrisboulton/php-resque-scheduler": "^1.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
