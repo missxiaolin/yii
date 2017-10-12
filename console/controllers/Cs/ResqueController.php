@@ -40,14 +40,14 @@ class ResqueController extends Controller
         $REDIS_BACKEND = "redis://:$redis->password@$redis->hostname:$redis->port";
         Resque::setBackend($REDIS_BACKEND);
 
-        // 设置Redis命名空间前缀，默认:resque
-        if (!empty($prefix)) {
-            Resque_Redis::prefix($prefix);
-        }
-
         // 设置日志
         if (!isset($logger) || !is_object($logger)) {
             $logger = new Resque_Log(false);
+        }
+        // 设置Redis命名空间前缀，默认:resque
+        if (!empty($prefix)) {
+            $logger->log(LogLevel::INFO, 'Prefix set to {prefix}', array('prefix' => $prefix));
+            Resque_Redis::prefix($prefix);
         }
 
         // 启动 Worker
