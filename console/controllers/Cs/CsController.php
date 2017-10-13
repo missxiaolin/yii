@@ -23,9 +23,9 @@ class CsController extends Controller
     {
         $redis = Yii::$app->redis;
         $data = [
-            'name' => 'xiaolin',
             'email' => '462441355@qq.com',
-            'password' => uniqid(),
+            'title' => '请验证您的邮箱',
+            'body' => '内容'
         ];
         $redis->lpush($this->queueKey, json_encode($data));
 //        while (true){

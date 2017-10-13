@@ -39,6 +39,11 @@ class EmailController extends QueueController
     protected function handle($data)
     {
         $request = json_decode($data, true);
-        dump($request);
+        $mail = Yii::$app->mailer->compose();
+        $mail->setTo($request['email']);
+        $mail->setSubject($request['title']);
+        $mail->setHtmlBody($request['body']);
+        $data = $mail->send();
+        dump($data);
     }
 }
