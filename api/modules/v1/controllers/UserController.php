@@ -12,11 +12,15 @@ class UserController extends BaseController
         return ArrayHelper::merge(parent::behaviors(), [
             'authenticator' => [
                 'class' => QueryParamAuth::className(),
+                'optional' => [
+                ]
             ],
         ]);
     }
 
     public function actionIndex()
     {
+        $data = [];
+        return $this->apiResponse($data);
     }
 }

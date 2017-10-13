@@ -41,9 +41,19 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'response' => [
+            'class' => 'yii\web\Response',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $response->format = yii\web\Response::FORMAT_JSON;
+
+
+            },
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => true,
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
