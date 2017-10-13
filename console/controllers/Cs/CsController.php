@@ -57,4 +57,12 @@ class CsController extends Controller
         Yii::$app->resque->enqueueJobIn(10, Yii2Resque::QUEUE_ORDERS, OrderJob::class, ["id" => 666]); //延迟10s执行
     }
 
+    public function actionSendEmail()
+    {
+        $mail = Yii::$app->mailer->compose();
+        $mail->setTo('462441355@qq.com');
+        $mail->setSubject("请验证您的邮箱");
+        $mail->setHtmlBody('内容');
+        $mail->send();
+    }
 }
