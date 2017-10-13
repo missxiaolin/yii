@@ -2,7 +2,9 @@
 
 namespace api\modules\v1\src\support\interfaces;
 
-interface UserInterface
+use common\src\foundation\domain\interfaces\Repository;
+
+interface UserInterface extends Repository
 {
     /**
      * @param $token
