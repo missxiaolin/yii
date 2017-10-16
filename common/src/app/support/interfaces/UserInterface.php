@@ -1,6 +1,6 @@
 <?php
 
-namespace common\src\app\domain\support\interfaces;
+namespace common\src\app\support\interfaces;
 
 use common\src\foundation\domain\interfaces\Repository;
 

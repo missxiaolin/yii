@@ -16,13 +16,13 @@ class m130524_201442_init extends Migration
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
-            'password_hash' => $this->string()->notNull(),
-            'token' => $this->string()->unique(),
+            'password' => $this->string()->notNull(),
+            'token' => $this->string()->unique()->defaultValue(''),
             'email' => $this->string()->notNull()->unique(),
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->timestamp()->notNull()->defaultValue('0000-00-00 00:00:00'),
+            'updated_at' => $this->timestamp()->notNull()->defaultValue('0000-00-00 00:00:00'),
             
         ], $tableOptions);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace common\src\app\domain\support\entity;
+namespace common\src\app\support\entity;
 
 
 use Carbon\Carbon;
@@ -8,6 +8,8 @@ use common\src\foundation\domain\Entity;
 
 class UserEntity extends Entity
 {
+    public $identity_key = 'id';
+
     /**
      * @var int
      */
@@ -26,7 +28,7 @@ class UserEntity extends Entity
     /**
      * @var string
      */
-    public $password_hash;
+    public $password;
 
     /**
      * @var string
