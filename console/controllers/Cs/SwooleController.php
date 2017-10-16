@@ -22,7 +22,7 @@ class SwooleController extends Controller
         // server接收到客户端的数据后，worker进程内触发该回调
         $serv->on('Receive', function ($serv, $fd, $fromId, $data) {
             // 收到数据后发送给客户端
-            $serv->send($fd, 'Server '. $data);
+            $serv->send($fd, 'Server ' . $data);
         });
 
         // 客户端断开连接或者server主动关闭连接时 worker进程内调用
@@ -44,5 +44,55 @@ class SwooleController extends Controller
         echo $response . PHP_EOL;
         $client->close();
     }
+
+    /**
+     * 开启swoole (task)
+     */
+    public function actionTask()
+    {
+        $serv = new swoole_server('127.0.0.1', 9501);
+        $serv->set([
+            'task_worker_num' => 1,
+        ]);
+
+        $serv->on('Connect', function ($serv, $fd) {
+            echo "new client connected." . PHP_EOL;
+        });
+
+        $serv->on('Receive', function ($serv, $fd, $fromId, $data) {
+            echo "worker received data: {$data}" . PHP_EOL;
+
+            // 投递一个任务到task进程中
+            $serv->task($data);
+
+            // 通知客户端server收到数据了
+            $serv->send($fd, 'This is a message from server.');
+
+            // 为了校验task是否是异步的，这里和task进程内都输出内容，看看谁先输出
+            echo "worker continue run."  . PHP_EOL;
+        });
+
+        /**
+         * $serv swoole_server
+         * $taskId 投递的任务id,因为task进程是由worker进程发起，所以多worker多task下，该值可能会相同
+         * $fromId 来自那个worker进程的id
+         * $data 要投递的任务数据
+         */
+        $serv->on('Task', function ($serv, $taskId, $fromId, $data) {
+            echo "task start. --- from worker id: {$fromId}." . PHP_EOL;
+            for ($i=0; $i < 5; $i++) {
+                sleep(1);
+                echo "task runing. --- {$i}" . PHP_EOL;
+            }
+            echo "task end." . PHP_EOL;
+        });
+
+        // 客户端断开连接或者server主动关闭连接时 worker进程内调用
+        $serv->on('Close', function ($serv, $fd) {
+            echo "Client close." . PHP_EOL;
+        });
+        $serv->start();
+    }
+
 
 }
