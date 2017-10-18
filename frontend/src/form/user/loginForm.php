@@ -2,6 +2,7 @@
 
 namespace frontend\src\form\user;
 
+use common\components\Event\Email;
 use common\src\app\support\models\UserModel;
 use common\src\app\support\service\UserService;
 use yii\base\Model;

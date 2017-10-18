@@ -1,8 +1,9 @@
 <?php namespace common\src\foundation\domain;
 
 use Carbon\Carbon;
+use yii\db\Command;
 
-class Event
+class Event extends Command
 {
     /**
      * The payload of the event.
@@ -18,14 +19,29 @@ class Event
      */
     protected $published_at;
 
+    public $event = 'event';
+
     /**
      * Create a new event.
      *
      * @param mixed $payload
+     * @param $event_name
+     * @param $class
+     * @param $config
      */
-    public function __construct($payload = null)
+
+    /**
+     * Event constructor.
+     * @param array $event_name
+     * @param null $class
+     * @param $function
+     * @param array $config
+     */
+    public function __construct($class = null, $event_name = 'event', $function = 'handle', array $config = [])
     {
-        $this->payload = $payload;
+        parent::__construct($config);
+        $this->event = $event_name;
+        $this->on($event_name, [$class, $function]);
     }
 
     /**
@@ -35,8 +51,8 @@ class Event
     {
         if (!isset($this->published_at)) {
             $this->published_at = new Carbon();
-            //抛事件，需要修改成Yii的
-            //event($this);
+            $this->trigger($this->event);
+
         }
     }
 }

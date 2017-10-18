@@ -2,7 +2,9 @@
 
 namespace frontend\src\form\user;
 
+use common\components\Event\Email;
 use common\src\app\support\entity\UserEntity;
+use common\src\foundation\domain\Event;
 use yii\base\Model;
 
 class userForm extends Model
@@ -51,6 +53,7 @@ class userForm extends Model
     {
         if (parent::validate($attributeNames, $clearErrors)) {
             $this->user_entity = new UserEntity();
+            $this->user_entity->pendEvent(new Event(Email::class));
             $this->user_entity->username = $this->username;
             $this->user_entity->email = $this->email;
             // 生成随机盐
