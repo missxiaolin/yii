@@ -37,12 +37,27 @@ class Event extends Command
      * @param string $function
      * @param array $config
      */
-    public function __construct($class = null,$params = [], $event_name = 'event', $function = 'handle', array $config = [])
+//    public function __construct($class = null,$params = [], $event_name = 'event', $function = 'handle', array $config = [])
+//    {
+//        parent::__construct($config);
+//        $this->event = $event_name;
+//        $this->params = $params;
+//        $this->on($event_name, [$class, $function]);
+//    }
+
+    /**
+     * Event 注册事件
+     * @param null $class
+     * @param array $params
+     * @param string $event_name
+     * @param string $function
+     */
+    public function registerEvent($class = null, $params = [], $event_name = 'event', $function = 'handle')
     {
-        parent::__construct($config);
         $this->event = $event_name;
         $this->params = $params;
         $this->on($event_name, [$class, $function]);
+        return $this;
     }
 
     /**

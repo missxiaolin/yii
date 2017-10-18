@@ -6,6 +6,7 @@ use common\components\Event\Email;
 use common\src\app\support\entity\UserEntity;
 use common\src\foundation\domain\Event;
 use yii\base\Model;
+use Yii;
 
 class userForm extends Model
 {
@@ -55,7 +56,8 @@ class userForm extends Model
         if (parent::validate($attributeNames, $clearErrors)) {
             $this->user_entity = new UserEntity();
             $params['email'] = '462441355@qq.com';
-            $this->user_entity->pendEvent(new Event(Email::class, $params));
+//            $this->user_entity->pendEvent(new Event(Email::class, $params));
+            $this->user_entity->pendEvent(Yii::$app->event->registerEvent(Email::class,$params));
             $this->user_entity->username = $this->username;
             $this->user_entity->email = $this->email;
             // 生成随机盐

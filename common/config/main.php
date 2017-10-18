@@ -5,5 +5,8 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'event' => [
+            'class' => 'common\src\foundation\domain\Event'
+        ]
     ],
 ];
