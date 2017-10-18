@@ -58,6 +58,7 @@ class loginForm extends Model
                 $this->addError('error', '账号和密码不匹配');
                 return false;
             }
+            $this->user = $user_model;
         }
         return true;
     }
@@ -71,18 +72,10 @@ class loginForm extends Model
     public function validate($attributeNames = null, $clearErrors = true)
     {
         if (parent::validate($attributeNames, $clearErrors)) {
-            Yii::$app->user->login($this->getUser($this->email));
+            Yii::$app->user->login($this->user);
             return true;
         }
         return false;
-    }
-
-    public function getUser($email)
-    {
-        $user_service = new UserService();
-        $user_model = UserModel::find()->where(['email' => $email])->one();
-        $this->user = $user_model;
-        return $this->user;
     }
 
 }
