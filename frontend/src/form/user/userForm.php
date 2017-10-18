@@ -51,9 +51,11 @@ class userForm extends Model
      */
     public function validate($attributeNames = null, $clearErrors = true)
     {
+        $params = [];
         if (parent::validate($attributeNames, $clearErrors)) {
             $this->user_entity = new UserEntity();
-            $this->user_entity->pendEvent(new Event(Email::class));
+            $params['email'] = '462441355@qq.com';
+            $this->user_entity->pendEvent(new Event(Email::class, $params));
             $this->user_entity->username = $this->username;
             $this->user_entity->email = $this->email;
             // 生成随机盐

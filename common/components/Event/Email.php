@@ -3,9 +3,14 @@ namespace common\components\Event;
 
 class Email
 {
+    /*
+     * 事件执行
+     */
     public static function handle($even)
     {
-        echo '发送邮件';
-        exit;
+        $data = $even->sender->params ?? [];
+        if (!empty($data)){
+
+        }
     }
 }

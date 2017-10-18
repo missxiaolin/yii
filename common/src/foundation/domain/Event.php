@@ -19,28 +19,29 @@ class Event extends Command
      */
     protected $published_at;
 
+    /**
+     * @var array|string
+     */
     public $event = 'event';
 
     /**
-     * Create a new event.
-     *
-     * @param mixed $payload
-     * @param $event_name
-     * @param $class
-     * @param $config
+     * @var array
      */
+    public $params = [];
 
     /**
      * Event constructor.
-     * @param array $event_name
      * @param null $class
-     * @param $function
+     * @param array $params
+     * @param string $event_name
+     * @param string $function
      * @param array $config
      */
-    public function __construct($class = null, $event_name = 'event', $function = 'handle', array $config = [])
+    public function __construct($class = null,$params = [], $event_name = 'event', $function = 'handle', array $config = [])
     {
         parent::__construct($config);
         $this->event = $event_name;
+        $this->params = $params;
         $this->on($event_name, [$class, $function]);
     }
 

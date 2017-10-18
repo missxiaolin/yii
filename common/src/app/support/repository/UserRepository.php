@@ -27,8 +27,8 @@ class UserRepository extends Repository implements UserInterface
                 'email' => $user_entity->email,
             ]
         );
-        $user_model->save();
-        $user_entity->setIdentity($user_model->id);
+//        $user_model->save();
+//        $user_entity->setIdentity($user_model->id);
     }
 
     protected function reconstitute($id, $params = [])
