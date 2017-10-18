@@ -8,7 +8,6 @@ use common\src\app\support\repository\UserRepository;
 use frontend\src\form\user\loginForm;
 use frontend\src\form\user\userForm;
 use Yii;
-use yii\base\Module;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -41,7 +40,7 @@ class RegisterController extends Controller
 
 
     /**
-     * 事件理解
+     * 邮箱登录
      * @return array
      */
     public function actionLogin()
