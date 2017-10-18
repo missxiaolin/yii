@@ -5,8 +5,10 @@ namespace frontend\controllers\api\user;
 
 use Carbon\Carbon;
 use common\src\app\support\repository\UserRepository;
+use frontend\src\form\user\loginForm;
 use frontend\src\form\user\userForm;
 use Yii;
+use yii\base\Module;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -33,6 +35,27 @@ class RegisterController extends Controller
         } else {
             Yii::$app->response->statusCode = 400;
             return $user_form->errors;
+        }
+        return $data;
+    }
+
+
+    /**
+     * 事件理解
+     * @return array
+     */
+    public function actionLogin()
+    {
+        $data = [];
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $login_from = new loginForm();
+        $login_from->load(Yii::$app->request->get(), '');
+        if ($login_from->validate()){
+            $data['code'] = 200;
+            $data['msg'] = '登录成功';
+        }else{
+            Yii::$app->response->statusCode = 400;
+            return $login_from->errors;
         }
         return $data;
     }

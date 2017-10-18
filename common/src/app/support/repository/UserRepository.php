@@ -36,4 +36,31 @@ class UserRepository extends Repository implements UserInterface
         // TODO: Implement reconstitute() method.
     }
 
+    /**
+     * @param $email
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public function getEmail($email)
+    {
+        $query = UserModel::find();
+        $model = $query->where(['email' => $email])->one();
+        return $model;
+    }
+
+    /**
+     * 密码验证
+     * @param $db_password
+     * @param $auth_key
+     * @param $password
+     * @return string
+     */
+    public function validatePassword($db_password, $auth_key, $password)
+    {
+        $postPwd = md5(md5($password) . $auth_key);
+        if ($db_password != $postPwd) {
+            return false;
+        }
+        return true;
+    }
+
 }

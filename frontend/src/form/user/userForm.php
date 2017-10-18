@@ -49,7 +49,6 @@ class userForm extends Model
      */
     public function validate($attributeNames = null, $clearErrors = true)
     {
-
         if (parent::validate($attributeNames, $clearErrors)) {
             $this->user_entity = new UserEntity();
             $this->user_entity->username = $this->username;
