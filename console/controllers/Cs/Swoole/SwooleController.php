@@ -1,5 +1,5 @@
 <?php
-namespace console\controllers\Cs;
+namespace console\controllers\Cs\Swoole;
 
 
 use yii\console\Controller;
