@@ -31,6 +31,8 @@ class RegisterController extends Controller
             $user_entity = $user_form->user_entity;
             $user_repository = new UserRepository();
             $user_repository->save($user_entity);
+            $data['code'] = 200;
+            $data['msg'] = '注册成功';
         } else {
             Yii::$app->response->statusCode = 400;
             return $user_form->errors;
