@@ -33,19 +33,6 @@ class SwooleController extends Controller
     }
 
     /**
-     * 模拟发送数据
-     */
-    public function actionSend()
-    {
-        $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_SYNC);
-        $client->connect('127.0.0.1', 9501) || exit("connect failed. Error: {$client->errCode}\n");
-        $client->send("hello server.");
-        $response = $client->recv();
-        echo $response . PHP_EOL;
-        $client->close();
-    }
-
-    /**
      * 开启swoole (task)
      */
     public function actionTask()
@@ -87,11 +74,31 @@ class SwooleController extends Controller
             echo "task end." . PHP_EOL;
         });
 
+        /**
+         * 只有在task进程中调用了finish方法或者return了结果，才会触发finish
+         */
+        $serv->on('Finish', function ($serv, $taskId, $data) {
+            echo "finish received data '{$data}'" . PHP_EOL;
+        });
+
         // 客户端断开连接或者server主动关闭连接时 worker进程内调用
         $serv->on('Close', function ($serv, $fd) {
             echo "Client close." . PHP_EOL;
         });
         $serv->start();
+    }
+
+    /**
+     * 模拟发送数据（actionTest actionTask）
+     */
+    public function actionSend()
+    {
+        $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_SYNC);
+        $client->connect('127.0.0.1', 9501) || exit("connect failed. Error: {$client->errCode}\n");
+        $client->send("hello server.");
+        $response = $client->recv();
+        echo $response . PHP_EOL;
+        $client->close();
     }
 
 
