@@ -101,5 +101,48 @@ class SwooleController extends Controller
         $client->close();
     }
 
+    /**
+     * 最大执行
+     * max_request的含义是worker进程的最大任务数
+     * task_max_request针对task进程，含义同max_request
+     * Worker进程的最大任务设置为3次，Task进程的最大任务设置为4次。
+     */
+    public function actionMaxRequest()
+    {
+        $serv = new swoole_server('127.0.0.1', 9501);
+
+        $serv->set([
+            'worker_num' => 1,
+            'task_worker_num' => 1,
+            'max_request' => 3,
+            'task_max_request' => 4,
+        ]);
+        $serv->on('Connect', function ($serv, $fd) {
+        });
+        $serv->on('Receive', function ($serv, $fd, $fromId, $data) {
+            $serv->task($data);
+        });
+        $serv->on('Task', function ($serv, $taskId, $fromId, $data) {
+        });
+        $serv->on('Finish', function ($serv, $taskId, $data) {
+        });
+        $serv->on('Close', function ($serv, $fd) {
+        });
+        $serv->start();
+    }
+
+    /**
+     * 模拟发送数据（actionMaxRequest）
+     */
+    public function actionSendMax()
+    {
+        $client = new swoole_client(SWOOLE_SOCK_TCP, SWOOLE_SOCK_SYNC);
+        $client->connect('127.0.0.1', 9501) || exit("connect failed. Error: {$client->errCode}\n");
+
+// 向服务端发送数据
+        $client -> send("Just a test.");
+        $client->close();
+    }
+
 
 }
