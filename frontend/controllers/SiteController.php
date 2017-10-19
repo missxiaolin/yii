@@ -15,6 +15,7 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
+        $data = [];
         $this->title = '首页';
         $this->file_css = 'css/index/index';
         $this->file_js = 'pages/index/index';
