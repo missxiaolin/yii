@@ -3,22 +3,26 @@
 namespace console\controllers;
 
 use console\controllers\contract\JobInterface;
+use Yii;
 
 class Email implements JobInterface
 {
-    public $subject;
+    public $email;
+
+    public $title;
 
     public $body;
 
-    public $target;
-
-    public function __construct($subject, $body, $target)
+    public function __construct($email, $title, $body)
     {
-        $this->subject = $subject;
+        $this->email = $email;
+        $this->title = $title;
         $this->body = $body;
-        $this->target = $target;
     }
 
+    /**
+     * 执行函数
+     */
     public function handle()
     {
         // TODO: Implement handle() method.
@@ -26,10 +30,15 @@ class Email implements JobInterface
     }
 
     /**
-     *
+     * 发送邮件
      */
     public function sendEmail()
     {
-        dump('发送邮件');
+        $mail = Yii::$app->mailer->compose();
+        $mail->setTo($this->email);
+        $mail->setSubject($this->title);
+        $mail->setHtmlBody($this->body);
+        $data = $mail->send();
+        dump($data);
     }
 }
