@@ -31,7 +31,7 @@ class ArrayController extends Controller
         $arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
         echo '原数组：' . PHP_EOL;
         dump($arr);
-        $res = array_chunk($arr,4);
+        $res = array_chunk($arr, 4);
         dump($res);
         echo '4个一组分组：' . PHP_EOL;
         $res = array_chunk($arr, 20);
@@ -42,11 +42,20 @@ class ArrayController extends Controller
     /**
      * 修改键名为全大写或小写
      * [upper|lower]
-     * @param $array array
+     * @param $params string
      */
-    public function actionCase(array $array)
+    public function actionCase($params = '')
     {
-        dump($array);
+        if (strlen($params) == 0) {
+            dump('请输入参数！upper|lower');
+            return;
+        }
+        $type = $params == 'upper' ? CASE_UPPER : CASE_LOWER;
+        $data = ['test' => 'tt', 'Tes' => 123, 'AA' => 'sdf'];
+        echo '原数组' . PHP_EOL;
+        dump($data);
+        echo 'array_change_key_case(data,type)' . PHP_EOL;
+        dump(array_change_key_case($data, $type));
     }
 
 }
