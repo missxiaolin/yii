@@ -19,8 +19,8 @@ class ArgController extends Controller
 
         echo 'Actions:' . PHP_EOL;
 
-        echo 'more        不定参数测试' . PHP_EOL;
-        echo 'Test    传入函数测试' . PHP_EOL;
+        echo 'more   不定参数测试' . PHP_EOL;
+        echo 'Test   传入函数测试' . PHP_EOL;
     }
 
     /**

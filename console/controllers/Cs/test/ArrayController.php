@@ -19,7 +19,8 @@ class ArrayController extends Controller
 
         echo 'Actions:' . PHP_EOL;
 
-        echo 'chunk        数组重新分组' . PHP_EOL;
+        echo 'chunk   数组重新分组' . PHP_EOL;
+        echo 'case   [upper|lower]   修改键名为全大写或小写' . PHP_EOL;
     }
 
     /**
@@ -36,6 +37,16 @@ class ArrayController extends Controller
         $res = array_chunk($arr, 20);
         dump($res);
         echo '20个一组分组：' . PHP_EOL;
+    }
+
+    /**
+     * 修改键名为全大写或小写
+     * [upper|lower]
+     * @param $array array
+     */
+    public function actionCase(array $array)
+    {
+        dump($array);
     }
 
 }
