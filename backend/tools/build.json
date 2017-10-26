@@ -1,0 +1,8 @@
+{
+    "modules": [
+        {
+            "src": "product/index",
+            "dest": "product"
+        }
+    ]
+}
