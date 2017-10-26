@@ -1,7 +1,6 @@
 <?php
 namespace console\controllers\Cs\test;
 
-use yii\base\Module;
 use yii\console\Controller;
 
 class ArgController extends Controller
