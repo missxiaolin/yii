@@ -15,7 +15,6 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
-        $this->layout = false;
         return $this->view('login');
     }
 
