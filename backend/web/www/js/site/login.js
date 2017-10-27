@@ -71,7 +71,14 @@
 /***/ 3:
 /***/ (function(module, exports) {
 
-
+$(function () {
+    $.validate({
+        form: '#form',
+        onSuccess: function onSuccess($form) {
+            return true;
+        }
+    });
+});
 
 /***/ }),
 

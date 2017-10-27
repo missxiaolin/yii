@@ -2,6 +2,8 @@
 use \backend\assets\AppAsset;
 
 AppAsset::addCss($this, '@web/www/css/site/login.css');
+
+AppAsset::addScript($this, '@web/www/lib/jquery-form-validator/jquery.form-validator.js');
 AppAsset::addScript($this, '@web/www/js/site/login.js');
 
 ?>
