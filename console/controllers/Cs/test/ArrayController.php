@@ -19,10 +19,16 @@ class ArrayController extends Controller
 
         echo 'Actions:' . PHP_EOL;
 
-        echo 'chunk   数组重新分组' . PHP_EOL;
-        echo 'case   [upper|lower]   修改键名为全大写或小写' . PHP_EOL;
-        echo 'combine   拼接key数组和val数组' . PHP_EOL;
-        echo 'count   统计数组中所有的值出现的次数' . PHP_EOL;
+        echo 'chunk                     数组重新分组' . PHP_EOL;
+        echo 'case      [upper|lower]   修改键名为全大写或小写' . PHP_EOL;
+        echo 'combine                   拼接key数组和val数组' . PHP_EOL;
+        echo 'count                     统计数组中所有的值出现的次数' . PHP_EOL;
+        echo 'diff                      计算数组差集' . PHP_EOL;
+        echo 'fill                      用给定的值填充数组' . PHP_EOL;
+        echo 'filter                    用回调函数过滤数组中的单元' . PHP_EOL;
+        echo 'intersect                 返回两个数组值的差集，如果值相等返回数组1对应的数据' . PHP_EOL;
+        echo 'keys                      返回数组的key值' . PHP_EOL;
+
     }
 
     /**
@@ -83,6 +89,87 @@ class ArrayController extends Controller
         echo '原数组：' . PHP_EOL;
         dump($data);
         dump(array_count_values($data));
+    }
+
+    /**
+     * 计算数组差集
+     */
+    public function actionDiff()
+    {
+        $arr1 = [1, 2, 3, '4' => 4, '5' => 5, 6, 7];
+        $arr2 = [2, 3, '5' => 5, '6' => 5, 6, 8];
+        echo '原数组：' . PHP_EOL;
+        dump($arr1);
+        dump($arr2);
+        echo '结果：' . PHP_EOL;
+        dump(array_diff($arr1, $arr2));
+    }
+
+    /**
+     * 用给定的值填充数组
+     * ./yii Cs/test/array/fill 0,3,t(数组传递)
+     * @param array $params
+     * @return bool
+     */
+    public function actionFill(array $params)
+    {
+        if (count($params) < 3) {
+            dump('请输入起始值和长度和值');
+            return false;
+        }
+        $begin = $params[0];
+        $len = $params[1];
+        $val = $params[2];
+        if (!is_numeric($begin) || !is_numeric(($len))) {
+            dump('起始值和长度必须为INT');
+            return false;
+        }
+        $res = array_fill($begin, $len, $val);
+        dump($res);
+    }
+
+    /**
+     * 用回调函数过滤数组中的单元
+     */
+    public function actionFilter()
+    {
+        $arr = [1, 2, 3, 'a' => 4, 5, 6, 7, 'b' => 9, 8, 10];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_filter($arr,function ($var){
+            return ($var & 1);
+        }));
+
+        dump(array_filter($arr,function ($var){
+            return ($var > 4);
+        }));
+    }
+
+    /**
+     * 返回两个数组值的差集，如果值相等返回数组1对应的数据
+     */
+    public function actionIntersect()
+    {
+        $arr1 = array("a" => "green", "red", "blue");
+        $arr2 = array("b" => "green", "yellow", "red");
+        echo '原数组：' . PHP_EOL;
+        dump($arr1);
+        dump($arr2);
+        echo '结果：' . PHP_EOL;
+        dump(array_intersect($arr1,$arr2));
+    }
+
+    /**
+     * 返回数组的key值
+     */
+    public function actionKeys()
+    {
+        $arr = array("a" => "green", "red", "blue", "b" => "green", 22 => "yellow", "red");
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_keys($arr));
     }
 
 }
