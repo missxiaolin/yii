@@ -2,6 +2,7 @@
 namespace console\controllers\Cs\test;
 
 use yii\console\Controller;
+use yii\helpers\ArrayHelper;
 
 class ArrayController extends Controller
 {
@@ -28,7 +29,16 @@ class ArrayController extends Controller
         echo 'filter                    用回调函数过滤数组中的单元' . PHP_EOL;
         echo 'intersect                 返回两个数组值的差集，如果值相等返回数组1对应的数据' . PHP_EOL;
         echo 'keys                      返回数组的key值' . PHP_EOL;
-
+        echo 'map                       返回callback处理之后的数组' . PHP_EOL;
+        echo 'unique                    数组去重' . PHP_EOL;
+        echo 'mergeRecursive            合并多个数组，键值相同则合并成一个数组' . PHP_EOL;
+        echo 'pad       [:len] [:val]   根据指定长度填充数组' . PHP_EOL;
+        echo 'splice    [:off] [:len]   根据指定长度切割' . PHP_EOL;
+        echo 'multisort                 数组排序' . PHP_EOL;
+        echo 'intersectKey              返回两个数组KEY的差集 若KEY相等返回数组1对应的数据' . PHP_EOL;
+        echo 'flip                      KEY和VALUE互换' . PHP_EOL;
+        echo 'fillKeys                  填充数据' . PHP_EOL;
+        echo 'arrayGet                  提取数据' . PHP_EOL;
     }
 
     /**
@@ -137,11 +147,11 @@ class ArrayController extends Controller
         echo '原数组：' . PHP_EOL;
         dump($arr);
         echo '结果：' . PHP_EOL;
-        dump(array_filter($arr,function ($var){
+        dump(array_filter($arr, function ($var) {
             return ($var & 1);
         }));
 
-        dump(array_filter($arr,function ($var){
+        dump(array_filter($arr, function ($var) {
             return ($var > 4);
         }));
     }
@@ -157,7 +167,7 @@ class ArrayController extends Controller
         dump($arr1);
         dump($arr2);
         echo '结果：' . PHP_EOL;
-        dump(array_intersect($arr1,$arr2));
+        dump(array_intersect($arr1, $arr2));
     }
 
     /**
@@ -172,4 +182,152 @@ class ArrayController extends Controller
         dump(array_keys($arr));
     }
 
+    /**
+     * 返回callback处理之后的数组
+     */
+    public function actionMap()
+    {
+        $arr = [1, 2, 3, 4, 5];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_map(function ($val) {
+            return $val > 2 ? $val : '';
+        }, $arr));
+    }
+
+    /**
+     * 数组去重
+     */
+    public function actionUnique()
+    {
+        $arr = [1, 1, 222, 222, 3, 4, 5];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_unique($arr));
+    }
+
+    /**
+     * 合并多个数组，键值相同则合并成一个数组
+     */
+    public function actionMergeRecursive()
+    {
+        $arr1 = ["color" => ["favorite" => "red"], 5];
+        $arr2 = [10, "color" => ["favorite" => "green", "blue"]];
+        echo '原数组：' . PHP_EOL;
+        dump($arr1);
+        dump($arr2);
+        echo '结果：' . PHP_EOL;
+        dump(array_merge_recursive($arr1, $arr2));
+    }
+
+    /**
+     * 根据指定长度填充数组
+     * @param $params
+     */
+    public function actionPad(array $params)
+    {
+        if (count($params) < 2) {
+            dump('请输入数组长度 与 填充值！');
+            return;
+        }
+        $arr = [1, 2, 3, 4, 5];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_pad($arr, $params[0], $params[1]));
+
+    }
+
+    /**
+     * 根据指定长度切割
+     * @param $params
+     */
+    public function actionSplice(array $params)
+    {
+        if (count($params) < 2) {
+            dump('请输入起始位置 与 长度！');
+            return;
+        }
+        $arr = [1, 2, 3, 4, 5];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+
+        dump(array_splice($arr, $params[0], $params[1]));
+
+    }
+
+    /**
+     * 数组排序
+     */
+    public function actionMultisort()
+    {
+        $arr = [];
+        $sort1 = [];
+        $sort2 = [];
+        for ($i = 0; $i < 100; $i++) {
+            $s1 = rand(1, 10);
+            $s2 = rand(1, 100);
+            $arr[] = ['sort1' => $s1, 'sort2' => $s2, 'val' => uniqid()];
+            $sort1[] = $s1;
+            $sort2[] = $s2;
+        }
+        echo '原数组：' . PHP_EOL;
+        echo json_encode($arr) . PHP_EOL;
+        echo '结果：' . PHP_EOL;
+        $data = array_multisort($sort1, SORT_DESC, $sort2, SORT_ASC, $arr);
+        dump($data);
+    }
+
+    /**
+     * 返回两个数组KEY的差集 若KEY相等返回数组1对应的数据
+     */
+    public function actionIntersectKey()
+    {
+        $arr1 = ['id' => 1, 'name' => 'xiaolin', 'username' => 'xiaolin'];
+        $arr2 = ['id' => 0, 'name' => 1, 'username' => 2, 'email' => '462441355@qq.com'];
+        echo '原数组：' . PHP_EOL;
+        dump($arr1);
+        dump($arr2);
+        echo '结果：' . PHP_EOL;
+        dump(array_intersect_key($arr1, $arr2));
+    }
+
+    /**
+     * KEY和VALUE互换
+     */
+    public function actionFlip()
+    {
+        $arr = ['id', 'name', 'username'];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_flip($arr));
+    }
+
+    /**
+     * 填充数据
+     */
+
+    public function actionFillKeys()
+    {
+        $arr = ['id', 'name', 'username'];
+        echo '原数组：' . PHP_EOL;
+        dump($arr);
+        echo '结果：' . PHP_EOL;
+        dump(array_fill_keys($arr,''));
+    }
+
+    /**
+     * 提取数据
+     */
+    public function actionArrayGet()
+    {
+        $arr = [
+            'shop_no' => 5325210415012312,
+        ];
+        dump(ArrayHelper::getValue($arr,'shop_no'));
+    }
 }
