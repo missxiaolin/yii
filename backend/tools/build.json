@@ -3,6 +3,10 @@
         {
             "src": "product/index",
             "dest": "product"
+        },
+        {
+            "src": "site/login",
+            "dest": "site"
         }
     ]
 }

@@ -5,10 +5,6 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -22,6 +18,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->params['meta_title'] ?? '') ?></title>
     <meta name="Keywords" content="<?= Html::encode($this->params['meta_keyword'] ?? '') ?>"/>
     <meta name="Description" content="<?= Html::encode($this->params['meta_description'] ?? '') ?>"/>
+    <meta name="X-CSRF-TOKEN" content="">
     <link rel="stylesheet" href="/www/css/app.css">
     <?php $this->head() ?>
 </head>
@@ -33,26 +30,30 @@ AppAsset::register($this);
             <?= $this->render('../partials/header'); ?>
         </div>
     <?php } ?>
-    <div class="content">
-        <?php if (empty(Yii::$app->user->isGuest)) { ?>
+    <?php if (empty(Yii::$app->user->isGuest)) { ?>
+        <div class="content">
+
             <div class="sidenav">
                 <?= $this->render('../partials/sidenav'); ?>
             </div>
-        <?php } ?>
 
-        <div class="main-content">
-            <div class="shell-content">
-                <?= $content ?>
+
+            <div class="main-content">
+                <div class="shell-content">
+                    <?= $content ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php }else{ ?>
+        <?= $content ?>
+    <?php } ?>
     <?php if (empty(Yii::$app->user->isGuest)) { ?>
         <div class="footer">
             <?= $this->render('../partials/footer'); ?>
         </div>
     <?php } ?>
 </div>
-<link rel="stylesheet" href="/www/js/app.js">
+<script src="/www/js/app.js"></script>
 
 <?php $this->endBody() ?>
 </body>

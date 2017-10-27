@@ -1,0 +1,27 @@
+.login-box {
+  width: 360px;
+  margin: 15% auto;
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+
+.login-box-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.form-error {
+  position: absolute;
+}
