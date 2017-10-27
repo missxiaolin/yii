@@ -2,24 +2,22 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use common\models\LoginForm;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * Displays homepage.
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionLogin()
     {
-        return $this->render('index');
+        $this->layout = false;
+        return $this->view('login');
     }
+
 
 }
