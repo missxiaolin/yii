@@ -21,6 +21,8 @@ class ArrayController extends Controller
 
         echo 'chunk   数组重新分组' . PHP_EOL;
         echo 'case   [upper|lower]   修改键名为全大写或小写' . PHP_EOL;
+        echo 'combine   拼接key数组和val数组' . PHP_EOL;
+        echo 'count   统计数组中所有的值出现的次数' . PHP_EOL;
     }
 
     /**
@@ -56,6 +58,31 @@ class ArrayController extends Controller
         dump($data);
         echo 'array_change_key_case(data,type)' . PHP_EOL;
         dump(array_change_key_case($data, $type));
+    }
+
+    /**
+     * 拼接key数组和val数组
+     */
+    public function actionCombine()
+    {
+        $key = ['key1', 'key2', 'key3'];
+        $val = ['val1', 'val2', 'val3'];
+        echo '原数组：' . PHP_EOL;
+        dump($key);
+        dump($val);
+        echo '结果：' . PHP_EOL;
+        dump(array_combine($key, $val));
+    }
+
+    /**
+     * 统计数组值出现的次数
+     */
+    public function actionCount()
+    {
+        $data = [1, 2, 'hello', 1, 'hello', 'hello', '1'];
+        echo '原数组：' . PHP_EOL;
+        dump($data);
+        dump(array_count_values($data));
     }
 
 }
