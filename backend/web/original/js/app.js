@@ -143,44 +143,41 @@ window.Vue = require('vue');
 })(jQuery);
 
 $(function () {
-    $(".nav-stacked >li a").click(function () {
-        $(this).siblings('.sidebar-trans').toggleClass("active")
-            .siblings().removeClass('active');
-
-        $(this).find('.caret').toggleClass('towards-right');
-    });
+    var cookie = require('../lib/js-cookie/src/js.cookie.js');
 
     var array_index = new Array();
-    if (sessionStorage.getItem("nav")) {
-        array_index = JSON.parse(sessionStorage.getItem("nav"))
-    }
-    $('.nav-stacked > li').click(function () {
+
+    $(".nav-stacked >li").click(function () {
+        $(this).find('.sidebar-trans').toggleClass("active")
+            .find().removeClass('active');
+
+        $(this).find('.caret').toggleClass('towards-right');
+
+        if (cookie.get("nav")) {
+            array_index = JSON.parse(cookie.get("nav"));
+        }
+
+        var val = $(this).data('id');
         if ($(this).find('ul').hasClass('active')) {
-            array_index.push($(this).index());
-        } else {
-            var val = $(this).index(),
-                new_index = [];
+            var new_index = [];
             for (var i = 0; i < array_index.length; i++) {
                 if (val != array_index[i]) {
                     new_index.push(array_index[i]);
                 }
             }
             array_index = new_index;
-        }
-        sessionStorage.setItem('nav', JSON.stringify(array_index));
-    });
-
-    $(document).ready(function () {
-        var array = [];
-        if (sessionStorage.getItem("nav")) {
-            array = JSON.parse(sessionStorage.getItem("nav"));
-            for (var i = 0; i < array.length; i++) {
-                //三角形
-                $($('.nav-stacked > li')[array[i]]).find('.caret').addClass('towards-right');
-                //列表内容
-                $($('.nav-stacked > li')[array[i]]).find('.sidebar-trans').addClass('active');
+        } else {
+            if (array_index.indexOf(val) == -1) {
+                array_index.push(val);
             }
         }
+        cookie.set('nav', JSON.stringify(array_index));
+
+    });
+
+    $(".nav-stacked .sidebar-trans li").click(function (e) {
+        var event = e || window.event;
+        event.stopPropagation();
     });
 
     //----------------------------- 判断浏览器 -------------------------

@@ -14,7 +14,7 @@ return [
                     'icon' => '&#xe608;',
                     'name' => 'cookie使用',
                     'route' => 'js/cookie',
-                ]
+                ],
             ],
         ],
     ],

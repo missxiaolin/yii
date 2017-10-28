@@ -8525,7 +8525,7 @@ select {
 }
 
 .nav-pills > li > a:focus {
-  background: #42485B;
+  background: #333744;
   color: #FFFFFF;
 }
 
