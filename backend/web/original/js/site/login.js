@@ -3,6 +3,18 @@ $(function () {
     var Popup = require('../../component/popup');
     var service = require('../../service/site/loginService');
 
+    // 引入验证类
+    require('../../lib/jquery-form-validator/jquery.form-validator.js')
+
+    $successPop = new Popup({
+        width: 200,
+        height: 150,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#successTpl').html()
+    });
+
     $loadingPop = new Popup({
         width: 128,
         height: 128,
@@ -46,6 +58,7 @@ $(function () {
                 setTimeout(skipUpdate, 2000);
 
                 function skipUpdate() {
+                    $successPop.closePop();
                     window.location.href = '/site/index';
                 }
             },
