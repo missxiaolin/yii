@@ -22,6 +22,7 @@ return [
             'identityClass' => 'backend\src\models\AdminModel',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'loginUrl' => ['site/login'], //要是数组
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
