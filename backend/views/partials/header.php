@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= \yii\helpers\Url::to('site/logout', true) ?>">退出</a>
+                    <a href="<?= route('site/logout') ?>">退出</a>
                 </li>
             </ul>
         </div>

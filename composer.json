@@ -34,6 +34,11 @@
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*"
     },
+    "autoload": {
+        "files": [
+            "common/help/helpers.php"
+        ]
+    },
     "config": {
         "process-timeout": 1800
     },
