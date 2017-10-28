@@ -63,23 +63,21 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */
+/******/ ({
+
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
 
-    var Popup = __webpack_require__(4);
-    var service = __webpack_require__(5);
+    var Popup = __webpack_require__(42);
+    var service = __webpack_require__(46);
 
     // 引入验证类
-    __webpack_require__(12);
+    __webpack_require__(45);
 
     $successPop = new Popup({
         width: 200,
@@ -163,7 +161,8 @@ $(function () {
 });
 
 /***/ }),
-/* 4 */
+
+/***/ 42:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -328,42 +327,8 @@ module.exports = function ($) {
 }(jQuery);
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
 
-module.exports = function () {
-    // 登录
-    var _login = function login(opts) {
-        $.http({
-            type: 'POST',
-            url: '/api/user/user/login',
-            data: opts.data,
-            dataType: 'json',
-            beforeSend: opts.beforeSend,
-            success: opts.sucFn,
-            error: opts.errFn
-        });
-    };
-
-    return {
-        login: _login
-    };
-}();
-
-/***/ }),
-/* 6 */,
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(3);
-
-
-/***/ }),
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */
+/***/ 45:
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1943,5 +1908,38 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   });
 })(jQuery);
 
+/***/ }),
+
+/***/ 46:
+/***/ (function(module, exports) {
+
+module.exports = function () {
+    // 登录
+    var _login = function login(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/user/user/login',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
+    return {
+        login: _login
+    };
+}();
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(17);
+
+
 /***/ })
-/******/ ]);
+
+/******/ });

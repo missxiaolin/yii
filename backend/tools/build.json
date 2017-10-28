@@ -1,6 +1,10 @@
 {
     "modules": [
         {
+            "src": "js/data",
+            "dest": "js"
+        },
+        {
             "src": "product/index",
             "dest": "product"
         },
