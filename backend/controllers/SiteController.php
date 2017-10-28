@@ -3,12 +3,47 @@ namespace backend\controllers;
 
 use Yii;
 use yii\helpers\Url;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * Site controller
  */
 class SiteController extends BaseController
 {
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => [
+                            'login',
+                            'logout'
+                        ],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [
+                            'index',
+                        ],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                ],
+            ],
+        ];
+    }
 
     /**
      * 首页
@@ -18,6 +53,7 @@ class SiteController extends BaseController
     {
         return $this->view('index');
     }
+
     /**
      * Displays homepage.
      *
