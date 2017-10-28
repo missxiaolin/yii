@@ -11,6 +11,7 @@ AppAsset::addScript($this, '@web/www/js/js/cookie.js');
 <p>cookie.set(key, 值)</p>
 <p>cookie.set('name', 'value', { expires: 7 });</p>
 <p>cookie.set('name', 'value', { expires: 7, path: '' });</p>
+<p>cookie.set('name', 'value', { domain: 'xiaolin.com' });</p>
 <br>
 
 <p>获取cookie: </p>
