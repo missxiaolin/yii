@@ -11,25 +11,25 @@ path = 'web/www/';
 
 
 files.forEach(function (ele, index) {
-    console.log('resources/assets/js/' + ele.src + '.js');
-    mix.js('resources/assets/js/' + ele.src + '.js', 'js/' + ele.dest);
+    console.log('web/original/js/' + ele.src + '.js');
+    mix.js('web/original/js/' + ele.src + '.js', 'js/' + ele.dest);
 });
 
 files.forEach(function (ele, index) {
-    mix.sass('resources/assets/sass/' + ele.src + '.scss', 'css/' + ele.dest);
+    mix.sass('web/original/sass/' + ele.src + '.scss', 'css/' + ele.dest);
 });
 
 
 if (process.argv.includes('all')) {
 
-    mix.js('resources/assets/js/app.js', 'js')
-        .sass('resources/assets/sass/app.scss', 'css').options({
+    mix.js('web/original/js/app.js', 'js')
+        .sass('web/original/sass/app.scss', 'css').options({
         processCssUrls: false
     });
 
-    mix.copy('resources/assets/lib/', path + 'lib');
-    mix.copy('resources/assets/font', path + 'font');
-    mix.copy('resources/assets/images', path + 'images');
+    mix.copy('web/original/lib/', path + 'lib');
+    mix.copy('web/original/font', path + 'font');
+    mix.copy('web/original/images', path + 'images');
 }
 
 /*

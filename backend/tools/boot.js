@@ -6,7 +6,7 @@
     // auto generating build source file.
 
     autoGenerate.updateScript({
-        dir: dirname + '/../resources/assets/js',
+        dir: dirname + '/../web/original/js',
         output: dirname + '/build.json'
     });
 
