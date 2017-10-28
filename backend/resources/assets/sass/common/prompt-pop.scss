@@ -1,0 +1,60 @@
+/*全部提交*/
+.hint-title {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 15px;
+  font-size: 16px;
+  background: #f1f0f0;
+}
+
+.hint-content {
+  padding: 10px 10px 0 10px;
+}
+
+.hint-btn,
+.hint-btn-del {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: #f1f0f0;
+  height: 45px;
+  line-height: 45px;
+}
+
+.hint-btn a,
+.hint-btn-del a {
+  width: 100px;
+  background: #f4c044;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.hint-btn a {
+  display: block;
+  margin-left: 150px;
+  margin-top: 8px;
+}
+
+.hint-btn-del a {
+  display: inline-block;
+}
+
+.hint-btn-del a:first-child {
+  display: inline-block;
+  margin-left: 90px;
+  margin-right: 15px;
+}
+
+.hint-btn-del .cancel {
+  background-color: #959393;
+}
+
+//成功提示
+.success-hint {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
