@@ -1,21 +1,22 @@
 <?php
 $url_name = Yii::$app->controller->route;
+$nav = Yii::$app->params['leftNav'];
 ?>
 <ul class="nav nav-pills nav-stacked">
-    <li role="presentation">
-        <a href="#">
-            <span class="caret"></span>小林JS</a>
-        <ul class="nav sidebar-trans">
-            <li <?php if ($url_name == 'js/data'){ ?>class="active"<?php } ?> >
-                <a href="<?= route('js/data') ?>">
-                    <i class="iconfont">&#xe60e;</i>日期与时间
-                </a>
-            </li>
-            <li <?php if ($url_name == 'js/cookie'){ ?>class="active"<?php } ?> >
-                <a href="<?= route('js/cookie') ?>">
-                    <i class="iconfont">&#xe60e;</i>cookie使用
-                </a>
-            </li>
-        </ul>
-    </li>
+    <?php foreach ($nav as $key => $item) { ?>
+        <li role="presentation" data-id="<?= $key ?>">
+            <a href="#">
+                <span class="caret towards-right"></span><?= $item['presentation'] ?? '' ?>
+            </a>
+            <ul class="nav sidebar-trans active">
+                <?php foreach ($item['sidebar_trans'] ?? [] as $submenu_key => $submenu) { ?>
+                    <li <?php if ($url_name == $submenu['route']){ ?>class="active"<?php } ?> >
+                        <a href="<?= route($submenu['route']) ?>">
+                            <i class="iconfont"><?= $submenu['icon'] ?? '' ?></i><?= $submenu['name'] ?? '' ?>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </li>
+    <?php } ?>
 </ul>
