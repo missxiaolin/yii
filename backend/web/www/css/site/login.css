@@ -1,1 +1,110 @@
-@charset "UTF-8";.hint-title{height:40px;line-height:40px;padding-left:15px;font-size:16px;background:#f1f0f0}.hint-content{padding:10px 10px 0}.hint-btn,.hint-btn-del{position:absolute;width:100%;bottom:0;background:#f1f0f0;height:45px;line-height:45px}.hint-btn a,.hint-btn-del a{width:100px;background:#f4c044;height:30px;line-height:30px;text-align:center;color:#fff;border-radius:3px}.hint-btn a{display:block;margin-left:150px;margin-top:8px}.hint-btn-del a{display:inline-block}.hint-btn-del a:first-child{display:inline-block;margin-left:90px;margin-right:15px}.hint-btn-del .cancel{background-color:#959393}.success-hint{height:40px;line-height:40px;font-size:16px}.layout{width:50%;height:50%;z-index:1001;text-align:center;position:relative}.layout img{width:100%;height:100%}.upload-progress{position:absolute;left:0;top:24px;color:#fff;font-size:12px;width:100%}.login-box{width:360px;margin:15% auto}@media (max-width:768px){.login-box{width:90%;margin-top:20px}}.login-box-body{background:#fff;padding:20px;border-top:0;color:#666}.form-group{margin-bottom:30px;position:relative}.form-error{position:absolute}
+@charset "UTF-8";
+/*全部提交*/
+.hint-title {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 15px;
+  font-size: 16px;
+  background: #f1f0f0;
+}
+
+.hint-content {
+  padding: 10px 10px 0 10px;
+}
+
+.hint-btn,
+.hint-btn-del {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: #f1f0f0;
+  height: 45px;
+  line-height: 45px;
+}
+
+.hint-btn a,
+.hint-btn-del a {
+  width: 100px;
+  background: #f4c044;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.hint-btn a {
+  display: block;
+  margin-left: 150px;
+  margin-top: 8px;
+}
+
+.hint-btn-del a {
+  display: inline-block;
+}
+
+.hint-btn-del a:first-child {
+  display: inline-block;
+  margin-left: 90px;
+  margin-right: 15px;
+}
+
+.hint-btn-del .cancel {
+  background-color: #959393;
+}
+
+.success-hint {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}
+
+.layout {
+  width: 50%;
+  height: 50%;
+  z-index: 1001;
+  text-align: center;
+  position: relative;
+}
+
+.layout img {
+  width: 100%;
+  height: 100%;
+}
+
+.upload-progress {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  color: #fff;
+  font-size: 12px;
+  width: 100%;
+}
+
+.login-box {
+  width: 360px;
+  margin: 15% auto;
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+
+.login-box-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.form-group {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.form-error {
+  position: absolute;
+}

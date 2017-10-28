@@ -29,6 +29,5 @@ AppAsset::addScript($this, '@web/www/js/site/login.js');
     </div>
 </div>
 
-<?= $this->render('../common/success-pop'); ?>
 <?= $this->render('../common/loading-pop'); ?>
 <?= $this->render('../common/prompt-pop', ['type' => 1]); ?>

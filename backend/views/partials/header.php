@@ -8,7 +8,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">
-                        Hi，小林
+                        Hi，<?= Yii::$app->user->identity->username ?>
                     </a>
                 </li>
                 <li>
