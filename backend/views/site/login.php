@@ -9,9 +9,9 @@ AppAsset::addScript($this, '@web/www/js/site/login.js');
 ?>
 <div class="login-box">
     <div class="login-box-body">
-        <form id="form" method="POST">
+        <form id="form" method="POST" onsubmit="return false">
             <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="帐号"
+                <input type="text" class="form-control" name="username" placeholder="帐号"
                        value=""
                        data-validation="required length"
                        data-validation-length="max20"
@@ -28,3 +28,7 @@ AppAsset::addScript($this, '@web/www/js/site/login.js');
         </form>
     </div>
 </div>
+
+<?= $this->render('../common/success-pop'); ?>
+<?= $this->render('../common/loading-pop'); ?>
+<?= $this->render('../common/prompt-pop', ['type' => 1]); ?>
