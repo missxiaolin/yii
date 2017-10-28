@@ -17,4 +17,14 @@ class JsController extends BaseController
     {
         return $this->view('data');
     }
+
+    /**
+     * cookie使用
+     * @return mixed
+     */
+    public function actionCookie()
+    {
+        return $this->view('cookie');
+    }
+
 }
