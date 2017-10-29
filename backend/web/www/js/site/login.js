@@ -63,21 +63,21 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 58);
+/******/ 	return __webpack_require__(__webpack_require__.s = 62);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 22:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
 
-    var Popup = __webpack_require__(48);
-    var service = __webpack_require__(52);
+    var Popup = __webpack_require__(51);
+    var service = __webpack_require__(55);
 
     // 引入验证类
-    __webpack_require__(51);
+    __webpack_require__(54);
 
     $successPop = new Popup({
         width: 200,
@@ -162,7 +162,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 48:
+/***/ 51:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -328,7 +328,7 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 51:
+/***/ 54:
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1910,7 +1910,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 52:
+/***/ 55:
 /***/ (function(module, exports) {
 
 module.exports = function () {
@@ -1934,10 +1934,10 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ 58:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(22);
+module.exports = __webpack_require__(25);
 
 
 /***/ })

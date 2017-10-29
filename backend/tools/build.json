@@ -9,6 +9,10 @@
             "dest": "js"
         },
         {
+            "src": "js/message",
+            "dest": "js"
+        },
+        {
             "src": "js/modal",
             "dest": "js"
         },

@@ -23,6 +23,7 @@ class JsController extends BaseController
                             'data',
                             'cookie',
                             'modal',
+                            'message'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -57,5 +58,14 @@ class JsController extends BaseController
     public function actionModal()
     {
         return $this->view('modal');
+    }
+
+    /**
+     * 消息框
+     * @return mixed
+     */
+    public function actionMessage()
+    {
+        return $this->view('message');
     }
 }

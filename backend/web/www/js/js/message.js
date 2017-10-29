@@ -63,31 +63,30 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 60);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 23:
+/***/ 22:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var modal = __webpack_require__(4);
+    var message = __webpack_require__(50);
 
     $('.btn').click(function () {
-        modal({
-            title: 'hellow', //标题
-            content: 'content', //内容
-            footer: '<button type="button" class="btn btn-default confirm" data-dismiss="modal">关闭</button>', //底部
-            width: 600, //宽度
-            events: {
-                confirm: function confirm() {
-                    //哪个元素上有.confirm类，被点击就执行这个回调
-                    alert('点击了关闭按钮');
-                }
-            }
-        });
+        message('基本使用', '', 'warning');
     });
+    // 基本使用
+    // message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
+
+    // message('使用modal模态框事件处理', '', 'success', 2, {
+    //     events: {
+    //         'hidden.bs.modal': function () {
+    //             alert('模态框消失时');
+    //         }
+    //     }
+    // });
 });
 
 /***/ }),
@@ -185,10 +184,94 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 60:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(23);
+module.exports = function (msg, redirect, type, timeout, options) {
+    var Modal = __webpack_require__(4);
+
+    if ($.isArray(msg)) {
+        msg = msg.join('<br/>');
+    }
+    timeout = timeout ? timeout : 2;
+    if (!redirect && !type) {
+        type = 'info';
+    }
+    if ($.inArray(type, ['success', 'error', 'info', 'warning']) == -1) {
+        type = '';
+    }
+    if (type == '') {
+        type = redirect == '' ? 'error' : 'success';
+    }
+    var icons = {
+        success: '&#xe629;',
+        error: '&#xe601;',
+        info: '&#xe608;',
+        warning: '&#xe624;'
+    };
+
+    var h = '';
+    if (redirect && redirect.length > 0) {
+        if (redirect == 'back') {
+            h = '<p>' + '<a href="javascript:;" onclick="history.go(-1)">' + '如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
+            redirect = document.referrer ? document.referrer : location.href;
+        } else if (redirect == 'refresh') {
+            redirect = location.href;
+            h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">系统将在 <span id="timeout"></span> 秒后刷新页面</a></p>';
+        } else {
+            h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
+        }
+    }
+    var content = '			<i class="iconfont pull-left">' + icons[type] + '</i>' + '			<div class="pull-left"><p>' + msg + '</p>' + h + '			</div>' + '			<div class="clearfix"></div>';
+    var footer = '			<button type="button" class="btn btn-default" data-dismiss="modal">确认</button>';
+
+    var modalobj = Modal($.extend({
+        title: '系统提示',
+        content: content,
+        footer: footer,
+        id: 'modalMessage'
+    }, options));
+    modalobj.find('.modal-content').addClass('alert alert-' + type);
+
+    if (redirect) {
+        var doredirect = function doredirect() {
+            timer = setTimeout(function () {
+                if (timeout <= 0) {
+                    modalobj.modal('hide');
+                    clearTimeout(timer);
+                    window.location.href = redirect;
+                    return;
+                } else {
+                    timeout--;
+                    modalobj.find("#timeout").html(timeout);
+                    doredirect();
+                }
+            }, timeout * 1000);
+        };
+
+        var timer = '';
+        modalobj.find("#timeout").html(timeout);
+        modalobj.on('show.bs.modal', function () {
+            doredirect();
+        });
+        modalobj.on('hide.bs.modal', function () {
+            timeout = 0;
+            doredirect();
+        });
+        modalobj.on('hidden.bs.modal', function () {
+            modalobj.remove();
+        });
+    }
+    modalobj.modal('show');
+    return modalobj;
+};
+
+/***/ }),
+
+/***/ 59:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(22);
 
 
 /***/ })
