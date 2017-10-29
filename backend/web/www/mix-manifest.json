@@ -3,10 +3,12 @@
   "/js/js/cookie.js": "/js/js/cookie.js",
   "/css/js/cookie.css": "/css/js/cookie.css",
   "/css/js/data.css": "/css/js/data.css",
+  "/css/js/modal.css": "/css/js/modal.css",
   "/css/product/index.css": "/css/product/index.css",
   "/css/site/login.css": "/css/site/login.css",
   "/css/app.css": "/css/app.css",
   "/js/site/login.js": "/js/site/login.js",
   "/js/js/data.js": "/js/js/data.js",
+  "/js/js/modal.js": "/js/js/modal.js",
   "/js/product/index.js": "/js/product/index.js"
 }

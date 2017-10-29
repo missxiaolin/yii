@@ -1,4 +1,4 @@
 $(function () {
-    var cookie = require('../../lib/js-cookie/src/js.cookie.js');
+    var cookie = require('../../lib/js-cookie/js.cookie.js');
     cookie.set('xiaolin','js')
 })

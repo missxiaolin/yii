@@ -9,6 +9,10 @@
             "dest": "js"
         },
         {
+            "src": "js/modal",
+            "dest": "js"
+        },
+        {
             "src": "product/index",
             "dest": "product"
         },

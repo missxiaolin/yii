@@ -143,7 +143,7 @@ window.Vue = require('vue');
 })(jQuery);
 
 $(function () {
-    var cookie = require('../lib/js-cookie/src/js.cookie.js');
+    var cookie = require('../lib/js-cookie/js.cookie.js');
 
     var array_index = new Array();
 

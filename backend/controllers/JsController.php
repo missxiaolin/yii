@@ -22,6 +22,7 @@ class JsController extends BaseController
                         'actions' => [
                             'data',
                             'cookie',
+                            'modal',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -49,4 +50,12 @@ class JsController extends BaseController
         return $this->view('cookie');
     }
 
+    /**
+     * 模态框
+     * @return mixed
+     */
+    public function actionModal()
+    {
+        return $this->view('modal');
+    }
 }

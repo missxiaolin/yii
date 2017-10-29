@@ -15,6 +15,11 @@ return [
                     'name' => 'cookie使用',
                     'route' => 'js/cookie',
                 ],
+                [
+                    'icon' => '&#xe608;',
+                    'name' => '模块框',
+                    'route' => 'js/modal',
+                ],
             ],
         ],
     ],
