@@ -9,7 +9,7 @@ $(function () {
         confirm('确定删除吗?', function () {
             alert('点击确定后执行的回调函数');
         })
-    })
+    });
     // 基本使用
     // message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
 

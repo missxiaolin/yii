@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 61);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -161,11 +161,11 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 10:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var modal = __webpack_require__(0);
+    var modal = __webpack_require__(1);
 
     $('.btn').click(function () {
         modal({
@@ -185,10 +185,10 @@ $(function () {
 
 /***/ }),
 
-/***/ 23:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(10);
+module.exports = __webpack_require__(23);
 
 
 /***/ })

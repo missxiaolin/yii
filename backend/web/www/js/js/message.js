@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 60);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -161,11 +161,66 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 14:
+/***/ 22:
+/***/ (function(module, exports, __webpack_require__) {
+
+$(function () {
+    var message = __webpack_require__(51);
+
+    var confirm = __webpack_require__(50);
+
+    $('.btn').click(function () {
+        // message('基本使用','','warning')
+        confirm('确定删除吗?', function () {
+            alert('点击确定后执行的回调函数');
+        });
+    });
+    // 基本使用
+    // message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
+
+    // message('使用modal模态框事件处理', '', 'success', 2, {
+    //     events: {
+    //         'hidden.bs.modal': function () {
+    //             alert('模态框消失时');
+    //         }
+    //     }
+    // });
+
+});
+
+/***/ }),
+
+/***/ 50:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function (content, callback, options) {
+    var Modal = __webpack_require__(1);
+
+    var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
+    var modalobj = Modal($.extend({
+        title: '系统提示',
+        content: content,
+        footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' + '<button type="button" class="btn btn-primary confirm">确定</button>',
+        events: {
+            confirm: function confirm() {
+                if ($.isFunction(callback)) {
+                    modalobj.modal('hide');
+                    callback();
+                }
+            }
+        }
+    }, options));
+    modalobj.find('.modal-content').addClass('alert alert-info');
+    return modalobj;
+};
+
+/***/ }),
+
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (msg, redirect, type, timeout, options) {
-    var Modal = __webpack_require__(0);
+    var Modal = __webpack_require__(1);
 
     if ($.isArray(msg)) {
         msg = msg.join('<br/>');
@@ -245,66 +300,11 @@ module.exports = function (msg, redirect, type, timeout, options) {
 
 /***/ }),
 
-/***/ 22:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(9);
+module.exports = __webpack_require__(22);
 
-
-/***/ }),
-
-/***/ 36:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = function (content, callback, options) {
-    var Modal = __webpack_require__(0);
-
-    var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
-    var modalobj = Modal($.extend({
-        title: '系统提示',
-        content: content,
-        footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' + '<button type="button" class="btn btn-primary confirm">确定</button>',
-        events: {
-            confirm: function confirm() {
-                if ($.isFunction(callback)) {
-                    modalobj.modal('hide');
-                    callback();
-                }
-            }
-        }
-    }, options));
-    modalobj.find('.modal-content').addClass('alert alert-info');
-    return modalobj;
-};
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-$(function () {
-    var message = __webpack_require__(14);
-
-    var confirm = __webpack_require__(36);
-
-    $('.btn').click(function () {
-        // message('基本使用','','warning')
-        confirm('确定删除吗?', function () {
-            alert('点击确定后执行的回调函数');
-        });
-    });
-    // 基本使用
-    // message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
-
-    // message('使用modal模态框事件处理', '', 'success', 2, {
-    //     events: {
-    //         'hidden.bs.modal': function () {
-    //             alert('模态框消失时');
-    //         }
-    //     }
-    // });
-
-});
 
 /***/ })
 
