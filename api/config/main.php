@@ -46,8 +46,6 @@ return [
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
                 $response->format = yii\web\Response::FORMAT_JSON;
-
-
             },
         ],
         'urlManager' => [
@@ -59,7 +57,6 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => ['v1/user'],
                     'extraPatterns' => [
-
                     ],
                 ],
                 'GET  v1/user/index' => 'v1/user/index',
