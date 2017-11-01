@@ -1,6 +1,9 @@
 <?php
 namespace common\components\Rpc;
 
+use Yii;
+use Exception;
+
 /**
  * Yar rpc client
  *
@@ -22,9 +25,14 @@ class YarApi
      */
     public function api($route = '', $method = '', $param = [])
     {
-        $url = $this->url . $route;
-        $client = new \Yar_Client($url);
-        return $client->$method($param);
+        try {
+            $url = $this->url . $route;
+            $client = new \Yar_Client($url);
+            return $client->$method($param);
+        } catch (Exception $e) {
+            Yii::info($e->getMessage());
+        }
+
     }
 
     /**
@@ -35,7 +43,11 @@ class YarApi
      */
     public function all($route = '', $method = '', $param = [])
     {
-        return \Yar_Concurrent_Client::call($this->url . $route, $method, $param, [$this, 'ApiClientCallBack']);
+        try {
+            return \Yar_Concurrent_Client::call($this->url . $route, $method, $param, [$this, 'ApiClientCallBack']);
+        } catch (Exception $e) {
+            Yii::info($e->getMessage());
+        }
     }
 
     /**
@@ -53,7 +65,7 @@ class YarApi
      */
     public function ApiClientCallBack($retval, $callinfo)
     {
-        if (empty($callinfo)){
+        if (empty($callinfo)) {
             return false;
         }
         return $callinfo;
