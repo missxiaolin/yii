@@ -19,6 +19,8 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-api',
+            'enableCookieValidation' => false,
+            'enableCsrfValidation' => false,
         ],
         'user' => [
             'identityClass' => 'api\modules\v1\src\support\service\UserService',
@@ -60,6 +62,7 @@ return [
                     ],
                 ],
                 'GET  v1/user/index' => 'v1/user/index',
+                'GET v1/user/yar' => 'v1/user/yar',
             ],
         ],
     ],

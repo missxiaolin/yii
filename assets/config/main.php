@@ -15,6 +15,8 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-assets',
+            'enableCookieValidation' => false,
+            'enableCsrfValidation' => false,
         ],
         'user' => [
             'identityClass' => 'common\models\User',

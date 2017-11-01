@@ -14,6 +14,6 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        dump('首页');
+
     }
 }
