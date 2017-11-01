@@ -1,6 +1,8 @@
 <?php
 namespace api\modules\v1\controllers;
 
+use Yii;
+
 class UserController extends BaseController
 {
     protected $except = ['index', 'yar'];
@@ -20,7 +22,7 @@ class UserController extends BaseController
      */
     public function actionYar()
     {
-        $client = new \Yar_Client('http://www.assets.com/test/test');
-        dump($client->Hello());
+        $data = Yii::$app->yar->api('test/test','Hello');
+        dump($data);
     }
 }

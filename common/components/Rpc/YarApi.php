@@ -11,14 +11,19 @@ namespace common\components\Rpc;
  */
 class YarApi
 {
+
+    private $url = 'http://www.assets.com/';
+
     /**
      * @param string $route
-     * @param string $modmeth
-     * @param string $url
+     * @param string $method
+     * @param $param
      * @return \Yar_Client
      */
-    public function api($route = '', $modmeth = '', $url = 'http://www.assets.com/')
+    public function api($route = '', $method = '', $param = [])
     {
-        return new \Yar_Client("{$url}{$route}");
+        $url = $this->url . $route;
+        $client = new \Yar_Client($url);
+        return $client->$method($param);
     }
 }

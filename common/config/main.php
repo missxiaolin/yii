@@ -6,7 +6,10 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'event' => [
-            'class' => 'common\src\foundation\domain\Event'
-        ]
+            'class' => 'common\src\foundation\domain\Event',
+        ],
+        'yar' => [
+            'class' => 'common\components\Rpc\YarApi',
+        ],
     ],
 ];
