@@ -62,7 +62,7 @@ return [
                     ],
                 ],
                 'GET  v1/user/index' => 'v1/user/index',
-                'GET v1/user/yar' => 'v1/user/yar',
+                'GET v1/yar/yar' => 'v1/yar/yar',
             ],
         ],
     ],

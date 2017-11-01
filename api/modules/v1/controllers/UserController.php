@@ -5,7 +5,7 @@ use Yii;
 
 class UserController extends BaseController
 {
-    protected $except = ['index', 'yar'];
+    protected $except = ['index'];
 
     /**
      * 首页
@@ -15,14 +15,5 @@ class UserController extends BaseController
     {
         $data = [];
         return $this->apiResponse($data);
-    }
-
-    /**
-     * RPC 调试
-     */
-    public function actionYar()
-    {
-        $data = Yii::$app->yar->api('test/test','Hello');
-        dump($data);
     }
 }

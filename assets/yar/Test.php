@@ -8,8 +8,12 @@
 namespace assets\yar;
 class Test
 {
-    public function Hello()
+    /**
+     * @param $param
+     * @return string
+     */
+    public function Hello($param)
     {
-        return '成功';
+        return $param;
     }
 }
