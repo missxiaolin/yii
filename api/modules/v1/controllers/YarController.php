@@ -15,4 +15,12 @@ class YarController extends BaseController
         $data = Yii::$app->yar->api('test/test', 'Hello');
         dump($data);
     }
+
+    /**
+     * RPC all调试
+     */
+    public function actionAll()
+    {
+
+    }
 }

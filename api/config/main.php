@@ -54,16 +54,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true,
-            'rules' => [
-                [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => ['v1/user'],
-                    'extraPatterns' => [
-                    ],
-                ],
-                'GET  v1/user/index' => 'v1/user/index',
-                'GET v1/yar/yar' => 'v1/yar/yar',
-            ],
+            'rules' => require(__DIR__ . '/routes.php'),
         ],
     ],
     'params' => $params,
