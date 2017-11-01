@@ -27,24 +27,35 @@ class YarApi
         return $client->$method($param);
     }
 
-    public function all($route = '', $method = '', $param = ['user'=>4,3])
+    /**
+     * @param string $route
+     * @param string $method
+     * @param array $param
+     * @return mixed
+     */
+    public function all($route = '', $method = '', $param = [])
     {
-        \Yar_Concurrent_Client::call($this->url . $route, $method, $param, [$this, 'ApiClientCallBack']);
+        return \Yar_Concurrent_Client::call($this->url . $route, $method, $param, [$this, 'ApiClientCallBack']);
+    }
+
+    /**
+     * 执行
+     */
+    public function loop()
+    {
         \Yar_Concurrent_Client::loop();
     }
 
+    /**
+     * @param $retval
+     * @param $callinfo
+     * @return bool
+     */
     public function ApiClientCallBack($retval, $callinfo)
     {
-        dump($retval);
-        dump($callinfo);
-//        if($callinfo === null){
-//            return $this->callBack($retval,$callinfo);
-//        }
-//        static $data = array();
-//        $data[$callinfo['method']] = $retval;
-//        if(count($data) == $this->callNum){
-//            $fn = $this->callBack;
-//            return $fn($data,$callinfo);
-//        }
+        if (empty($callinfo)){
+            return false;
+        }
+        return $callinfo;
     }
 }

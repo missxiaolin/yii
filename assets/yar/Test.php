@@ -16,4 +16,14 @@ class Test
     {
         return $param;
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function All($id)
+    {
+        return $id;
+    }
+
 }

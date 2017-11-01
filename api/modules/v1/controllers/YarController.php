@@ -5,7 +5,7 @@ use Yii;
 
 class YarController extends BaseController
 {
-    protected $except = ['yar'];
+    protected $except = ['yar', 'all'];
 
     /**
      * RPC 调试
@@ -21,6 +21,8 @@ class YarController extends BaseController
      */
     public function actionAll()
     {
-
+        $id = Yii::$app->yar->all('test/test', 'All', [1]);
+        Yii::$app->yar->loop();
+        dump($id);
     }
 }
