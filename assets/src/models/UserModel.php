@@ -9,7 +9,7 @@ use yii\web\IdentityInterface;
 /**
  * User model
  */
-class UserModel extends ActiveRecord  implements IdentityInterface
+class UserModel extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -17,37 +17,5 @@ class UserModel extends ActiveRecord  implements IdentityInterface
     public static function tableName()
     {
         return '{{%user}}';
-    }
-
-    public static function findIdentity($id)
-    {
-        return static::findOne(['id' => $id]);
-    }
-
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getId()
-    {
-        return $this->getPrimaryKey();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 namespace assets\src\form;
+
 use assets\src\entity\UserEntity;
+use common\components\Event\Email;
 use yii\base\Model;
 use Yii;
 
@@ -19,11 +21,11 @@ class userForm extends Model
     public function rules()
     {
         return [
-            ['username', 'required'],
-            ['email', 'required'],
+            ['username', 'required', 'message' => '用户名必填。'],
+            ['email', 'required', 'message' => '邮箱必填。'],
             ['email', 'unique', 'targetClass' => '\common\src\app\support\models\UserModel', 'message' => '该邮箱已经被注册。'],
-            ['password', 'required'],
-            ['password', 'match', 'pattern' => '/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/', 'message' => '密码由6-12位数字字母组成'],
+            ['password', 'required', 'message' => '密码必填。'],
+            ['password', 'match', 'pattern' => '/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/', 'message' => '密码由6-12位数字字母组成。'],
             ['password', 'filter', 'filter' => 'trim'],
         ];
     }
@@ -53,8 +55,7 @@ class userForm extends Model
         if (parent::validate($attributeNames, $clearErrors)) {
             $this->user_entity = new UserEntity();
             $params['email'] = '462441355@qq.com';
-//            $this->user_entity->pendEvent(new Event(Email::class, $params));
-            $this->user_entity->pendEvent(Yii::$app->event->registerEvent(Email::class,$params));
+            $this->user_entity->pendEvent(Yii::$app->event->registerEvent(Email::class, $params));
             $this->user_entity->username = $this->username;
             $this->user_entity->email = $this->email;
             // 生成随机盐
