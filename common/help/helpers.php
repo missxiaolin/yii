@@ -20,3 +20,26 @@ if (!function_exists('get_value')) {
     }
 }
 
+
+if (!function_exists('api_response')) {
+    /**
+     * json 返回
+     * @param $data
+     * @param string $code
+     * @param string $msg
+     * @return array
+     */
+    function api_response($data, $code = '0', $msg = 'ok')
+    {
+        $json = [
+            'data' => $data,
+            'code' => $code,
+            'msg' => $msg,
+            'time' => (string)time(),
+            '_ut' => (string)round(microtime(TRUE) - $_SERVER['REQUEST_TIME_FLOAT'], 5),
+        ];
+
+        return $json;
+    }
+}
+
