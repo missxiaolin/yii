@@ -30,7 +30,8 @@
         "chrisboulton/php-resque-scheduler": "dev-master",
         "hightman/xunsearch": "*@beta",
         "yiisoft/yii2-mongodb": "~2.1.0",
-        "riverslei/xmpush": "~1.0.0"
+        "riverslei/xmpush": "~1.0.0",
+        "cyneek/yii2-routes": "^0.0.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
