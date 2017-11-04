@@ -2,7 +2,7 @@
 namespace common\components\Filter;
 
 use common\components\Library\ErrorCode;
-use yii\web\UnauthorizedHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\base\ActionFilter;
 use yii\web\Response;
 use Yii;
@@ -33,13 +33,12 @@ class AppAuth extends ActionFilter
 
 
     /**
-     * 错误抛出
      * @param $response
-     * @throws UnauthorizedHttpException
+     * @throws ForbiddenHttpException
      */
     public function handleFailure($response)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        throw new UnauthorizedHttpException(ErrorCode::getErrorCode(ErrorCode::ERROR_TOKEN_ILLEGAL), ErrorCode::ERROR_TOKEN_ILLEGAL);
+        throw new ForbiddenHttpException(ErrorCode::getErrorCode(ErrorCode::ERROR_TOKEN_ILLEGAL), ErrorCode::ERROR_TOKEN_ILLEGAL);
     }
 }

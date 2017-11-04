@@ -14,6 +14,7 @@ return [
     'modules' => [
         'routes' => [
             'class' => 'cyneek\yii2\routes\Module',
+            // 'active' => FALSE, //取消激活模块
             'routes_dir' => [
                 require(__DIR__ . '/routes.php'),
             ],
