@@ -1,7 +1,10 @@
 <?php
 namespace common\components\Filter;
 
+use common\components\Library\ErrorCode;
+use yii\web\UnauthorizedHttpException;
 use yii\base\ActionFilter;
+use yii\web\Response;
 use Yii;
 
 /**
@@ -12,22 +15,31 @@ use Yii;
 class AppAuth extends ActionFilter
 {
     /**
+     * @var Response the response to be sent. If not set, the `response` application component will be used.
+     */
+    public $response;
+
+    /**
+     * 业务逻辑
      * @param \yii\base\Action $action
      * @return bool
      */
     public function beforeAction($action)
     {
-        echo '在调用action前显示<br/>';
-        return true;//如果返回值为false,则action不会运行
+        $response = $this->response ?: Yii::$app->getResponse();
+        $this->handleFailure($response);
+        return false;
     }
 
+
     /**
-     * @param \yii\base\Action $action
-     * @param mixed $result
-     * @return string
+     * 错误抛出
+     * @param $response
+     * @throws UnauthorizedHttpException
      */
-    public function afterAction($action, $result)
+    public function handleFailure($response)
     {
-        return '在调用action后显示<br/>';//可以对action输出的$result进行过滤，retun的内容会直接显示
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        throw new UnauthorizedHttpException(ErrorCode::getErrorCode(ErrorCode::ERROR_TOKEN_ILLEGAL), ErrorCode::ERROR_TOKEN_ILLEGAL);
     }
 }

@@ -34,7 +34,7 @@ if (!function_exists('api_response')) {
         $json = [
             'data' => $data,
             'code' => $code,
-            'msg' => $msg,
+            'message' => $msg,
             'time' => (string)time(),
             '_ut' => (string)round(microtime(TRUE) - $_SERVER['REQUEST_TIME_FLOAT'], 5),
         ];
