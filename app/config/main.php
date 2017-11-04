@@ -10,16 +10,26 @@ return [
     'id' => 'app-app',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'app\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => ['log', 'routes'],
+    'modules' => [
+        'routes' => [
+            'class' => 'cyneek\yii2\routes\Module',
+            'routes_dir' => [
+                require(__DIR__ . '/routes.php'),
+            ],
+        ],
+        'v1' => [
+            'class' => 'app\modules\v1\Module',
+        ],
+    ],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-backend',
+            'csrfParam' => '_csrf-app',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-app', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -36,6 +46,16 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'response' => [
+            'class' => 'yii\web\Response',
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+                $response->format = yii\web\Response::FORMAT_JSON;
+            },
+        ],
+        'route' => [
+            'class' => 'cyneek\yii2\routes\components\route',
         ],
         /*
         'urlManager' => [
