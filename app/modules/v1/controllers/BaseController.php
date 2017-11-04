@@ -9,16 +9,6 @@ use yii\rest\Controller;
 class BaseController extends Controller
 {
     /**
-     * get post 参数
-     */
-    public function init()
-    {
-        parent::init();
-        if (Yii::$app->request->isGet) $this->request = Yii::$app->request->get();
-        if (Yii::$app->request->isPost) $this->request = Yii::$app->request->bodyParams;
-    }
-
-    /**
      * @param $data
      * @param string $code
      * @param string $msg

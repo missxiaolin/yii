@@ -11,7 +11,8 @@ class UserController extends BaseController
      */
     public function actionIndex()
     {
-        $data = [];
-        return $this->apiResponse($data);
+        dump(1);
+//        $data = [];
+//        return $this->apiResponse($data);
     }
 }
