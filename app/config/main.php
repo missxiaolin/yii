@@ -7,9 +7,9 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-api',
+    'id' => 'app-app',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'api\controllers',
+    'controllerNamespace' => 'app\controllers',
     'bootstrap' => ['log', 'routes'],
     'modules' => [
         'routes' => [
@@ -24,18 +24,18 @@ return [
     ],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-api',
+            'csrfParam' => '_csrf-app',
             'enableCookieValidation' => false,
             'enableCsrfValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'api\modules\v1\src\support\service\UserService',
+            'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity_api', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity_app', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-api',
+            'name' => 'advanced-app',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -60,12 +60,14 @@ return [
         'route' => [
             'class' => 'cyneek\yii2\routes\components\route',
         ],
-//        'urlManager' => [
-//            'enablePrettyUrl' => true,
-//            'showScriptName' => false,
-//            'enableStrictParsing' => true,
-//            'rules' => require(__DIR__ . '/routes.php'),
-//        ],
+        /*
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'enableStrictParsing' => true,
+            'rules' => require(__DIR__ . '/routes.php'),
+        ],
+        */
     ],
     'params' => $params,
 ];
