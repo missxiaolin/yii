@@ -33,6 +33,7 @@ class AppAuth extends ActionFilter
 
 
     /**
+     * 返回逻辑
      * @param $response
      * @throws ForbiddenHttpException
      */
