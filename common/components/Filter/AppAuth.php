@@ -40,6 +40,7 @@ class AppAuth extends ActionFilter
     public function handleFailure($response)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
+        Yii::$app->response->statusText = ErrorCode::getErrorCode(ErrorCode::ERROR_TOKEN_ILLEGAL);
         throw new ForbiddenHttpException(ErrorCode::getErrorCode(ErrorCode::ERROR_TOKEN_ILLEGAL), ErrorCode::ERROR_TOKEN_ILLEGAL);
     }
 }

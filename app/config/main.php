@@ -52,6 +52,17 @@ return [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
                 $response = $event->sender;
+                $code = $response->getStatusCode();
+                if ($code != 200){
+                    $data = [
+                        'code' => $response->data['code'],
+                        'message' => $response->data['message'],
+                        'time' => (string)time(),
+                        '_ut' => (string)round(microtime(TRUE) - $_SERVER['REQUEST_TIME_FLOAT'], 5),
+                    ];
+                    $response->data = $data;
+                }
+
                 $response->format = yii\web\Response::FORMAT_JSON;
             },
         ],
