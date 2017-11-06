@@ -55,8 +55,8 @@ return [
                 $code = $response->getStatusCode();
                 if ($code != 200){
                     $data = [
-                        'code' => $response->data['code'],
-                        'message' => $response->data['message'],
+                        'code' => $response->data['code'] ?? 0,
+                        'message' => $response->data['message'] ?? '',
                         'time' => (string)time(),
                         '_ut' => (string)round(microtime(TRUE) - $_SERVER['REQUEST_TIME_FLOAT'], 5),
                     ];
