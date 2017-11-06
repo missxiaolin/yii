@@ -1,6 +1,13 @@
 <?php
 
 if (!function_exists('route')) {
+    /**
+     * 生成路由
+     * @param $url
+     * @param array $params
+     * @param bool $scheme
+     * @return string
+     */
     function route($url, $params = [], $scheme = true)
     {
         $urls = $params;
@@ -10,6 +17,10 @@ if (!function_exists('route')) {
 }
 
 if (!function_exists('get_value')) {
+    /**
+     * @param $value
+     * @return string
+     */
     function get_value($value)
     {
         if (isset($value)) {
