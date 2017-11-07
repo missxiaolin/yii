@@ -9,6 +9,6 @@ class HelloHandler implements HelloServiceIf
     public function sayHello($username)
     {
         // TODO: Implement sayHello() method.
-        return "Hello ".$username;
+        return "Hello " . $username;
     }
 }

@@ -16,9 +16,9 @@ class RpcController extends BaseController
     public function actionIndex()
     {
         try {
-            $socket = new THttpClient('www.assets.com',80,'/hello/index');
-            $transport = new TBufferedTransport($socket,1024,1024);
-            $protocol  = new TBinaryProtocol($transport);
+            $socket = new THttpClient('www.assets.com', 80, '/hello/index');
+            $transport = new TBufferedTransport($socket, 1024, 1024);
+            $protocol = new TBinaryProtocol($transport);
             $client = new HelloServiceClient($protocol);
 
             $transport->open();
@@ -27,7 +27,7 @@ class RpcController extends BaseController
 
             $transport->close();
         } catch (\Exception $e) {
-            print 'TException:'.$e->getMessage().PHP_EOL;
+            print 'TException:' . $e->getMessage() . PHP_EOL;
         }
     }
 }
