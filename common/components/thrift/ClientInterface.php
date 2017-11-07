@@ -1,5 +1,5 @@
 <?php
-namespace assets\thrift;
+namespace common\components\thrift;
 
 interface ClientInterface
 {

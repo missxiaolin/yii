@@ -1,5 +1,5 @@
 <?php
-namespace assets\thrift\services;
+namespace common\components\thrift\services;
 
 use Xin\Thrift\Register\ServiceInfo;
 use Xin\Thrift\Register\RegisterIf;

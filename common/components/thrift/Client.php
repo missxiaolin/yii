@@ -1,5 +1,5 @@
 <?php
-namespace assets\thrift;
+namespace common\components\thrift;
 
 use Thrift\Protocol\TBinaryProtocol;
 use Thrift\Protocol\TMultiplexedProtocol;

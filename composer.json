@@ -1,7 +1,12 @@
 {
     "name": "yiisoft/yii2-app-advanced",
     "description": "Yii 2 Advanced Project Template",
-    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "keywords": [
+        "yii2",
+        "framework",
+        "advanced",
+        "project template"
+    ],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -31,7 +36,8 @@
         "hightman/xunsearch": "*@beta",
         "yiisoft/yii2-mongodb": "~2.1.0",
         "riverslei/xmpush": "~1.0.0",
-        "cyneek/yii2-routes": "^0.0.4"
+        "cyneek/yii2-routes": "^0.0.4",
+        "apache/thrift": "^0.10.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
@@ -40,6 +46,9 @@
         "yiisoft/yii2-elasticsearch": "~2.0.0"
     },
     "autoload": {
+        "psr-4": {
+            "Xin\\Thrift\\": "thrift/gen-php/Xin/Thrift/"
+        },
         "files": [
             "common/help/helpers.php"
         ]
@@ -62,5 +71,4 @@
             "url": "https://packagist.phpcomposer.com"
         }
     }
-
 }

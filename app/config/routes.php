@@ -13,6 +13,13 @@ Route::group(['prefix' => 'v1', 'filter' => 'auth'], function () {
     Route::any('user/index', 'v1/user/index');
 });
 
+Route::group(['prefix' => 'v1'], function () {
+    // 子路由
+    Route::any('rpc/index', 'v1/rpc/index');
+});
+
+
+
 // 基本路由
 //Route::get('user', 'user/index');
 //Route::post('user/(:any)', 'user/load/$1');
