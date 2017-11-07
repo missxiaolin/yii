@@ -1,6 +1,7 @@
 <?php
 namespace assets\thrift\services;
 
+use Xin\Thrift\Register\ServiceInfo;
 use Xin\Thrift\Register\RegisterIf;
 use Yii;
 
@@ -12,7 +13,8 @@ class RegisterHandler extends Handler implements RegisterIf
         return Yii::$app->version;
     }
 
-    public function heartbeat(\Xin\Thrift\Register\ServiceInfo $serviceInfo)
+
+    public function heartbeat(ServiceInfo $serviceInfo)
     {
         // TODO: Implement heartbeat() method.
     }
