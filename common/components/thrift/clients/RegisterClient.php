@@ -1,18 +1,19 @@
 <?php
+
 namespace common\components\thrift\clients;
 
 use common\components\thrift\Client;
-use Xin\Thrift\MicroService\AppClient as AppServiceClient;
+use Xin\Thrift\Register\RegisterClient as RegisterServiceClient;
 
-class AppClient extends Client
+class RegisterClient extends Client
 {
     protected $host = '127.0.0.1';
 
-    protected $port = '10086';
+    protected $port = '11521';
 
-    protected $service = 'app';
+    protected $service = 'register';
 
-    protected $clientName = AppServiceClient::class;
+    protected $clientName = RegisterServiceClient::class;
 
     protected $recvTimeoutMilliseconds = 10;
 
@@ -22,7 +23,7 @@ class AppClient extends Client
      * @desc
      * @author limx
      * @param array $config
-     * @return AppServiceClient
+     * @return RegisterServiceClient $client
      */
     public static function getInstance($config = [])
     {
@@ -31,3 +32,4 @@ class AppClient extends Client
 
 
 }
+
