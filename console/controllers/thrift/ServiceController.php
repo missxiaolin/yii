@@ -20,6 +20,7 @@ class ServiceController extends Socket
 {
     protected $config = [
         'pid_file' => __DIR__ . '/service.pid',
+        'log_file' => '/Users/mac/web/ceshi/console/runtime/logs/server.log',
         'daemonize' => false,
         // 'worker_num' => 4, // cpu核数1-4倍比较合理 不写则为cpu核数
         'max_request' => 500, // 每个worker进程最大处理请求次数
@@ -53,8 +54,8 @@ class ServiceController extends Socket
         $worker = new swoole_process(function (swoole_process $worker) use ($name) {
             $config = Yii::$app->params['thrift'];
             $client = RegisterClient::getInstance([
-                'host' => $config->register->host,
-                'port' => $config->register->port,
+                'host' => $config['register']['host'],
+                'port' => $config['register']['port'],
             ]);
             swoole_timer_tick(5000, function () use ($client, $name, $config) {
                 $service = new ServiceInfo();
@@ -66,7 +67,6 @@ class ServiceController extends Socket
                 $service->sign = Sign::sign(Sign::serviceInfoToArray($service));
 
                 $result = $client->heartbeat($service);
-
                 if ($result->success === false) {
                     Yii::info($result->message);
                     return;
@@ -77,16 +77,15 @@ class ServiceController extends Socket
                     return;
                 }
 
-                foreach ($result->services as $key => $item) {
-                    $serviceJson = json_encode(Sign::serviceInfoToArray($item));
-                    Yii::info($serviceJson);
-                    $redis = Yii::$app->redis;
-                    $redis->hset($config->service->listKey, $key, $serviceJson);
-                }
+//                foreach ($result->services as $key => $item) {
+//                    $serviceJson = json_encode(Sign::serviceInfoToArray($item));
+//                    Yii::info($serviceJson);
+//                    $redis = Yii::$app->redis;
+//                    $redis->hset($config->service->listKey, $key, $serviceJson);
+//                }
             });
-
-
         });
+
         $server->addProcess($worker);
     }
 
@@ -97,6 +96,8 @@ class ServiceController extends Socket
     {
         parent::beforeServerStart($server);
         $isOpen = Yii::$app->params['thrift']['register']['open'];
+        // 重置参数
+        $server->set($this->config);
         if ($isOpen) {
             $this->registryHeartbeat($server, 'app');
         }
@@ -108,7 +109,7 @@ class ServiceController extends Socket
      */
     public function workerStart(swoole_server $serv, $workerId)
     {
-        // dump(get_included_files()); // 查看不能被平滑重启的文件
+//         dump(get_included_files()); // 查看不能被平滑重启的文件
 
         $this->processor = new TMultiplexedProcessor();
         $handler = new AppHandler();

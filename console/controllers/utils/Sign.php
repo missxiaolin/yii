@@ -17,7 +17,7 @@ class Sign
         ksort($input);
         $data = http_build_query($input);
 
-        return md5(md5($data) . $config->key);
+        return md5(md5($data) . $config['key']);
     }
 
     /**
