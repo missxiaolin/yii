@@ -38,7 +38,8 @@
         "riverslei/xmpush": "~1.0.0",
         "cyneek/yii2-routes": "^0.0.4",
         "apache/thrift": "^0.10.0",
-        "yiisoft/yii2-queue": "^2.0"
+        "yiisoft/yii2-queue": "^2.0",
+        "linslin/yii2-curl": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

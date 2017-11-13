@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "73efed635aff6b726121f26a2fa22510",
+    "content-hash": "1b69a5d0816c5569848a5ae2a9147a21",
     "packages": [
         {
             "name": "apache/thrift",
@@ -693,6 +693,57 @@
             "time": "2016-03-23T15:34:06+00:00"
         },
         {
+            "name": "linslin/yii2-curl",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/linslin/Yii2-Curl.git",
+                "reference": "492ffc03e78458357210d692f36a0cd74a888825"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/linslin/Yii2-Curl/492ffc03e78458357210d692f36a0cd74a888825.zip",
+                "reference": "492ffc03e78458357210d692f36a0cd74a888825",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "codeception/base": "^2.2.3",
+                "codeception/specify": "~0.4.3",
+                "codeception/verify": "~0.3.1",
+                "codeclimate/php-test-reporter": "dev-master",
+                "guzzlehttp/guzzle": ">=4.1.4 <7.0",
+                "mcustiel/phiremock-codeception-extension": "1.2.4"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "linslin\\yii2\\curl\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Gajsek",
+                    "email": "info@linslin.org"
+                }
+            ],
+            "description": "Easy and nice cURL extension with RESTful support for Yii2",
+            "keywords": [
+                " curl",
+                "extension",
+                "restful",
+                "yii2"
+            ],
+            "time": "2017-10-23T07:43:10+00:00"
+        },
+        {
             "name": "mdmsoft/yii2-admin",
             "version": "2.8",
             "source": {
@@ -1215,6 +1266,55 @@
             "time": "2017-10-11T12:05:26+00:00"
         },
         {
+            "name": "symfony/process",
+            "version": "v3.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "e14bb64d7559e6923fb13ee3b3d8fa763a2c0930"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/symfony/process/e14bb64d7559e6923fb13ee3b3d8fa763a2c0930.zip",
+                "reference": "e14bb64d7559e6923fb13ee3b3d8fa763a2c0930",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-11-05T15:47:03+00:00"
+        },
+        {
             "name": "symfony/translation",
             "version": "v3.3.10",
             "source": {
@@ -1586,6 +1686,83 @@
                 "yii2"
             ],
             "time": "2017-06-23T09:29:41+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-queue",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-queue.git",
+                "reference": "30647cc5710480b7ef600c33d1ae07f657daaaa3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-queue/30647cc5710480b7ef600c33d1ae07f657daaaa3.zip",
+                "reference": "30647cc5710480b7ef600c33d1ae07f657daaaa3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "symfony/process": "*",
+                "yiisoft/yii2": "~2.0.10"
+            },
+            "require-dev": {
+                "jeremeamia/superclosure": "*",
+                "pda/pheanstalk": "*",
+                "php-amqplib/php-amqplib": "*",
+                "phpunit/phpunit": "~4.4",
+                "yiisoft/yii2-debug": "*",
+                "yiisoft/yii2-gii": "*",
+                "yiisoft/yii2-redis": "*"
+            },
+            "suggest": {
+                "ext-gearman": "Need for Gearman queue.",
+                "ext-pcntl": "Need for process signals.",
+                "pda/pheanstalk": "Need for Beanstalk queue.",
+                "php-amqplib/php-amqplib": "Need for AMQP queue.",
+                "yiisoft/yii2-redis": "Need for Redis queue."
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\queue\\": "src",
+                    "yii\\queue\\amqp\\": "src/drivers/amqp",
+                    "yii\\queue\\beanstalk\\": "src/drivers/beanstalk",
+                    "yii\\queue\\db\\": "src/drivers/db",
+                    "yii\\queue\\file\\": "src/drivers/file",
+                    "yii\\queue\\gearman\\": "src/drivers/gearman",
+                    "yii\\queue\\redis\\": "src/drivers/redis",
+                    "yii\\queue\\sync\\": "src/drivers/sync"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Zhuravlev",
+                    "email": "zhuravljov@gmail.com"
+                }
+            ],
+            "description": "Yii2 Queue Extension which supported DB, Redis, RabbitMQ, Beanstalk and Gearman",
+            "keywords": [
+                "async",
+                "beanstalk",
+                "db",
+                "gearman",
+                "gii",
+                "queue",
+                "rabbitmq",
+                "redis",
+                "yii"
+            ],
+            "time": "2017-07-15T15:53:28+00:00"
         },
         {
             "name": "yiisoft/yii2-redis",

@@ -9,7 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
     'controllerNamespace' => 'console\controllers',
     'components' => [
         'log' => [
@@ -28,7 +28,7 @@ return [
             'password' => 'xiaolin',
         ],
         'resque' => [
-            'class' => 'common\components\Yii2Resque'
+            'class' => 'common\components\Yii2Resque',
         ],
     ],
     'params' => $params,
