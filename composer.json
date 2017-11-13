@@ -37,7 +37,8 @@
         "yiisoft/yii2-mongodb": "~2.1.0",
         "riverslei/xmpush": "~1.0.0",
         "cyneek/yii2-routes": "^0.0.4",
-        "apache/thrift": "^0.10.0"
+        "apache/thrift": "^0.10.0",
+        "yiisoft/yii2-queue": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
