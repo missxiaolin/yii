@@ -11,6 +11,8 @@ use swoole_websocket_frame;
 abstract class WebSocket extends Controller
 {
 
+    protected $host = '127.0.0.1';
+
     protected $prot = 11521;
 
     /**
@@ -36,7 +38,7 @@ abstract class WebSocket extends Controller
 
         set_time_limit(0);
 
-        $server = new swoole_websocket_server("127.0.0.1", $this->prot);
+        $server = new swoole_websocket_server($this->host, $this->prot);
 
         $server->set([
             'worker_num' => 1,
