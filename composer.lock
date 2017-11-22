@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b69a5d0816c5569848a5ae2a9147a21",
+    "content-hash": "fc48e866bd86f1a5a89d0d270095c725",
     "packages": [
         {
             "name": "apache/thrift",
@@ -2186,7 +2186,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "ext-phalcon": "^3.2"
     },
     "platform-dev": []
 }
