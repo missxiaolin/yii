@@ -62,7 +62,6 @@ return [
                     ];
                     $response->data = $data;
                 }
-
                 $response->format = yii\web\Response::FORMAT_JSON;
             },
         ],
