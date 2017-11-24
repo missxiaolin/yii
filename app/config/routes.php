@@ -12,7 +12,10 @@ Route::filter('cors', [
     'class' => \yii\filters\Cors::className(),
     'cors' => [
         'Origin' => ['*'],
-        'Access-Control-Request-Method' => ['GET', 'HEAD', 'OPTIONS'],
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Credentials' => true,
+        'Access-Control-Allow-Headers' => '*',
+        'Access-Control-Request-Metshod' => ['GET', 'HEAD', 'OPTIONS', 'POST'],
     ],
 ]);
 
