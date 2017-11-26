@@ -25,10 +25,9 @@ class RbacController extends Controller
 
                 preg_match_all('/public function action([a-zA-Z]+)/', $content, $matches);
                 foreach ($matches[1] ?? [] as $aName){
-                    $permissions[] = strtolower($cName . '/' . $aName);
+                    $permissions[] = strtolower($cName . '/' . preg_replace('/((?<=[a-z])(?=[A-Z]))/', '-', $aName));
                 }
             }
-            dump($permissions);
             foreach ($permissions as $permission){
                 $model = new AuthItemModel();
                 $model->name = $permission;
