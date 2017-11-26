@@ -9,6 +9,8 @@ use yii\filters\AccessControl;
  */
 class JsController extends BaseController
 {
+    protected $actions = ['data', 'cookie', 'modal', 'message'];
+
     /**
      * @return array
      */
@@ -23,7 +25,7 @@ class JsController extends BaseController
                             'data',
                             'cookie',
                             'modal',
-                            'message'
+                            'message',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

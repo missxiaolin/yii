@@ -11,39 +11,7 @@ use yii\filters\AccessControl;
  */
 class SiteController extends BaseController
 {
-
-    /**
-     * @return array
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => [
-                            'login',
-                            'logout'
-                        ],
-                        'allow' => true,
-                    ],
-                    [
-                        'actions' => [
-                            'index',
-                        ],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                ],
-            ],
-        ];
-    }
+    protected $actions = ['index'];
 
     /**
      * 首页
