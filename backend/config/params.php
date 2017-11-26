@@ -31,7 +31,7 @@ return [
             'presentation' => '权限管理',
             'sidebar_trans' => [
                 [
-                    'icon' => '&#xe600',
+                    'icon' => '&#xe602',
                     'name' => '角色管理',
                     'route' => 'role/index',
                 ],

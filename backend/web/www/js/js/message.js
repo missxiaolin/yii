@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 62);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -161,13 +161,13 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 10:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var message = __webpack_require__(17);
+    var message = __webpack_require__(53);
 
-    var confirm = __webpack_require__(16);
+    var confirm = __webpack_require__(52);
 
     $('.btn').click(function () {
         // message('基本使用','','warning')
@@ -190,11 +190,11 @@ $(function () {
 
 /***/ }),
 
-/***/ 16:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (content, callback, options) {
-    var Modal = __webpack_require__(0);
+    var Modal = __webpack_require__(1);
 
     var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
     var modalobj = Modal($.extend({
@@ -216,11 +216,11 @@ module.exports = function (content, callback, options) {
 
 /***/ }),
 
-/***/ 17:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (msg, redirect, type, timeout, options) {
-    var Modal = __webpack_require__(0);
+    var Modal = __webpack_require__(1);
 
     if ($.isArray(msg)) {
         msg = msg.join('<br/>');
@@ -300,10 +300,10 @@ module.exports = function (msg, redirect, type, timeout, options) {
 
 /***/ }),
 
-/***/ 25:
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(10);
+module.exports = __webpack_require__(23);
 
 
 /***/ })
