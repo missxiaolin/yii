@@ -14,6 +14,8 @@ class BaseController extends Controller
     // 需要验证
     protected $actions = ['*'];
 
+    protected $except = [];
+
     /**
      * @return array
      */
@@ -23,6 +25,10 @@ class BaseController extends Controller
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
+                    [
+                        'actions' => $this->except,
+                        'allow' => true
+                    ],
                     [
                         'actions' => $this->actions,
                         'allow' => true,

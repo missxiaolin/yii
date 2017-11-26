@@ -13,6 +13,8 @@ class SiteController extends BaseController
 {
     protected $actions = ['index'];
 
+    protected $except = ['login','logout'];
+
     /**
      * 首页
      * @return mixed
