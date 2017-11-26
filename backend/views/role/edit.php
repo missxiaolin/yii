@@ -23,7 +23,7 @@ AppAsset::addScript($this, '@web/www/js/role/edit.js');
                     </div>
                     <div class="small-14 columns">
                         <input type="text" name="name" value=""
-                               data-validation="required length"
+                               data-validation="required"
                                data-validation-error-msg="请输入标识">
                     </div>
                 </div>
@@ -34,7 +34,7 @@ AppAsset::addScript($this, '@web/www/js/role/edit.js');
                     </div>
                     <div class="small-14 columns">
                         <input type="text" name="description" value=""
-                               data-validation="required length"
+                               data-validation="required"
                                data-validation-error-msg="请输入名称">
                     </div>
                 </div>
@@ -67,3 +67,7 @@ AppAsset::addScript($this, '@web/www/js/role/edit.js');
         </form>
     </div>
 </div>
+
+<?= $this->render('../common/success-pop'); ?>
+<?= $this->render('../common/loading-pop'); ?>
+<?= $this->render('../common/prompt-pop', ['type' => 1]); ?>

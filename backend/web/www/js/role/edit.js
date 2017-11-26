@@ -239,16 +239,86 @@ module.exports = function ($) {
 
 $(function () {
     var Popup = __webpack_require__(1),
-        temp = __webpack_require__(21);
+        service = __webpack_require__(46);
+    temp = __webpack_require__(21);
     // 引入验证类
     __webpack_require__(23);
+
+    $successPop = new Popup({
+        width: 200,
+        height: 150,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#successTpl').html()
+    });
+
+    $loadingPop = new Popup({
+        width: 128,
+        height: 128,
+        contentBg: 'transparent',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#loadingTpl').html()
+    });
+
+    $promptPop = new Popup({
+        width: 400,
+        height: 225,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#promptTpl').html()
+    });
 
     $.validate({
         form: '#form',
         validateOnBlur: false,
         onSuccess: function onSuccess($form) {
+            moreValidate();
             return false;
         }
+    });
+
+    function moreValidate() {
+        var opt = { data: {} };
+        service.add({
+            data: $('#form').serialize(),
+            beforeSend: function beforeSend() {
+                $loadingPop.showPop(opt);
+            },
+            sucFn: function sucFn(data, status, xhr) {
+                $loadingPop.closePop();
+                $successPop.showPop(opt);
+                setTimeout(skipUpdate, 2000);
+
+                function skipUpdate() {
+                    $successPop.closePop();
+                    window.location.href = '/role/index';
+                }
+            },
+            errFn: function errFn(data, status, xhr) {
+                $loadingPop.closePop();
+                $('.text').html(showError(data));
+                $promptPop.showPop(opt);
+            }
+        });
+    }
+
+    // 错误信息
+    function showError(data) {
+        var info = '';
+        var messages = [];
+        var i = 0;
+        for (var key in data) {
+            messages.push(++i + "、" + data[key][0]);
+        }
+        info = messages.join('</br>');
+        return info;
+    }
+
+    $(document).on('click', '#pop_close', function () {
+        $promptPop.closePop();
     });
 });
 
@@ -1885,6 +1955,30 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 module.exports = __webpack_require__(15);
 
+
+/***/ }),
+
+/***/ 46:
+/***/ (function(module, exports) {
+
+module.exports = function () {
+    // 添加角色
+    var _add = function add(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/role/role/add-role',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
+    return {
+        add: _add
+    };
+}();
 
 /***/ })
 
