@@ -1,0 +1,30 @@
+@charset "UTF-8";
+@import "../common/list-table";
+@import "../common/confirm-pop";
+@import "../common/prompt-pop";
+@import "../common/change";
+
+.filter-box {
+  width: 97%;
+  height: 40px;
+  margin-top: 20px;
+}
+
+.add {
+  float: right;
+  margin-right: 20px;
+}
+
+.content-box {
+  width: 978px;
+  height: auto;
+  overflow-x: auto;
+  padding-bottom: 30px;
+  position: relative;
+  top: -3px;
+  z-index: 998;
+}
+
+.table-box {
+  margin-bottom:40px;
+}

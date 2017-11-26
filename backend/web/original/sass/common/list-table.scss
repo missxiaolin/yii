@@ -1,0 +1,185 @@
+[type='text'] {
+  margin: 0;
+}
+
+.wrapper-box {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  min-height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-div {
+  width: 100%;
+  text-align: right;
+}
+
+.add-div .button {
+  margin: 0;
+  width: 100px;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #ff8a00;
+  outline: none;
+}
+
+.form-group {
+  padding-right: 20px;
+}
+
+.form-group .input-group {
+  margin-bottom: 0;
+}
+
+.form-group label.middle {
+  line-height: 40px;
+  padding: 0;
+}
+
+.date-line {
+  text-align: center;
+  line-height: 40px;
+}
+
+.search-btn {
+  background-color: #f4c044;
+}
+
+.reset-btn {
+  background-color: #959393;
+}
+
+.add-btn {
+  background-color: #7cbde2;
+}
+
+.add-btn:hover {
+  color: #fff;
+  background-color: #73cde8;
+}
+
+.add {
+  margin-right: 15px;
+}
+
+.table {
+  border-collapse: collapse;
+  margin-bottom: 1.25rem;
+  table-layout: auto;
+}
+
+.table thead tr th,
+.table thead tr td,
+.table tbody tr th,
+.table tbody tr td {
+  vertical-align: middle;
+  font-size: 14px;
+  text-align: center;
+  padding: 5px 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.dynamic {
+  width: 430px;
+  max-height: 100px;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background-color: #fff9eb;
+}
+
+.table tbody tr:nth-child(even):hover {
+  background-color: #fff9eb;
+}
+
+.table tbody {
+  border: none;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.table tbody tr {
+  border-top: 1px solid #dcdcdc;
+  color: #666;
+  font-size: 14px;
+}
+
+.content-box {
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  padding-left: 12px;
+  padding-right: 12px;
+  position: relative;
+  top: -1px;
+  z-index: 998;
+  padding-bottom: 50px;
+}
+
+.button-box {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  text-align: right;
+}
+
+.search-box {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  min-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border: #ddd solid 1px;
+  border-radius: 5px;
+  display: block;
+  padding: 20px;
+}
+
+.search-box .text-right {
+  line-height: 40px;
+}
+
+.search-box .row {
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+
+.search-box .btn {
+  text-align: center;
+  width: 122px;
+  color: #fff;
+  background: #f4c044;
+  border-radius: 4px;
+  outline: none;
+}
+
+.table-box {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+  min-height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table tbody tr:nth-child(even) {
+  background: none;
+}
+
+.error-alert {
+  color: red;
+}
+
+
+
+
