@@ -1966,7 +1966,7 @@ module.exports = function () {
     var _add = function add(opts) {
         $.http({
             type: 'POST',
-            url: '/api/role/role/add-role',
+            url: '/api/role/rbac/add',
             data: opts.data,
             dataType: 'json',
             beforeSend: opts.beforeSend,

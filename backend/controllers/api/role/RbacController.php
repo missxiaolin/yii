@@ -10,13 +10,13 @@ use Yii;
 /**
  * Site controller
  */
-class RoleController extends Controller
+class RbacController extends Controller
 {
     /**
      * 创建角色
      * @return array
      */
-    public function actionAddRole()
+    public function actionAdd()
     {
         $data = [];
         Yii::$app->response->format = Response::FORMAT_JSON;
