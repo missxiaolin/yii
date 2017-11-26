@@ -43,3 +43,6 @@ AppAsset::addScript($this, '@web/www/js/role/index.js');
         </div>
     </div>
 </div>
+
+<?= $this->render('../common/prompt-pop', ['type' => 1]); ?>
+<?= $this->render('../common/confirm-pop', ['type' => 2,'confirm_text' => "这条数据"]); ?>

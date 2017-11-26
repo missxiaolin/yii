@@ -63,78 +63,75 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 60);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 12:
+/******/ ([
+/* 0 */,
+/* 1 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 13:
+/* 2 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 14:
+/* 3 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 15:
+/* 4 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 16:
+/* 5 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 17:
+/* 6 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 18:
+/* 7 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 19:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 21:
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var cookie = __webpack_require__(5);
+    var cookie = __webpack_require__(21);
     cookie.set('xiaolin', 'js');
 });
 
 /***/ }),
-
-/***/ 5:
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -307,21 +304,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-
-/***/ 60:
+/* 22 */,
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(21);
-__webpack_require__(18);
-__webpack_require__(19);
-__webpack_require__(12);
-__webpack_require__(13);
-__webpack_require__(14);
-__webpack_require__(15);
-__webpack_require__(16);
-module.exports = __webpack_require__(17);
+__webpack_require__(8);
+__webpack_require__(6);
+__webpack_require__(7);
+__webpack_require__(1);
+__webpack_require__(2);
+__webpack_require__(3);
+__webpack_require__(4);
+module.exports = __webpack_require__(5);
 
 
 /***/ })
-
-/******/ });
+/******/ ]);
