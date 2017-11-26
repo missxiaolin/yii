@@ -11,8 +11,6 @@ use yii\filters\AccessControl;
  */
 class RoleController extends BaseController
 {
-    protected $actions = ['index'];
-
     /**
      * 角色
      * @return mixed
@@ -22,5 +20,16 @@ class RoleController extends BaseController
         return $this->view('index');
     }
 
+    /**
+     * 添加角色
+     * @param $id
+     * @return mixed
+     */
+    public function actionCreateRole($id)
+    {
+        $data = [];
+        $data['id'] = $id;
+        return $this->view('edit', $data);
+    }
 
 }

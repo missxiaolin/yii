@@ -4,7 +4,7 @@ $(function () {
     var service = require('../../service/site/loginService');
 
     // 引入验证类
-    require('../../lib/jquery-form-validator/jquery.form-validator.js')
+    require('../../lib/jquery-form-validator/jquery.form-validator.js');
 
     $successPop = new Popup({
         width: 200,

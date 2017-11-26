@@ -21,6 +21,10 @@
             "dest": "product"
         },
         {
+            "src": "role/edit",
+            "dest": "role"
+        },
+        {
             "src": "role/index",
             "dest": "role"
         },

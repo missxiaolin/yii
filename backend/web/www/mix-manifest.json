@@ -5,12 +5,14 @@
   "/css/js/message.css": "/css/js/message.css",
   "/css/js/modal.css": "/css/js/modal.css",
   "/css/product/index.css": "/css/product/index.css",
+  "/css/role/edit.css": "/css/role/edit.css",
   "/css/role/index.css": "/css/role/index.css",
   "/css/site/login.css": "/css/site/login.css",
   "/js/site/login.js": "/js/site/login.js",
   "/js/js/message.js": "/js/js/message.js",
+  "/js/role/index.js": "/js/role/index.js",
   "/js/js/data.js": "/js/js/data.js",
   "/js/js/modal.js": "/js/js/modal.js",
-  "/js/role/index.js": "/js/role/index.js",
+  "/js/role/edit.js": "/js/role/edit.js",
   "/js/product/index.js": "/js/product/index.js"
 }

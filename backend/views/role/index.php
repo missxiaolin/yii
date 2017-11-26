@@ -11,7 +11,7 @@ AppAsset::addScript($this, '@web/www/js/role/index.js');
     <div id="contain">
         <div class="filter-box">
             <div class="add">
-                <a href="" class="button add-btn">+角色</a>
+                <a href="<?= route('role/create-role', ['id' => 0]) ?>" class="button add-btn">+角色</a>
             </div>
         </div>
         <div class="table-box">
@@ -45,4 +45,4 @@ AppAsset::addScript($this, '@web/www/js/role/index.js');
 </div>
 
 <?= $this->render('../common/prompt-pop', ['type' => 1]); ?>
-<?= $this->render('../common/confirm-pop', ['type' => 2,'confirm_text' => "这条数据"]); ?>
+<?= $this->render('../common/confirm-pop', ['type' => 2, 'confirm_text' => "这条数据"]); ?>

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -234,97 +234,67 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 17:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-
-    var Popup = __webpack_require__(1);
-    var service = __webpack_require__(25);
-
+    var Popup = __webpack_require__(1),
+        temp = __webpack_require__(21);
     // 引入验证类
     __webpack_require__(23);
 
-    $successPop = new Popup({
-        width: 200,
-        height: 150,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#successTpl').html()
-    });
-
-    $loadingPop = new Popup({
-        width: 128,
-        height: 128,
-        contentBg: 'transparent',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#loadingTpl').html()
-    });
-
-    $promptPop = new Popup({
-        width: 400,
-        height: 225,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#promptTpl').html()
-    });
-
-    // 验证
     $.validate({
         form: '#form',
         validateOnBlur: false,
         onSuccess: function onSuccess($form) {
-            moreValidate();
             return false;
         }
     });
-
-    // 执行api
-    function moreValidate() {
-        var opt = { data: {} };
-        service.login({
-            data: $('#form').serialize(),
-            params: $.params,
-            beforeSend: function beforeSend() {
-                $loadingPop.showPop(opt);
-            },
-            sucFn: function sucFn(data, status, xhr) {
-                $loadingPop.closePop();
-                $successPop.showPop(opt);
-                setTimeout(skipUpdate, 2000);
-
-                function skipUpdate() {
-                    $successPop.closePop();
-                    window.location.href = '/site/index';
-                }
-            },
-            errFn: function errFn(data, status, xhr) {
-                $loadingPop.closePop();
-                $('.text').html(showError(data));
-                $promptPop.showPop(opt);
-            }
-        });
-    }
-
-    // 错误信息
-    function showError(data) {
-        var info = '';
-        var messages = [];
-        var i = 0;
-        for (var key in data) {
-            messages.push(++i + "、" + data[key][0]);
-        }
-        info = messages.join('</br>');
-        return info;
-    }
-
-    $(document).on('click', '#pop_close', function () {
-        $promptPop.closePop();
-    });
 });
+
+/***/ }),
+
+/***/ 21:
+/***/ (function(module, exports) {
+
+module.exports = function ($) {
+
+    var cache = {};
+
+    var temp = function () {
+        var cache = {};
+
+        cache = {};
+
+        function temp(str, data) {
+            // Figure out if we're getting a template, or if we need to
+            // load the template - and be sure to cache the result.
+
+            var fn = !/\W/.test(str) ? cache[str] = cache[str] || temp(document.getElementById(str).innerHTML) :
+
+            // Generate a reusable function that will serve as a template
+            // generator (and which will be cached).
+            new Function("obj", "var p=[],\n\tprint=function(){p.push.apply(p,arguments);};\n" +
+
+            // Introduce the data as local variables using with(){}
+            "\nwith(obj){\np.push('" +
+
+            // Convert the template into pure JavaScript
+            str.replace(/[\r\t\n]/g, " ").split("<%").join("\t").replace(/((^|%>)[^\t]*)'/g, "$1\r").replace(/\t=(.*?)%>/g, "',\n$1,\n'").split("\t").join("');\n").split("%>").join("\np.push('").split("\r").join("\\'") + "');\n}\nreturn p.join('');");
+
+            // Provide some basic currying to the user
+            return data ? fn(data) : fn;
+        }
+
+        return {
+            temp: temp
+        };
+    }();
+
+    $.temp = temp.temp;
+
+    return $.temp;
+}(jQuery);
 
 /***/ }),
 
@@ -1910,34 +1880,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 25:
-/***/ (function(module, exports) {
-
-module.exports = function () {
-    // 登录
-    var _login = function login(opts) {
-        $.http({
-            type: 'POST',
-            url: '/api/user/user/login',
-            data: opts.data,
-            dataType: 'json',
-            beforeSend: opts.beforeSend,
-            success: opts.sucFn,
-            error: opts.errFn
-        });
-    };
-
-    return {
-        login: _login
-    };
-}();
-
-/***/ }),
-
-/***/ 33:
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(17);
+module.exports = __webpack_require__(15);
 
 
 /***/ })
