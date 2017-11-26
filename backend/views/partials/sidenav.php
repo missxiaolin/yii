@@ -1,7 +1,8 @@
 <?php
 $url_name = Yii::$app->controller->route;
 $nav = Yii::$app->params['leftNav'];
-$nav_cookie = $get_cookie = json_decode(Yii::$app->request->cookies->get('nav', [])->value, true);
+$cookie_nav = Yii::$app->request->cookies->get('nav', []);
+$nav_cookie = $get_cookie = $cookie_nav ? json_decode($cookie_nav->value, true) : [];
 ?>
 <ul class="nav nav-pills nav-stacked">
     <?php foreach ($nav as $key => $item) { ?>
