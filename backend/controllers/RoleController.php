@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\src\service\RoleService;
 use Yii;
 use yii\helpers\Url;
 use yii\filters\VerbFilter;
@@ -17,7 +18,12 @@ class RoleController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->view('index');
+        $data = [];
+        $role_service = new RoleService();
+        list($role_models, $pagers) = $role_service->getList();
+        $data['roles'] = $role_models;
+        $data['pagers'] = $pagers;
+        return $this->view('index', $data);
     }
 
     /**

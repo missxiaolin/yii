@@ -18,28 +18,42 @@ AppAsset::addScript($this, '@web/www/js/role/index.js');
             <table class="table" cellspacing="0" cellpadding="0">
                 <thead>
                 <tr>
-                    <th width="10%">编号</th>
-                    <th width="30%">角色名称</th>
-                    <th width="30%">角色权限</th>
-                    <th width="10%">操作</th>
+                    <th>标识</th>
+                    <th>规则名称</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>id</td>
-                    <td>name</td>
-                    <td>permission_names</td>
-                    <td>
-                        <a class="icon-edit" title="编辑" href="">
-                            <i class="iconfont">&#xe609;</i>
-                        </a>
-                        <a data-id="" title="删除" class="delete">
-                            <i class="iconfont">&#xe749;</i>
-                        </a>
-                    </td>
-                </tr>
+                <?php foreach ($roles ?? [] as $role) { ?>
+                    <tr>
+                        <td>
+                            <?= $role->name ?? '' ?>
+                        </td>
+                        <td>
+                            <?= $role->description ?? '' ?>
+                        </td>
+                        <td>
+                            <?= $role->created_at ?? '' ?>
+                        </td>
+                        <td>
+                            <a class="icon-edit" title="分配权限" href="">
+                                <i class="iconfont">&#xe602;</i>
+                            </a>
+                            <a class="icon-edit" title="编辑" href="">
+                                <i class="iconfont">&#xe609;</i>
+                            </a>
+                            <a data-id="" title="删除" class="delete">
+                                <i class="iconfont">&#xe749;</i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
+        </div>
+        <div class="patials-paging">
+            <?= \yii\widgets\LinkPager::widget(['pagination' => $pagers]); ?>
         </div>
     </div>
 </div>
