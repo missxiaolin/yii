@@ -15,15 +15,11 @@ return [
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            // auth_item (role permission)
-            // auth_item_child (role->permission)
-            // auth_assignment (user->role)
-            // auth_rule (rule)
-            'itemTable' => '{{%auth_item}}',
-            'itemChildTable' => '{{%auth_item_child}}',
-            'assignmentTable' => '{{%auth_assignment}}',
+            'itemTable' => '{{%auth_item}}', //认证项表名称
+            'itemChildTable' => '{{%auth_item_child}}', //认证项父子关系
+            'assignmentTable' => '{{%auth_assignment}}', //认证项赋权关系
             'ruleTable' => '{{%auth_rule}}',
-            'defaultRoles' => ['default'],
+            'defaultRoles' => ['guest'],
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
