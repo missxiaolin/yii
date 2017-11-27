@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -275,100 +275,6 @@ module.exports = function ($) {
 
     return $.temp;
 }(jQuery);
-
-/***/ }),
-
-/***/ 19:
-/***/ (function(module, exports, __webpack_require__) {
-
-$(function () {
-    var Popup = __webpack_require__(0),
-        service = __webpack_require__(4),
-        temp = __webpack_require__(1);
-    // 引入验证类
-    __webpack_require__(2);
-
-    $successPop = new Popup({
-        width: 200,
-        height: 150,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#successTpl').html()
-    });
-
-    $loadingPop = new Popup({
-        width: 128,
-        height: 128,
-        contentBg: 'transparent',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#loadingTpl').html()
-    });
-
-    $promptPop = new Popup({
-        width: 400,
-        height: 225,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#promptTpl').html()
-    });
-
-    $.validate({
-        form: '#form',
-        validateOnBlur: false,
-        onSuccess: function onSuccess($form) {
-            moreValidate();
-            return false;
-        }
-    });
-
-    function moreValidate() {
-        var permissions = $('input[name="children[]"]:checked').length;
-        if (permissions < 1) {
-            $('.error-tip-permissions').show();
-        } else {
-            var opt = { data: {} };
-            service.power({
-                data: $('#form').serialize(),
-                beforeSend: function beforeSend() {
-                    $loadingPop.showPop(opt);
-                },
-                sucFn: function sucFn(data, status, xhr) {
-                    $loadingPop.closePop();
-                    $successPop.showPop(opt);
-                    setTimeout(skipUpdate, 2000);
-
-                    function skipUpdate() {
-                        $successPop.closePop();
-                        window.location.href = '/role/index';
-                    }
-                },
-                errFn: function errFn(data, status, xhr) {
-                    $loadingPop.closePop();
-                    $('.text').html(showError(data));
-                    $promptPop.showPop(opt);
-                }
-            });
-        }
-    }
-
-    $(document).on('click', '#pop_close', function () {
-        $promptPop.closePop();
-    });
-
-    function showError(data) {
-        var info = '';
-        var messages = [];
-        var i = 0;
-        for (var key in data) {
-            messages.push(++i + "、" + data[key][0]);
-        }
-        info = messages.join('</br>');
-        return info;
-    }
-});
 
 /***/ }),
 
@@ -1954,10 +1860,104 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 34:
+/***/ 21:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+$(function () {
+    var Popup = __webpack_require__(0),
+        service = __webpack_require__(4),
+        temp = __webpack_require__(1);
+    // 引入验证类
+    __webpack_require__(2);
+
+    $successPop = new Popup({
+        width: 200,
+        height: 150,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#successTpl').html()
+    });
+
+    $loadingPop = new Popup({
+        width: 128,
+        height: 128,
+        contentBg: 'transparent',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#loadingTpl').html()
+    });
+
+    $promptPop = new Popup({
+        width: 400,
+        height: 225,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#promptTpl').html()
+    });
+
+    $.validate({
+        form: '#form',
+        validateOnBlur: false,
+        onSuccess: function onSuccess($form) {
+            moreValidate();
+            return false;
+        }
+    });
+
+    function moreValidate() {
+        var permissions = $('input[name="children[]"]:checked').length;
+        if (permissions < 1) {
+            $('.error-tip-permissions').show();
+        } else {
+            var opt = { data: {} };
+            service.power({
+                data: $('#form').serialize(),
+                beforeSend: function beforeSend() {
+                    $loadingPop.showPop(opt);
+                },
+                sucFn: function sucFn(data, status, xhr) {
+                    $loadingPop.closePop();
+                    $successPop.showPop(opt);
+                    setTimeout(skipUpdate, 2000);
+
+                    function skipUpdate() {
+                        $successPop.closePop();
+                        window.location.href = '/role/index';
+                    }
+                },
+                errFn: function errFn(data, status, xhr) {
+                    $loadingPop.closePop();
+                    $('.text').html(showError(data));
+                    $promptPop.showPop(opt);
+                }
+            });
+        }
+    }
+
+    $(document).on('click', '#pop_close', function () {
+        $promptPop.closePop();
+    });
+
+    function showError(data) {
+        var info = '';
+        var messages = [];
+        var i = 0;
+        for (var key in data) {
+            messages.push(++i + "、" + data[key][0]);
+        }
+        info = messages.join('</br>');
+        return info;
+    }
+});
+
+/***/ }),
+
+/***/ 37:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(21);
 
 
 /***/ }),

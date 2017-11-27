@@ -1,5 +1,6 @@
 {
-  "/js/js/cookie.js": "/js/js/cookie.js",
+  "/js/admin/index.js": "/js/admin/index.js",
+  "/css/admin/index.css": "/css/admin/index.css",
   "/css/js/cookie.css": "/css/js/cookie.css",
   "/css/js/data.css": "/css/js/data.css",
   "/css/js/message.css": "/css/js/message.css",
@@ -15,6 +16,7 @@
   "/js/js/message.js": "/js/js/message.js",
   "/js/role/index.js": "/js/role/index.js",
   "/js/js/data.js": "/js/js/data.js",
+  "/js/js/cookie.js": "/js/js/cookie.js",
   "/js/js/modal.js": "/js/js/modal.js",
   "/js/product/index.js": "/js/product/index.js"
 }

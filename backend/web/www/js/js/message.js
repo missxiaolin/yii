@@ -63,18 +63,18 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var message = __webpack_require__(25);
+    var message = __webpack_require__(27);
 
-    var confirm = __webpack_require__(24);
+    var confirm = __webpack_require__(26);
 
     $('.btn').click(function () {
         // message('基本使用','','warning')
@@ -97,7 +97,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 24:
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (content, callback, options) {
@@ -123,7 +123,7 @@ module.exports = function (content, callback, options) {
 
 /***/ }),
 
-/***/ 25:
+/***/ 27:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (msg, redirect, type, timeout, options) {
@@ -300,10 +300,10 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 31:
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(18);
 
 
 /***/ })

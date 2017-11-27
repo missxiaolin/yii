@@ -1,6 +1,10 @@
 {
     "modules": [
         {
+            "src": "admin/index",
+            "dest": "admin"
+        },
+        {
             "src": "js/cookie",
             "dest": "js"
         },
