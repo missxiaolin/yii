@@ -27,7 +27,9 @@ AppAsset::addScript($this, '@web/www/js/role/assign-item.js');
                     <div class="small-14 columns" style="padding-top: 7px;">
                         <?php foreach ($roles ?? [] as $key => $role) { ?>
                             <div class="permission">
-                                <input name="children[]" id="" type="checkbox"
+                                <input name="children[]" id=""
+                                       type="checkbox"
+                                       <?php if (in_array($key, $children['roles'] ?? [])) { ?>checked<?php } ?>
                                        value="<?= $key ?>"
                                 />
                                 <label for=""><?= $role ?></label>
@@ -45,6 +47,7 @@ AppAsset::addScript($this, '@web/www/js/role/assign-item.js');
                         <?php foreach ($permissions ?? [] as $key => $permission) { ?>
                             <div class="permission">
                                 <input name="children[]" id="" type="checkbox"
+                                       <?php if (in_array($key, $children['permissions'] ?? [])) { ?>checked<?php } ?>
                                        value="<?= $key ?>"
                                 />
                                 <label for=""><?= $permission ?></label>

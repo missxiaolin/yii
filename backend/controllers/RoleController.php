@@ -53,6 +53,8 @@ class RoleController extends BaseController
         $permissions = $role_service->getOptions($auth->getPermissions(), $parent);
         $data['permissions'] = $permissions;
 
+        $children = $role_service->getChildrenByName($name);
+        $data['children'] = $children;
         return $this->view('assign-item', $data);
     }
 

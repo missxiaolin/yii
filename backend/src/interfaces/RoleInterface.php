@@ -19,4 +19,10 @@ interface RoleInterface extends Repository
      */
     public function getOptions($roles, $parent);
 
+    /**
+     * @param $name
+     * @return mixed
+     */
+    public function getChildrenByName($name);
+
 }

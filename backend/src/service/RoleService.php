@@ -36,7 +36,7 @@ class RoleService
      */
     public static function getChildrenByName($name)
     {
-        $data = [];
-        return $data;
+        $role_repository = new RoleRepository();
+        return $role_repository->getChildrenByName($name);
     }
 }

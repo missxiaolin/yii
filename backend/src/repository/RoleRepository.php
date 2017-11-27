@@ -71,4 +71,32 @@ class RoleRepository extends Repository implements RoleInterface
         return $data;
     }
 
+    /**
+     * 已经选中
+     * @param $name
+     * @return array
+     */
+    public function getChildrenByName($name)
+    {
+        $data = [];
+        if (empty($name)) {
+            return [];
+        }
+        $data['roles'] = [];
+        $data['permissions'] = [];
+        $auth = Yii::$app->authManager;
+        $children = $auth->getChildren($name);
+        if (empty($children)) {
+            return [];
+        }
+        foreach ($children as $obj) {
+            if ($obj->type == 1) {
+                $data['roles'][] = $obj->name;
+            } else {
+                $data['permissions'][] = $obj->name;
+            }
+        }
+        return $data;
+    }
+
 }
