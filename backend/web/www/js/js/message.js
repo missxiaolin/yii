@@ -63,18 +63,18 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 68);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 29:
+/***/ 16:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var message = __webpack_require__(61);
+    var message = __webpack_require__(25);
 
-    var confirm = __webpack_require__(60);
+    var confirm = __webpack_require__(24);
 
     $('.btn').click(function () {
         // message('基本使用','','warning')
@@ -97,7 +97,117 @@ $(function () {
 
 /***/ }),
 
-/***/ 4:
+/***/ 24:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function (content, callback, options) {
+    var Modal = __webpack_require__(3);
+
+    var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
+    var modalobj = Modal($.extend({
+        title: '系统提示',
+        content: content,
+        footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' + '<button type="button" class="btn btn-primary confirm">确定</button>',
+        events: {
+            confirm: function confirm() {
+                if ($.isFunction(callback)) {
+                    modalobj.modal('hide');
+                    callback();
+                }
+            }
+        }
+    }, options));
+    modalobj.find('.modal-content').addClass('alert alert-info');
+    return modalobj;
+};
+
+/***/ }),
+
+/***/ 25:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = function (msg, redirect, type, timeout, options) {
+    var Modal = __webpack_require__(3);
+
+    if ($.isArray(msg)) {
+        msg = msg.join('<br/>');
+    }
+    timeout = timeout ? timeout : 2;
+    if (!redirect && !type) {
+        type = 'info';
+    }
+    if ($.inArray(type, ['success', 'error', 'info', 'warning']) == -1) {
+        type = '';
+    }
+    if (type == '') {
+        type = redirect == '' ? 'error' : 'success';
+    }
+    var icons = {
+        success: '&#xe629;',
+        error: '&#xe601;',
+        info: '&#xe608;',
+        warning: '&#xe624;'
+    };
+
+    var h = '';
+    if (redirect && redirect.length > 0) {
+        if (redirect == 'back') {
+            h = '<p>' + '<a href="javascript:;" onclick="history.go(-1)">' + '如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
+            redirect = document.referrer ? document.referrer : location.href;
+        } else if (redirect == 'refresh') {
+            redirect = location.href;
+            h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">系统将在 <span id="timeout"></span> 秒后刷新页面</a></p>';
+        } else {
+            h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
+        }
+    }
+    var content = '			<i class="iconfont pull-left">' + icons[type] + '</i>' + '			<div class="pull-left"><p>' + msg + '</p>' + h + '			</div>' + '			<div class="clearfix"></div>';
+    var footer = '			<button type="button" class="btn btn-default" data-dismiss="modal">确认</button>';
+
+    var modalobj = Modal($.extend({
+        title: '系统提示',
+        content: content,
+        footer: footer,
+        id: 'modalMessage'
+    }, options));
+    modalobj.find('.modal-content').addClass('alert alert-' + type);
+
+    if (redirect) {
+        var doredirect = function doredirect() {
+            timer = setTimeout(function () {
+                if (timeout <= 0) {
+                    modalobj.modal('hide');
+                    clearTimeout(timer);
+                    window.location.href = redirect;
+                    return;
+                } else {
+                    timeout--;
+                    modalobj.find("#timeout").html(timeout);
+                    doredirect();
+                }
+            }, timeout * 1000);
+        };
+
+        var timer = '';
+        modalobj.find("#timeout").html(timeout);
+        modalobj.on('show.bs.modal', function () {
+            doredirect();
+        });
+        modalobj.on('hide.bs.modal', function () {
+            timeout = 0;
+            doredirect();
+        });
+        modalobj.on('hidden.bs.modal', function () {
+            modalobj.remove();
+        });
+    }
+    modalobj.modal('show');
+    return modalobj;
+};
+
+/***/ }),
+
+/***/ 3:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -190,120 +300,10 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 60:
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function (content, callback, options) {
-    var Modal = __webpack_require__(4);
-
-    var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
-    var modalobj = Modal($.extend({
-        title: '系统提示',
-        content: content,
-        footer: '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' + '<button type="button" class="btn btn-primary confirm">确定</button>',
-        events: {
-            confirm: function confirm() {
-                if ($.isFunction(callback)) {
-                    modalobj.modal('hide');
-                    callback();
-                }
-            }
-        }
-    }, options));
-    modalobj.find('.modal-content').addClass('alert alert-info');
-    return modalobj;
-};
-
-/***/ }),
-
-/***/ 61:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = function (msg, redirect, type, timeout, options) {
-    var Modal = __webpack_require__(4);
-
-    if ($.isArray(msg)) {
-        msg = msg.join('<br/>');
-    }
-    timeout = timeout ? timeout : 2;
-    if (!redirect && !type) {
-        type = 'info';
-    }
-    if ($.inArray(type, ['success', 'error', 'info', 'warning']) == -1) {
-        type = '';
-    }
-    if (type == '') {
-        type = redirect == '' ? 'error' : 'success';
-    }
-    var icons = {
-        success: '&#xe629;',
-        error: '&#xe601;',
-        info: '&#xe608;',
-        warning: '&#xe624;'
-    };
-
-    var h = '';
-    if (redirect && redirect.length > 0) {
-        if (redirect == 'back') {
-            h = '<p>' + '<a href="javascript:;" onclick="history.go(-1)">' + '如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
-            redirect = document.referrer ? document.referrer : location.href;
-        } else if (redirect == 'refresh') {
-            redirect = location.href;
-            h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">系统将在 <span id="timeout"></span> 秒后刷新页面</a></p>';
-        } else {
-            h = '<p><a href="' + redirect + '" target="main" data-dismiss="modal" aria-hidden="true">如果你的浏览器在 <span id="timeout">' + timeout + '</span> 秒后没有自动跳转，请点击此链接</a></p>';
-        }
-    }
-    var content = '			<i class="iconfont pull-left">' + icons[type] + '</i>' + '			<div class="pull-left"><p>' + msg + '</p>' + h + '			</div>' + '			<div class="clearfix"></div>';
-    var footer = '			<button type="button" class="btn btn-default" data-dismiss="modal">确认</button>';
-
-    var modalobj = Modal($.extend({
-        title: '系统提示',
-        content: content,
-        footer: footer,
-        id: 'modalMessage'
-    }, options));
-    modalobj.find('.modal-content').addClass('alert alert-' + type);
-
-    if (redirect) {
-        var doredirect = function doredirect() {
-            timer = setTimeout(function () {
-                if (timeout <= 0) {
-                    modalobj.modal('hide');
-                    clearTimeout(timer);
-                    window.location.href = redirect;
-                    return;
-                } else {
-                    timeout--;
-                    modalobj.find("#timeout").html(timeout);
-                    doredirect();
-                }
-            }, timeout * 1000);
-        };
-
-        var timer = '';
-        modalobj.find("#timeout").html(timeout);
-        modalobj.on('show.bs.modal', function () {
-            doredirect();
-        });
-        modalobj.on('hide.bs.modal', function () {
-            timeout = 0;
-            doredirect();
-        });
-        modalobj.on('hidden.bs.modal', function () {
-            modalobj.remove();
-        });
-    }
-    modalobj.modal('show');
-    return modalobj;
-};
-
-/***/ }),
-
-/***/ 68:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(29);
+module.exports = __webpack_require__(16);
 
 
 /***/ })

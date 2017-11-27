@@ -35,6 +35,11 @@ return [
                     'name' => '角色管理',
                     'route' => 'role/index',
                 ],
+                [
+                    'icon' => '&#xe666',
+                    'name' => '用户管理',
+                    'route' => 'admin/index',
+                ],
             ],
         ],
     ],

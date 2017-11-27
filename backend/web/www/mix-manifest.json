@@ -1,5 +1,4 @@
 {
-  "/js/app.js": "/js/app.js",
   "/js/js/cookie.js": "/js/js/cookie.js",
   "/css/js/cookie.css": "/css/js/cookie.css",
   "/css/js/data.css": "/css/js/data.css",
@@ -10,7 +9,6 @@
   "/css/role/edit.css": "/css/role/edit.css",
   "/css/role/index.css": "/css/role/index.css",
   "/css/site/login.css": "/css/site/login.css",
-  "/css/app.css": "/css/app.css",
   "/js/role/edit.js": "/js/role/edit.js",
   "/js/role/assign-item.js": "/js/role/assign-item.js",
   "/js/site/login.js": "/js/site/login.js",

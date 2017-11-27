@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 71);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
+/***/ 0:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -234,7 +234,7 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -278,7 +278,101 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 19:
+/***/ (function(module, exports, __webpack_require__) {
+
+$(function () {
+    var Popup = __webpack_require__(0),
+        service = __webpack_require__(4),
+        temp = __webpack_require__(1);
+    // 引入验证类
+    __webpack_require__(2);
+
+    $successPop = new Popup({
+        width: 200,
+        height: 150,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#successTpl').html()
+    });
+
+    $loadingPop = new Popup({
+        width: 128,
+        height: 128,
+        contentBg: 'transparent',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#loadingTpl').html()
+    });
+
+    $promptPop = new Popup({
+        width: 400,
+        height: 225,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#promptTpl').html()
+    });
+
+    $.validate({
+        form: '#form',
+        validateOnBlur: false,
+        onSuccess: function onSuccess($form) {
+            moreValidate();
+            return false;
+        }
+    });
+
+    function moreValidate() {
+        var permissions = $('input[name="children[]"]:checked').length;
+        if (permissions < 1) {
+            $('.error-tip-permissions').show();
+        } else {
+            var opt = { data: {} };
+            service.power({
+                data: $('#form').serialize(),
+                beforeSend: function beforeSend() {
+                    $loadingPop.showPop(opt);
+                },
+                sucFn: function sucFn(data, status, xhr) {
+                    $loadingPop.closePop();
+                    $successPop.showPop(opt);
+                    setTimeout(skipUpdate, 2000);
+
+                    function skipUpdate() {
+                        $successPop.closePop();
+                        window.location.href = '/role/index';
+                    }
+                },
+                errFn: function errFn(data, status, xhr) {
+                    $loadingPop.closePop();
+                    $('.text').html(showError(data));
+                    $promptPop.showPop(opt);
+                }
+            });
+        }
+    }
+
+    $(document).on('click', '#pop_close', function () {
+        $promptPop.closePop();
+    });
+
+    function showError(data) {
+        var info = '';
+        var messages = [];
+        var i = 0;
+        for (var key in data) {
+            messages.push(++i + "、" + data[key][0]);
+        }
+        info = messages.join('</br>');
+        return info;
+    }
+});
+
+/***/ }),
+
+/***/ 2:
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1860,109 +1954,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 32:
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
-$(function () {
-    var Popup = __webpack_require__(1),
-        service = __webpack_require__(9),
-        temp = __webpack_require__(2);
-    // 引入验证类
-    __webpack_require__(3);
-
-    $successPop = new Popup({
-        width: 200,
-        height: 150,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#successTpl').html()
-    });
-
-    $loadingPop = new Popup({
-        width: 128,
-        height: 128,
-        contentBg: 'transparent',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#loadingTpl').html()
-    });
-
-    $promptPop = new Popup({
-        width: 400,
-        height: 225,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#promptTpl').html()
-    });
-
-    $.validate({
-        form: '#form',
-        validateOnBlur: false,
-        onSuccess: function onSuccess($form) {
-            moreValidate();
-            return false;
-        }
-    });
-
-    function moreValidate() {
-        var permissions = $('input[name="children[]"]:checked').length;
-        if (permissions < 1) {
-            $('.error-tip-permissions').show();
-        } else {
-            var opt = { data: {} };
-            service.power({
-                data: $('#form').serialize(),
-                beforeSend: function beforeSend() {
-                    $loadingPop.showPop(opt);
-                },
-                sucFn: function sucFn(data, status, xhr) {
-                    $loadingPop.closePop();
-                    $successPop.showPop(opt);
-                    setTimeout(skipUpdate, 2000);
-
-                    function skipUpdate() {
-                        $successPop.closePop();
-                        window.location.href = '/role/index';
-                    }
-                },
-                errFn: function errFn(data, status, xhr) {
-                    $loadingPop.closePop();
-                    $('.text').html(showError(data));
-                    $promptPop.showPop(opt);
-                }
-            });
-        }
-    }
-
-    $(document).on('click', '#pop_close', function () {
-        $promptPop.closePop();
-    });
-
-    function showError(data) {
-        var info = '';
-        var messages = [];
-        var i = 0;
-        for (var key in data) {
-            messages.push(++i + "、" + data[key][0]);
-        }
-        info = messages.join('</br>');
-        return info;
-    }
-});
-
-/***/ }),
-
-/***/ 71:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(32);
+module.exports = __webpack_require__(19);
 
 
 /***/ }),
 
-/***/ 9:
+/***/ 4:
 /***/ (function(module, exports) {
 
 module.exports = function () {
