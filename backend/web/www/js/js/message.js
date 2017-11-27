@@ -63,12 +63,41 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+$(function () {
+    var message = __webpack_require__(61);
+
+    var confirm = __webpack_require__(60);
+
+    $('.btn').click(function () {
+        // message('基本使用','','warning')
+        confirm('确定删除吗?', function () {
+            alert('点击确定后执行的回调函数');
+        });
+    });
+    // 基本使用
+    // message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
+
+    // message('使用modal模态框事件处理', '', 'success', 2, {
+    //     events: {
+    //         'hidden.bs.modal': function () {
+    //             alert('模态框消失时');
+    //         }
+    //     }
+    // });
+
+});
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -161,40 +190,11 @@ module.exports = function (options) {
 
 /***/ }),
 
-/***/ 15:
-/***/ (function(module, exports, __webpack_require__) {
-
-$(function () {
-    var message = __webpack_require__(24);
-
-    var confirm = __webpack_require__(23);
-
-    $('.btn').click(function () {
-        // message('基本使用','','warning')
-        confirm('确定删除吗?', function () {
-            alert('点击确定后执行的回调函数');
-        });
-    });
-    // 基本使用
-    // message('弹出框宽度100%', '', 'success', 2, {width: '80%'});
-
-    // message('使用modal模态框事件处理', '', 'success', 2, {
-    //     events: {
-    //         'hidden.bs.modal': function () {
-    //             alert('模态框消失时');
-    //         }
-    //     }
-    // });
-
-});
-
-/***/ }),
-
-/***/ 23:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (content, callback, options) {
-    var Modal = __webpack_require__(1);
+    var Modal = __webpack_require__(4);
 
     var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
     var modalobj = Modal($.extend({
@@ -216,11 +216,11 @@ module.exports = function (content, callback, options) {
 
 /***/ }),
 
-/***/ 24:
+/***/ 61:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (msg, redirect, type, timeout, options) {
-    var Modal = __webpack_require__(1);
+    var Modal = __webpack_require__(4);
 
     if ($.isArray(msg)) {
         msg = msg.join('<br/>');
@@ -300,10 +300,10 @@ module.exports = function (msg, redirect, type, timeout, options) {
 
 /***/ }),
 
-/***/ 31:
+/***/ 68:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(29);
 
 
 /***/ })

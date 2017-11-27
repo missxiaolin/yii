@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 74);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -231,124 +231,6 @@ module.exports = function ($) {
 
     return Popup;
 }(jQuery);
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, exports, __webpack_require__) {
-
-$(function () {
-
-    var Popup = __webpack_require__(0);
-    var service = __webpack_require__(28);
-
-    // 引入验证类
-    __webpack_require__(3);
-
-    $successPop = new Popup({
-        width: 200,
-        height: 150,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#successTpl').html()
-    });
-
-    $loadingPop = new Popup({
-        width: 128,
-        height: 128,
-        contentBg: 'transparent',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#loadingTpl').html()
-    });
-
-    $promptPop = new Popup({
-        width: 400,
-        height: 225,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#promptTpl').html()
-    });
-
-    // 验证
-    $.validate({
-        form: '#form',
-        validateOnBlur: false,
-        onSuccess: function onSuccess($form) {
-            moreValidate();
-            return false;
-        }
-    });
-
-    // 执行api
-    function moreValidate() {
-        var opt = { data: {} };
-        service.login({
-            data: $('#form').serialize(),
-            params: $.params,
-            beforeSend: function beforeSend() {
-                $loadingPop.showPop(opt);
-            },
-            sucFn: function sucFn(data, status, xhr) {
-                $loadingPop.closePop();
-                $successPop.showPop(opt);
-                setTimeout(skipUpdate, 2000);
-
-                function skipUpdate() {
-                    $successPop.closePop();
-                    window.location.href = '/site/index';
-                }
-            },
-            errFn: function errFn(data, status, xhr) {
-                $loadingPop.closePop();
-                $('.text').html(showError(data));
-                $promptPop.showPop(opt);
-            }
-        });
-    }
-
-    // 错误信息
-    function showError(data) {
-        var info = '';
-        var messages = [];
-        var i = 0;
-        for (var key in data) {
-            messages.push(++i + "、" + data[key][0]);
-        }
-        info = messages.join('</br>');
-        return info;
-    }
-
-    $(document).on('click', '#pop_close', function () {
-        $promptPop.closePop();
-    });
-});
-
-/***/ }),
-
-/***/ 28:
-/***/ (function(module, exports) {
-
-module.exports = function () {
-    // 登录
-    var _login = function login(opts) {
-        $.http({
-            type: 'POST',
-            url: '/api/user/user/login',
-            data: opts.data,
-            dataType: 'json',
-            beforeSend: opts.beforeSend,
-            success: opts.sucFn,
-            error: opts.errFn
-        });
-    };
-
-    return {
-        login: _login
-    };
-}();
 
 /***/ }),
 
@@ -1934,10 +1816,128 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 37:
+/***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(21);
+$(function () {
+
+    var Popup = __webpack_require__(1);
+    var service = __webpack_require__(64);
+
+    // 引入验证类
+    __webpack_require__(3);
+
+    $successPop = new Popup({
+        width: 200,
+        height: 150,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#successTpl').html()
+    });
+
+    $loadingPop = new Popup({
+        width: 128,
+        height: 128,
+        contentBg: 'transparent',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#loadingTpl').html()
+    });
+
+    $promptPop = new Popup({
+        width: 400,
+        height: 225,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#promptTpl').html()
+    });
+
+    // 验证
+    $.validate({
+        form: '#form',
+        validateOnBlur: false,
+        onSuccess: function onSuccess($form) {
+            moreValidate();
+            return false;
+        }
+    });
+
+    // 执行api
+    function moreValidate() {
+        var opt = { data: {} };
+        service.login({
+            data: $('#form').serialize(),
+            params: $.params,
+            beforeSend: function beforeSend() {
+                $loadingPop.showPop(opt);
+            },
+            sucFn: function sucFn(data, status, xhr) {
+                $loadingPop.closePop();
+                $successPop.showPop(opt);
+                setTimeout(skipUpdate, 2000);
+
+                function skipUpdate() {
+                    $successPop.closePop();
+                    window.location.href = '/site/index';
+                }
+            },
+            errFn: function errFn(data, status, xhr) {
+                $loadingPop.closePop();
+                $('.text').html(showError(data));
+                $promptPop.showPop(opt);
+            }
+        });
+    }
+
+    // 错误信息
+    function showError(data) {
+        var info = '';
+        var messages = [];
+        var i = 0;
+        for (var key in data) {
+            messages.push(++i + "、" + data[key][0]);
+        }
+        info = messages.join('</br>');
+        return info;
+    }
+
+    $(document).on('click', '#pop_close', function () {
+        $promptPop.closePop();
+    });
+});
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, exports) {
+
+module.exports = function () {
+    // 登录
+    var _login = function login(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/user/user/login',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
+    return {
+        login: _login
+    };
+}();
+
+/***/ }),
+
+/***/ 74:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(35);
 
 
 /***/ })
