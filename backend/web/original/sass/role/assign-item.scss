@@ -1,0 +1,72 @@
+@charset "UTF-8";
+@import "../common/confirm-pop";
+@import "../common/prompt-pop";
+@import "../common/change";
+.top-title {
+  height: 47px;
+  line-height: 47px;
+  font-size: 16px;
+  padding-left: 30px;
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 40px;
+}
+
+.title h3 {
+  font-size: 22px;
+  text-align: center;
+  margin-left: 50px;
+}
+
+#form > .row {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.row {
+  width: 420px;
+  margin-bottom: 17px;
+}
+
+.small-8 label {
+  font-size: 14px;
+  line-height: 39px;
+  text-align: right;
+  display: block;
+}
+
+.small-14 {
+  position: relative;
+}
+
+.permission-title {
+  font-weight: bold;
+}
+
+/*保存取消*/
+.text-center {
+  padding: 40px 0 40px 0;
+  border-top: 1px solid #dddddd;
+}
+
+.text-center .button {
+  width: 122px;
+}
+
+.text-center .save {
+  margin-right: 10px;
+  background-color: #f4c044;
+}
+
+.text-center .clone {
+  background-color: #515151;
+}
+
+.form-error {
+  position: absolute;
+  top: 33px;
+}
+
+.error-tip-permissions {
+  color: #a94442;
+}

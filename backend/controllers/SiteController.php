@@ -11,9 +11,9 @@ use yii\filters\AccessControl;
  */
 class SiteController extends BaseController
 {
-    protected $actions = ['index'];
+    protected $actions = ['index', 'error'];
 
-    protected $except = ['login','logout'];
+    protected $except = ['login', 'logout'];
 
     /**
      * 首页
@@ -47,5 +47,9 @@ class SiteController extends BaseController
         return $this->redirect(Url::toRoute('site/login', true));
     }
 
+    public function actionError()
+    {
+        return $this->view('error');
+    }
 
 }
