@@ -37,7 +37,8 @@ AppAsset::addScript($this, '@web/www/js/role/index.js');
                             <?= $role->created_at ?? '' ?>
                         </td>
                         <td>
-                            <a class="icon-edit" title="分配权限" href="">
+                            <a class="icon-edit" title="分配权限"
+                               href="<?= route('role/assign-item', ['name' => $role->name ?? '']) ?>">
                                 <i class="iconfont">&#xe602;</i>
                             </a>
                             <a class="icon-edit" title="编辑" href="">

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 72);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -234,15 +234,15 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 15:
+/***/ 32:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
     var Popup = __webpack_require__(1),
-        service = __webpack_require__(46);
-    temp = __webpack_require__(21);
+        service = __webpack_require__(63);
+    temp = __webpack_require__(6);
     // 引入验证类
-    __webpack_require__(23);
+    __webpack_require__(7);
 
     $successPop = new Popup({
         width: 200,
@@ -324,7 +324,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 21:
+/***/ 6:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -368,7 +368,31 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 23:
+/***/ 63:
+/***/ (function(module, exports) {
+
+module.exports = function () {
+    // 添加角色
+    var _add = function add(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/role/rbac/add',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
+    return {
+        add: _add
+    };
+}();
+
+/***/ }),
+
+/***/ 7:
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1950,35 +1974,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 31:
+/***/ 72:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(15);
+module.exports = __webpack_require__(32);
 
-
-/***/ }),
-
-/***/ 46:
-/***/ (function(module, exports) {
-
-module.exports = function () {
-    // 添加角色
-    var _add = function add(opts) {
-        $.http({
-            type: 'POST',
-            url: '/api/role/rbac/add',
-            data: opts.data,
-            dataType: 'json',
-            beforeSend: opts.beforeSend,
-            success: opts.sucFn,
-            error: opts.errFn
-        });
-    };
-
-    return {
-        add: _add
-    };
-}();
 
 /***/ })
 

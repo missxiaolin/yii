@@ -3,9 +3,6 @@ namespace backend\controllers;
 
 use backend\src\service\RoleService;
 use Yii;
-use yii\helpers\Url;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * RoleController
@@ -36,6 +33,27 @@ class RoleController extends BaseController
         $data = [];
         $data['id'] = $id;
         return $this->view('edit', $data);
+    }
+
+    /**
+     * 分配权限
+     * @param $name
+     * @return mixed
+     */
+    public function actionAssignItem($name)
+    {
+        $data = [];
+        $data['parent'] = $name;
+
+        $auth = Yii::$app->authManager;
+        $parent = $auth->getRole($name);
+        $role_service = new RoleService();
+        $roles = $role_service->getOptions($auth->getRoles(), $parent);
+        $data['roles'] = $roles;
+        $permissions = $role_service->getOptions($auth->getPermissions(), $parent);
+        $data['permissions'] = $permissions;
+
+        return $this->view('assign-item', $data);
     }
 
 }

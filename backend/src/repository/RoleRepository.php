@@ -52,4 +52,23 @@ class RoleRepository extends Repository implements RoleInterface
         return [$models, $pagers];
     }
 
+    /**
+     * @param $roles
+     * @param $parent
+     * @return array
+     */
+    public function getOptions($roles, $parent)
+    {
+        $data = [];
+        foreach ($roles as $obj) {
+            if (!empty($parent) && $parent->name != $obj->name && Yii::$app->authManager->canAddChild($parent, $obj)) {
+                $data[$obj->name] = $obj->description;
+            }
+            if (is_null($parent)) {
+                $data[$obj->name] = $obj->description;
+            }
+        }
+        return $data;
+    }
+
 }

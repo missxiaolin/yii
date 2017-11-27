@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 74);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -234,16 +234,16 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 17:
+/***/ 34:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
 
     var Popup = __webpack_require__(1);
-    var service = __webpack_require__(25);
+    var service = __webpack_require__(64);
 
     // 引入验证类
-    __webpack_require__(23);
+    __webpack_require__(7);
 
     $successPop = new Popup({
         width: 200,
@@ -328,7 +328,31 @@ $(function () {
 
 /***/ }),
 
-/***/ 23:
+/***/ 64:
+/***/ (function(module, exports) {
+
+module.exports = function () {
+    // 登录
+    var _login = function login(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/user/user/login',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
+    return {
+        login: _login
+    };
+}();
+
+/***/ }),
+
+/***/ 7:
 /***/ (function(module, exports) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1910,34 +1934,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 25:
-/***/ (function(module, exports) {
-
-module.exports = function () {
-    // 登录
-    var _login = function login(opts) {
-        $.http({
-            type: 'POST',
-            url: '/api/user/user/login',
-            data: opts.data,
-            dataType: 'json',
-            beforeSend: opts.beforeSend,
-            success: opts.sucFn,
-            error: opts.errFn
-        });
-    };
-
-    return {
-        login: _login
-    };
-}();
-
-/***/ }),
-
-/***/ 33:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(17);
+module.exports = __webpack_require__(34);
 
 
 /***/ })

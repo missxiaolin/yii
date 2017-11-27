@@ -11,4 +11,12 @@ interface RoleInterface extends Repository
      */
     public function getList();
 
+    /**
+     * 获取角色
+     * @param $roles
+     * @param $parent
+     * @return mixed
+     */
+    public function getOptions($roles, $parent);
+
 }
