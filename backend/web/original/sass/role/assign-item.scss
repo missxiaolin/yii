@@ -21,6 +21,7 @@
   margin: 0 auto;
   margin-bottom: 15px;
   box-sizing: border-box;
+  width: 500px;
 }
 
 .row {
@@ -37,6 +38,11 @@
 
 .small-14 {
   position: relative;
+}
+
+.permission{
+  width: 130px;
+  float: left;
 }
 
 .permission-title {

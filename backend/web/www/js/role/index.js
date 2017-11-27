@@ -63,12 +63,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 73);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
+/***/ 0:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -234,46 +234,7 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 33:
-/***/ (function(module, exports, __webpack_require__) {
-
-$(function () {
-    var Popup = __webpack_require__(1),
-        temp = __webpack_require__(6),
-        data_id;
-
-    // 弹框模板
-    $confirmPop = new Popup({
-        width: 400,
-        height: 225,
-        contentBg: '#fff',
-        maskColor: '#000',
-        maskOpacity: '0.6',
-        content: $('#confirmTpl').html()
-    });
-
-    // 删除点击
-    $('.delete').on('click', function () {
-        data_id = $(this).data('id');
-        var opt = { data: {} };
-        $confirmPop.showPop(opt);
-        return false;
-    });
-
-    // 取消
-    $(document).on('click', '#dialog_cancel', function () {
-        $confirmPop.closePop();
-    });
-
-    // 确认
-    $(document).on('click', '#dialog_confirm', function () {
-        alert('点击了确认');
-    });
-});
-
-/***/ }),
-
-/***/ 6:
+/***/ 2:
 /***/ (function(module, exports) {
 
 module.exports = function ($) {
@@ -317,10 +278,49 @@ module.exports = function ($) {
 
 /***/ }),
 
-/***/ 73:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(33);
+$(function () {
+    var Popup = __webpack_require__(0),
+        temp = __webpack_require__(2),
+        data_id;
+
+    // 弹框模板
+    $confirmPop = new Popup({
+        width: 400,
+        height: 225,
+        contentBg: '#fff',
+        maskColor: '#000',
+        maskOpacity: '0.6',
+        content: $('#confirmTpl').html()
+    });
+
+    // 删除点击
+    $('.delete').on('click', function () {
+        data_id = $(this).data('id');
+        var opt = { data: {} };
+        $confirmPop.showPop(opt);
+        return false;
+    });
+
+    // 取消
+    $(document).on('click', '#dialog_cancel', function () {
+        $confirmPop.closePop();
+    });
+
+    // 确认
+    $(document).on('click', '#dialog_confirm', function () {
+        alert('点击了确认');
+    });
+});
+
+/***/ }),
+
+/***/ 36:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(20);
 
 
 /***/ })
