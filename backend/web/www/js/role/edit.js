@@ -239,8 +239,8 @@ module.exports = function ($) {
 
 $(function () {
     var Popup = __webpack_require__(0),
-        service = __webpack_require__(27);
-    temp = __webpack_require__(2);
+        service = __webpack_require__(27),
+        temp = __webpack_require__(2);
     // 引入验证类
     __webpack_require__(3);
 
@@ -384,9 +384,22 @@ module.exports = function () {
             error: opts.errFn
         });
     };
+    // 分配权限
+    var _power = function add(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/role/rbac/power',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
 
     return {
-        add: _add
+        add: _add,
+        power: _power
     };
 }();
 

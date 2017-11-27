@@ -2,17 +2,13 @@
 
 namespace backend\src\form\role;
 
-use backend\src\entity\RoleEntity;
 use yii\base\Model;
-use Yii;
 
-class roleForm extends Model
+class powerForm extends Model
 {
+    public $name;
+    public $children;
 
-    public $name = '';
-    public $description = '';
-
-    public $role_contacts;
 
     /**
      * @inheritdoc
@@ -20,9 +16,9 @@ class roleForm extends Model
     public function rules()
     {
         return [
-            [['name', 'description'], 'filter', 'filter' => 'trim'],
-            ['name', 'required', 'message' => '请输入标识'],
-            ['description', 'required', 'message' => '请输入名称'],
+            ['name', 'filter', 'filter' => 'trim'],
+            ['name', 'required', 'message' => '名称必填'],
+            ['children', 'required', 'message' => '请选择规则'],
             ['name', 'string', 'min' => 2, 'max' => 64],
         ];
     }
@@ -34,7 +30,7 @@ class roleForm extends Model
     {
         return [
             'name' => '标识',
-            'description' => '名称',
+            'children' => '规则',
         ];
     }
 
@@ -47,10 +43,7 @@ class roleForm extends Model
     public function validate($attributeNames = null, $clearErrors = true)
     {
         if (parent::validate($attributeNames, $clearErrors)) {
-            $role_entity = new RoleEntity();
-            $role_entity->name = $this->name;
-            $role_entity->description = $this->description;
-            $this->role_contacts = $role_entity;
+
             return true;
         }
         return false;

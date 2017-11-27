@@ -1,6 +1,6 @@
 $(function () {
     var Popup = require('./../../component/popup'),
-        service = require('../../service/role/roleService');
+        service = require('../../service/role/roleService'),
         temp = require('./../../component/temp');
     // 引入验证类
     require('../../lib/jquery-form-validator/jquery.form-validator.js');
