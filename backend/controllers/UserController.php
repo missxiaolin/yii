@@ -3,6 +3,7 @@ namespace backend\controllers;
 
 use backend\src\service\AdminService;
 use backend\src\service\RoleService;
+use Carbon\Carbon;
 use Yii;
 
 
@@ -31,6 +32,8 @@ class UserController extends BaseController
      */
     public function actionAssign($id)
     {
+//        dump(Carbon::now()->toDateTimeString);
+
         $data = [];
         $admin_service = new AdminService();
         $role_service = new RoleService();

@@ -19,7 +19,7 @@ return [
             'itemChildTable' => '{{%auth_item_child}}', //认证项父子关系
             'assignmentTable' => '{{%auth_assignment}}', //认证项赋权关系
             'ruleTable' => '{{%auth_rule}}',
-            'defaultRoles' => ['guest'],
+            'defaultRoles' => ['admin'],
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -52,6 +52,17 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => require(__DIR__ . '/routes.php'),
+        ],
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            //这里是允许访问的action
+            //controller/action
+            'site/*',
+            'api/user/user/login',
+            'debug/default/toolbar',
+            '*',
         ],
     ],
     'params' => $params,

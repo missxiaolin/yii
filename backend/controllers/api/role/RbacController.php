@@ -1,9 +1,11 @@
 <?php
 namespace backend\controllers\api\role;
 
+use backend\src\form\role\allotRoleForm;
 use backend\src\form\role\powerForm;
 use backend\src\form\role\roleForm;
 use backend\src\repository\RoleRepository;
+use backend\src\service\AuthAssignmentService;
 use backend\src\service\AuthItemChildService;
 use yii\web\Response;
 use yii\web\Controller;
@@ -65,7 +67,16 @@ class RbacController extends Controller
     {
         $data = [];
         Yii::$app->response->format = Response::FORMAT_JSON;
-
+        $allot_role_form = new allotRoleForm();
+        $param = Yii::$app->request->post();
+        $allot_role_form->load($param, '');
+        if ($allot_role_form->validate()) {
+            $service = new AuthAssignmentService();
+            $service->grant($param['id'], $param['children']);
+        } else {
+            Yii::$app->response->statusCode = 400;
+            return $allot_role_form->errors;
+        }
         return $data;
     }
 }

@@ -49,6 +49,7 @@ class BaseController extends Controller
      * 权限
      * @param \yii\base\Action $action
      * @return bool
+     * @throws UnauthorizedHttpException
      */
     public function beforeAction($action)
     {

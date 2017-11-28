@@ -1924,7 +1924,7 @@ $(function () {
 
                     function skipUpdate() {
                         $successPop.closePop();
-                        window.location.href = '/role/index';
+                        window.location.href = '/user/index';
                     }
                 },
                 errFn: function errFn(data, status, xhr) {

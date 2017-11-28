@@ -18,7 +18,7 @@ AppAsset::addScript($this, '@web/www/js/user/assign.js');
                 </div>
                 <div class="small-14 columns columns" style="padding-top: 7px;">
                     <?= $admin_model->username ?? '' ?>
-                    <input type="hidden" name="name" value="<?= $admin_model->id ?? 0 ?>">
+                    <input type="hidden" name="id" value="<?= $admin_model->id ?? 0 ?>">
                 </div>
             </div>
 
