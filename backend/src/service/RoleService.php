@@ -39,4 +39,15 @@ class RoleService
         $role_repository = new RoleRepository();
         return $role_repository->getChildrenByName($name);
     }
+
+    /**
+     * @param $admin_id
+     * @return array
+     */
+    public function getChildrenByUser($admin_id)
+    {
+        $role_repository = new RoleRepository();
+        $data = $role_repository->getChildrenByUser($admin_id, 1);
+        return $data;
+    }
 }

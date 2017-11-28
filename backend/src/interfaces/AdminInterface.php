@@ -13,6 +13,12 @@ interface AdminInterface extends Repository
     public function getUser($user_name);
 
     /**
+     * @param $id
+     * @return mixed
+     */
+    public function getUserId($id);
+
+    /**
      * @param $db_password
      * @param $auth_key
      * @param $password

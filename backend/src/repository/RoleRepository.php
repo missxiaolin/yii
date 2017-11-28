@@ -99,4 +99,36 @@ class RoleRepository extends Repository implements RoleInterface
         return $data;
     }
 
+    /**
+     * @param $admin_id
+     * @return array
+     */
+    public function getChildrenByUser($admin_id)
+    {
+        $data = [];
+        $data['roles'] = self::_getItemByUser($admin_id, 1);
+        $data['permissions'] = self::_getItemByUser($admin_id, 2);
+        return $data;
+    }
+
+    /**
+     * @param $admin_id
+     * @param $type
+     * @return array
+     */
+    private static function _getItemByUser($admin_id, $type)
+    {
+        $func = 'getPermissionsByUser';
+        if ($type == 1) {
+            $func = 'getRolesByUser';
+        }
+        $data = [];
+        $auth = Yii::$app->authManager;
+        $items = $auth->$func($admin_id);
+        foreach ($items as $item) {
+            $data[] = $item->name;
+        }
+        return $data;
+    }
+
 }

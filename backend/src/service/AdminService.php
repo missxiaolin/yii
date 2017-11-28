@@ -19,6 +19,17 @@ class AdminService
     }
 
     /**
+     * @param $id
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public function getUserId($id)
+    {
+        $user_repository = new AdminRepository();
+        $user_model = $user_repository->getUserId($id);
+        return $user_model;
+    }
+
+    /**
      * 验证密码
      * @param $db_password
      * @param $auth_key

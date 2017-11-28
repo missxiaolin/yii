@@ -39,7 +39,7 @@ AppAsset::addScript($this, '@web/www/js/user/index.js');
                         </td>
                         <td>
                             <a class="icon-edit" title="分配角色"
-                               href="">
+                               href="<?= route('user/assign', ['id' => $model->id ?? 0]) ?>">
                                 <i class="iconfont">&#xe602;</i>
                             </a>
                             <a class="icon-edit" title="编辑" href="">

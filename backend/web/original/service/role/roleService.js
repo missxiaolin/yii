@@ -24,10 +24,24 @@ module.exports = (function () {
         });
     };
 
+    // 分配角色
+    var _role = function add(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/role/rbac/role',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
 
     return {
         add: _add,
-        power: _power
+        power: _power,
+        role: _role
     };
 
 })();

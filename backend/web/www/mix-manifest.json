@@ -9,6 +9,7 @@
   "/css/role/edit.css": "/css/role/edit.css",
   "/css/role/index.css": "/css/role/index.css",
   "/css/site/login.css": "/css/site/login.css",
+  "/css/user/assign.css": "/css/user/assign.css",
   "/css/user/index.css": "/css/user/index.css",
   "/js/role/edit.js": "/js/role/edit.js",
   "/js/role/assign-item.js": "/js/role/assign-item.js",
@@ -18,5 +19,6 @@
   "/js/role/index.js": "/js/role/index.js",
   "/js/js/data.js": "/js/js/data.js",
   "/js/js/modal.js": "/js/js/modal.js",
+  "/js/user/assign.js": "/js/user/assign.js",
   "/js/product/index.js": "/js/product/index.js"
 }

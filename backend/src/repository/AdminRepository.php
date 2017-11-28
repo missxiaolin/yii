@@ -34,6 +34,17 @@ class AdminRepository extends Repository implements AdminInterface
     }
 
     /**
+     * @param $id
+     * @return array|null|\yii\db\ActiveRecord
+     */
+    public function getUserId($id)
+    {
+        $query = AdminModel::find();
+        $model = $query->where(['id' => $id])->one();
+        return $model;
+    }
+
+    /**
      * 密码验证
      * @param $db_password
      * @param $auth_key

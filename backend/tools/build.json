@@ -37,6 +37,10 @@
             "dest": "site"
         },
         {
+            "src": "user/assign",
+            "dest": "user"
+        },
+        {
             "src": "user/index",
             "dest": "user"
         }

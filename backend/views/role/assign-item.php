@@ -63,7 +63,6 @@ AppAsset::addScript($this, '@web/www/js/role/assign-item.js');
                 </div>
 
                 <div class="text-center">
-                    <input type="hidden" name="id" value="<?= $id ?? 0 ?>">
                     <input type="submit" class="button save" value="保存">
                     <a class="button clone" href="javascript:history.back()">取消</a>
                 </div>

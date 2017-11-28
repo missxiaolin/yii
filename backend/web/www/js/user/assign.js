@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
+/******/ 	return __webpack_require__(__webpack_require__.s = 42);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -230,6 +230,50 @@ module.exports = function ($) {
     }
 
     return Popup;
+}(jQuery);
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports) {
+
+module.exports = function ($) {
+
+    var cache = {};
+
+    var temp = function () {
+        var cache = {};
+
+        cache = {};
+
+        function temp(str, data) {
+            // Figure out if we're getting a template, or if we need to
+            // load the template - and be sure to cache the result.
+
+            var fn = !/\W/.test(str) ? cache[str] = cache[str] || temp(document.getElementById(str).innerHTML) :
+
+            // Generate a reusable function that will serve as a template
+            // generator (and which will be cached).
+            new Function("obj", "var p=[],\n\tprint=function(){p.push.apply(p,arguments);};\n" +
+
+            // Introduce the data as local variables using with(){}
+            "\nwith(obj){\np.push('" +
+
+            // Convert the template into pure JavaScript
+            str.replace(/[\r\t\n]/g, " ").split("<%").join("\t").replace(/((^|%>)[^\t]*)'/g, "$1\r").replace(/\t=(.*?)%>/g, "',\n$1,\n'").split("\t").join("');\n").split("%>").join("\np.push('").split("\r").join("\\'") + "');\n}\nreturn p.join('');");
+
+            // Provide some basic currying to the user
+            return data ? fn(data) : fn;
+        }
+
+        return {
+            temp: temp
+        };
+    }();
+
+    $.temp = temp.temp;
+
+    return $.temp;
 }(jQuery);
 
 /***/ }),
@@ -1816,14 +1860,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 /***/ }),
 
-/***/ 24:
+/***/ 25:
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-
-    var Popup = __webpack_require__(0);
-    var service = __webpack_require__(32);
-
+    var Popup = __webpack_require__(0),
+        service = __webpack_require__(4),
+        temp = __webpack_require__(1);
     // 引入验证类
     __webpack_require__(2);
 
@@ -1854,7 +1897,6 @@ $(function () {
         content: $('#promptTpl').html()
     });
 
-    // 验证
     $.validate({
         form: '#form',
         validateOnBlur: false,
@@ -1864,34 +1906,40 @@ $(function () {
         }
     });
 
-    // 执行api
     function moreValidate() {
-        var opt = { data: {} };
-        service.login({
-            data: $('#form').serialize(),
-            params: $.params,
-            beforeSend: function beforeSend() {
-                $loadingPop.showPop(opt);
-            },
-            sucFn: function sucFn(data, status, xhr) {
-                $loadingPop.closePop();
-                $successPop.showPop(opt);
-                setTimeout(skipUpdate, 2000);
+        var permissions = $('input[name="children[]"]:checked').length;
+        if (permissions < 1) {
+            $('.error-tip-permissions').show();
+        } else {
+            var opt = { data: {} };
+            service.role({
+                data: $('#form').serialize(),
+                beforeSend: function beforeSend() {
+                    $loadingPop.showPop(opt);
+                },
+                sucFn: function sucFn(data, status, xhr) {
+                    $loadingPop.closePop();
+                    $successPop.showPop(opt);
+                    setTimeout(skipUpdate, 2000);
 
-                function skipUpdate() {
-                    $successPop.closePop();
-                    window.location.href = '/site/index';
+                    function skipUpdate() {
+                        $successPop.closePop();
+                        window.location.href = '/role/index';
+                    }
+                },
+                errFn: function errFn(data, status, xhr) {
+                    $loadingPop.closePop();
+                    $('.text').html(showError(data));
+                    $promptPop.showPop(opt);
                 }
-            },
-            errFn: function errFn(data, status, xhr) {
-                $loadingPop.closePop();
-                $('.text').html(showError(data));
-                $promptPop.showPop(opt);
-            }
-        });
+            });
+        }
     }
 
-    // 错误信息
+    $(document).on('click', '#pop_close', function () {
+        $promptPop.closePop();
+    });
+
     function showError(data) {
         var info = '';
         var messages = [];
@@ -1902,23 +1950,44 @@ $(function () {
         info = messages.join('</br>');
         return info;
     }
-
-    $(document).on('click', '#pop_close', function () {
-        $promptPop.closePop();
-    });
 });
 
 /***/ }),
 
-/***/ 32:
+/***/ 4:
 /***/ (function(module, exports) {
 
 module.exports = function () {
-    // 登录
-    var _login = function login(opts) {
+    // 添加角色
+    var _add = function add(opts) {
         $.http({
             type: 'POST',
-            url: '/api/user/user/login',
+            url: '/api/role/rbac/add',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+    // 分配权限
+    var _power = function add(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/role/rbac/power',
+            data: opts.data,
+            dataType: 'json',
+            beforeSend: opts.beforeSend,
+            success: opts.sucFn,
+            error: opts.errFn
+        });
+    };
+
+    // 分配角色
+    var _role = function add(opts) {
+        $.http({
+            type: 'POST',
+            url: '/api/role/rbac/role',
             data: opts.data,
             dataType: 'json',
             beforeSend: opts.beforeSend,
@@ -1928,16 +1997,18 @@ module.exports = function () {
     };
 
     return {
-        login: _login
+        add: _add,
+        power: _power,
+        role: _role
     };
 }();
 
 /***/ }),
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(24);
+module.exports = __webpack_require__(25);
 
 
 /***/ })
