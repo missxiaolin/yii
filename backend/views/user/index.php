@@ -2,9 +2,9 @@
 
 use \backend\assets\AppAsset;
 
-AppAsset::addCss($this, '@web/www/css/admin/index.css');
+AppAsset::addCss($this, '@web/www/css/user/index.css');
 
-AppAsset::addScript($this, '@web/www/js/admin/index.js');
+AppAsset::addScript($this, '@web/www/js/user/index.js');
 
 ?>
 
@@ -12,7 +12,7 @@ AppAsset::addScript($this, '@web/www/js/admin/index.js');
     <div id="contain">
         <div class="filter-box">
             <div class="add">
-                <a href="<?= route('role/create-role', ['id' => 0]) ?>" class="button add-btn">+角色</a>
+                <a href="" class="button add-btn">+管理员</a>
             </div>
         </div>
         <div class="table-box">

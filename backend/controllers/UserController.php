@@ -6,7 +6,7 @@ use backend\src\service\AdminService;
 /**
  * Site controller
  */
-class AdminController extends BaseController
+class UserController extends BaseController
 {
     /**
      * 用户列表

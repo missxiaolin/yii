@@ -14,6 +14,11 @@ return [
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            'itemTable' => '{{%auth_item}}', //认证项表名称
+            'itemChildTable' => '{{%auth_item_child}}', //认证项父子关系
+            'assignmentTable' => '{{%auth_assignment}}', //认证项赋权关系
+            'ruleTable' => '{{%auth_rule}}',
+            'defaultRoles' => ['guest'],
         ],
         'log' => [
             'targets' => [

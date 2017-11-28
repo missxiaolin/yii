@@ -24,18 +24,15 @@ class RbacController extends Controller
                 $permissions[] = strtolower($cName . '/*');
 
                 preg_match_all('/public function action([a-zA-Z]+)/', $content, $matches);
-                foreach ($matches[1] ?? [] as $aName){
+                foreach ($matches[1] ?? [] as $aName) {
                     $permissions[] = strtolower($cName . '/' . preg_replace('/((?<=[a-z])(?=[A-Z]))/', '-', $aName));
                 }
             }
-            foreach ($permissions as $permission){
-                $model = new AuthItemModel();
-                $model->name = $permission;
-                $model->type = 2;
-                $model->description = $permission;
-                $model->created_at = Carbon::now();
-                $model->updated_at = Carbon::now();
-                dump($model->save());
+            foreach ($permissions as $permission) {
+                $user_model = AuthItemModel::find()->where(['name' => $permission])->one();
+                if (!$user_model) {
+                    $this->setAuthItem($permission);
+                }
             }
             $trance->commit();
             dump('import success');
@@ -43,6 +40,20 @@ class RbacController extends Controller
             $trance->rollBack();
             dump('import error' . $e->getMessage());
         }
+    }
+
+    /**
+     * @param $permission
+     */
+    public function setAuthItem($permission)
+    {
+        $model = new AuthItemModel();
+        $model->name = $permission;
+        $model->type = 2;
+        $model->description = $permission;
+        $model->created_at = Carbon::now();
+        $model->updated_at = Carbon::now();
+        dump($model->save());
     }
 
     /**

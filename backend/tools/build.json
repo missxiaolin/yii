@@ -1,10 +1,6 @@
 {
     "modules": [
         {
-            "src": "admin/index",
-            "dest": "admin"
-        },
-        {
             "src": "js/cookie",
             "dest": "js"
         },
@@ -39,6 +35,10 @@
         {
             "src": "site/login",
             "dest": "site"
+        },
+        {
+            "src": "user/index",
+            "dest": "user"
         }
     ]
 }

@@ -38,7 +38,7 @@ return [
                 [
                     'icon' => '&#xe666',
                     'name' => '用户管理',
-                    'route' => 'admin/index',
+                    'route' => 'user/index',
                 ],
             ],
         ],

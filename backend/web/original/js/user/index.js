@@ -30,4 +30,4 @@ $(function () {
     $(document).on('click', '#dialog_confirm', function () {
         alert('点击了确认')
     });
-}); 
+});
