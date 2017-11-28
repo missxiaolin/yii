@@ -15,7 +15,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->params['meta_title'] ?? '') ?></title>
+    <title><?= Html::encode($this->params['meta_title'] ?? '小林后台') ?></title>
     <meta name="Keywords" content="<?= Html::encode($this->params['meta_keyword'] ?? '') ?>"/>
     <meta name="Description" content="<?= Html::encode($this->params['meta_description'] ?? '') ?>"/>
     <meta name="X-CSRF-TOKEN" content="">
