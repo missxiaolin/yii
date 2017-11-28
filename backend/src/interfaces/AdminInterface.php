@@ -20,4 +20,10 @@ interface AdminInterface extends Repository
      */
     public function validatePassword($db_password, $auth_key, $password);
 
+    /**
+     * 获取后台用户列表
+     * @return mixed
+     */
+    public function getList();
+
 }

@@ -31,4 +31,14 @@ class AdminService
         return $user_repository->validatePassword($db_password, $auth_key, $password);
     }
 
+    /**
+     * 获取管理员列表
+     * @return array
+     */
+    public function getList()
+    {
+        $user_repository = new AdminRepository();
+        return $user_repository->getList();
+    }
+
 }

@@ -4,6 +4,7 @@ namespace backend\src\repository;
 use backend\src\interfaces\AdminInterface;
 use backend\src\models\AdminModel;
 use common\src\foundation\domain\Repository;
+use yii\data\Pagination;
 
 class AdminRepository extends Repository implements AdminInterface
 {
@@ -46,6 +47,20 @@ class AdminRepository extends Repository implements AdminInterface
             return false;
         }
         return true;
+    }
+
+    /**
+     * 管理员列表
+     * @return array
+     */
+    public function getList()
+    {
+        $query = AdminModel::find();
+        $query->orderBy('created_at desc');
+        $pagers = new Pagination(['totalCount' => $query->count(), 'pageSize' => 10]);
+        $models = $query->offset($pagers->offset)->limit($pagers->limit)->all();
+
+        return [$models, $pagers];
     }
 
 }
