@@ -1865,7 +1865,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 $(function () {
     var Popup = __webpack_require__(0),
-        service = __webpack_require__(4),
+        service = __webpack_require__(3),
         temp = __webpack_require__(1);
     // 引入验证类
     __webpack_require__(2);
@@ -1950,15 +1950,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 39:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(22);
-
-
-/***/ }),
-
-/***/ 4:
+/***/ 3:
 /***/ (function(module, exports) {
 
 module.exports = function () {
@@ -2006,6 +1998,14 @@ module.exports = function () {
         role: _role
     };
 }();
+
+/***/ }),
+
+/***/ 39:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(22);
+
 
 /***/ })
 

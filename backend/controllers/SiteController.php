@@ -16,6 +16,18 @@ class SiteController extends BaseController
     protected $except = ['login', 'logout'];
 
     /**
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'error' => [//错误提示
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+
+    /**
      * 首页
      * @return mixed
      */

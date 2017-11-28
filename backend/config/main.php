@@ -9,17 +9,19 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
+    //开启中文
+    'language'            => 'zh-CN',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-            'itemTable' => '{{%auth_item}}', //认证项表名称
-            'itemChildTable' => '{{%auth_item_child}}', //认证项父子关系
-            'assignmentTable' => '{{%auth_assignment}}', //认证项赋权关系
-            'ruleTable' => '{{%auth_rule}}',
-            'defaultRoles' => ['admin'],
+//            'itemTable' => '{{%auth_item}}', //认证项表名称
+//            'itemChildTable' => '{{%auth_item_child}}', //认证项父子关系
+//            'assignmentTable' => '{{%auth_assignment}}', //认证项赋权关系
+//            'ruleTable' => '{{%auth_rule}}',
+            'defaultRoles' => ['guest'],
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -62,7 +64,7 @@ return [
             'site/*',
             'api/user/user/login',
             'debug/default/toolbar',
-            '*',
+//            '*',
         ],
     ],
     'params' => $params,

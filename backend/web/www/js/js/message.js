@@ -101,7 +101,7 @@ $(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (content, callback, options) {
-    var Modal = __webpack_require__(3);
+    var Modal = __webpack_require__(4);
 
     var content = '			<i class="pull-left fa fa-4x fa-info-circle"></i>' + '			<div class="pull-left"><p>' + content + '</p>' + '			</div>' + '			<div class="clearfix"></div>';
     var modalobj = Modal($.extend({
@@ -127,7 +127,7 @@ module.exports = function (content, callback, options) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function (msg, redirect, type, timeout, options) {
-    var Modal = __webpack_require__(3);
+    var Modal = __webpack_require__(4);
 
     if ($.isArray(msg)) {
         msg = msg.join('<br/>');
@@ -207,7 +207,15 @@ module.exports = function (msg, redirect, type, timeout, options) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 35:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(18);
+
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -297,14 +305,6 @@ module.exports = function (options) {
 
     return modalObj.modal(opt);
 };
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(18);
-
 
 /***/ })
 

@@ -72,7 +72,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 $(function () {
-    var modal = __webpack_require__(3);
+    var modal = __webpack_require__(4);
 
     $('.btn').click(function () {
         modal({
@@ -92,7 +92,15 @@ $(function () {
 
 /***/ }),
 
-/***/ 3:
+/***/ 36:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(19);
+
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports) {
 
 module.exports = function (options) {
@@ -182,14 +190,6 @@ module.exports = function (options) {
 
     return modalObj.modal(opt);
 };
-
-/***/ }),
-
-/***/ 36:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(19);
-
 
 /***/ })
 

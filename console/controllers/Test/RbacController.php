@@ -12,7 +12,6 @@ class RbacController extends Controller
     {
         $trance = Yii::$app->db->beginTransaction();
         $permissions = [];
-
         try {
             $permissions = [];
             $dirs = dirname(dirname(dirname(dirname(__FILE__)))) . '/backend/controllers';
@@ -20,7 +19,16 @@ class RbacController extends Controller
             foreach ($controllers ?? [] as $controller) {
                 $content = file_get_contents($controller);
                 preg_match('/class ([a-zA-Z]+)Controller/', $content, $match);
-                $cName = $match[1];
+                $str = '/';
+
+                $Interface = substr($controller, strlen($dirs));
+                $num = strripos($Interface, '/');
+                if (isset($num)) {
+                    $str = substr($Interface, 0, $num) . '/';
+                }
+
+                $cName = $str . $match[1];
+
                 $permissions[] = strtolower($cName . '/*');
 
                 preg_match_all('/public function action([a-zA-Z]+)/', $content, $matches);
