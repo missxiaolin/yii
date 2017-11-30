@@ -24,12 +24,14 @@ Route::filter('cors', [
 Route::group(['prefix' => 'v1', 'filter' => 'auth'], function () {
     // 子路由
     Route::any('user/index', 'v1/user/index');
+
+    Route::any('shop/list', 'v1/shop/list');
 });
 
 Route::group(['prefix' => 'v1', 'filter' => 'cors'], function () {
     // 子路由
     Route::any('rpc/index', 'v1/rpc/index');
-    Route::any('shop/list', 'v1/shop/list');
+    Route::any('user/login', 'v1/user/login');
 });
 
 
