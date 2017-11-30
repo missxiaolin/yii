@@ -28,7 +28,8 @@ class AppAuth extends ActionFilter
     {
         $response = $this->response ?: Yii::$app->getResponse();
         $this->handleFailure($response);
-        return false;
+//        $token = getToken();
+        return true;
     }
 
 

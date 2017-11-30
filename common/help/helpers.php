@@ -54,3 +54,18 @@ if (!function_exists('api_response')) {
     }
 }
 
+if (!function_exists('getToken')) {
+    /**
+     * json 返回
+     * @param $data
+     * @param string $code
+     * @param string $msg
+     * @return array
+     */
+    function getToken()
+    {
+        $headers = Yii::$app->request->headers;
+        return $headers->get('X-TOKEN');
+    }
+}
+

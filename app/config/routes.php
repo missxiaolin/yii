@@ -13,15 +13,18 @@ Route::filter('cors', [
     'cors' => [
         'Origin' => ['*'],
         'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Request-Method' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
+        'Access-Control-Request-Headers' => ['X-TOKEN', 'Content-Type'],
+        'Access-Control-Allow-Headers' => ['X-TOKEN', 'Content-Type'],
         'Access-Control-Allow-Credentials' => true,
-        'Access-Control-Allow-Headers' => '*',
-        'Access-Control-Request-Metshod' => ['GET', 'HEAD', 'OPTIONS', 'POST'],
+        'Access-Control-Max-Age' => 86400,
+        'Access-Control-Expose-Headers' => [],
     ],
 ]);
 
 
 // 路由组
-Route::group(['prefix' => 'v1', 'filter' => 'auth'], function () {
+Route::group(['prefix' => 'v1', 'filter' => 'auth|cors'], function () {
     // 子路由
     Route::any('user/index', 'v1/user/index');
 

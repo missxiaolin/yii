@@ -51,6 +51,8 @@ return [
         'response' => [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
+                header('Access-Control-Allow-Origin:*');
+                header('Access-Control-Allow-Headers:X-TOKEN,Content-Type');
                 $response = $event->sender;
                 $code = $response->getStatusCode();
                 if ($code != 200){
@@ -60,6 +62,7 @@ return [
                         'time' => (string)time(),
                         '_ut' => (string)round(microtime(TRUE) - $_SERVER['REQUEST_TIME_FLOAT'], 5),
                     ];
+                    $response->statusCode = 200;
                     $response->data = $data;
                 }
                 $response->format = yii\web\Response::FORMAT_JSON;
