@@ -52,6 +52,24 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logFile' => "@runtime/logs/" . date('Y-m') . '/' . date('d') . '/' . date('H') . "-backend.log",
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['info'],
+                    'logFile' => "@runtime/logs/" . date('Y-m') . '/' . date('d') . '/' . date('H') . "-backend-info.log",
+                    'categories' => ['myinfo'],
+                    'logVars' => []
+                ],
+                [
+                 'class' => 'yii\log\EmailTarget',
+                 'mailer' =>'mailer',
+                 'levels' => ['error', 'warning'],
+                 'message' => [
+                     'from' => ['17135501105@163.com'],
+                     'to' => ['462441355@qq.com'],
+                     'subject' => '错误日志',
+                 ],
                 ],
             ],
         ],

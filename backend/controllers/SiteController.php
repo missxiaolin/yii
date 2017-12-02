@@ -13,7 +13,7 @@ class SiteController extends BaseController
 {
     protected $actions = ['index', 'error'];
 
-    protected $except = ['login', 'logout'];
+    protected $except = ['login', 'logout','log'];
 
     /**
      * @return array
@@ -62,6 +62,19 @@ class SiteController extends BaseController
     public function actionError()
     {
         return $this->view('error');
+    }
+
+    /**
+     * 日志测试
+     */
+    public function actionLog()
+    {
+        // 出现error错误邮件发送测试
+        Yii::error('sssss');
+
+        // 记录错误日志测试
+        Yii::info('sssss', 'myinfo');
+        return $this->view('error-info');
     }
 
 }
