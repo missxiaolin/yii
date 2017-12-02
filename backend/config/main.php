@@ -10,7 +10,7 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     //开启中文
-    'language'            => 'zh-CN',
+    'language' => 'zh-CN',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
@@ -31,12 +31,20 @@ return [
         'user' => [
             'identityClass' => 'backend\src\models\AdminModel',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity_backend', 'httpOnly' => true],
             'loginUrl' => ['site/login'], //要是数组
         ],
         'session' => [
+            'class' => 'yii\redis\Session',
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+//            'name' => 'advanced-backend',
+            'redis' => [
+                'hostname' => '127.0.0.1',
+                'port' => 6379,
+                'database' => 0,
+                'password' => 'xiaolin',
+            ],
+            'keyPrefix' => '_identity_backend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
