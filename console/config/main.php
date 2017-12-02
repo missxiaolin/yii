@@ -20,12 +20,28 @@ return [
             'ruleTable' => '{{%auth_rule}}',
             'defaultRoles' => ['guest'],
         ],
+        'sentry' => [
+            'class' => 'mito\sentry\Component',
+            'dsn' => 'https://98d91bb5df92466d9c4f00661f37c561:f692d4fd92974f75a8962dfc0e7a9437@sentry.io/253662', // private DSN
+//            'publicDsn' => 'https://98d91bb5df92466d9c4f00661f37c561@sentry.io/253662', // js log
+            'environment' => 'staging', // if not set, the default is `production`
+            'jsNotifier' => true, // to collect JS errors. Default value is `false`
+            'jsOptions' => [ // raven-js config parameter
+                'whitelistUrls' => [ // collect JS errors from these urls
+//                    'http://staging.my-product.com',
+//                    'https://my-product.com',
+                ],
+            ],
+        ],
         'log' => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => 'mito\sentry\Target',
                     'levels' => ['error', 'warning'],
-                ],
+                    'except' => [
+                        'yii\web\HttpException:404',
+                    ],
+                ]
             ],
         ],
         'redis' => [
