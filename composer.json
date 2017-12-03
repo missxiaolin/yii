@@ -42,7 +42,8 @@
         "linslin/yii2-curl": "^1.2",
         "ext-phalcon": "^3.2",
         "elasticsearch/elasticsearch": "^6.0",
-        "mito/yii2-sentry": "^1.0"
+        "mito/yii2-sentry": "^1.0",
+        "nmred/kafka-php": "v0.2.0.8"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
