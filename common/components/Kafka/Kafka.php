@@ -53,29 +53,36 @@ class Kafka
 
     public function consumer($object, $callback)
     {
-        $conf = new \RdKafka\Conf();
-        $conf->set('group.id', 0);
-        $conf->set('metadata.broker.list', $this->broker_list);
+        try {
+            $rcf = new \RdKafka\Conf();
+            $rcf->set('group.id', 'test');
+            $cf = new \RdKafka\TopicConf();
+            /*
+                $cf->set('offset.store.method', 'file');
+            */
+            $cf->set('auto.offset.reset', 'smallest');
+            $cf->set('auto.commit.enable', true);
 
-        $topicConf = new \RdKafka\TopicConf();
-        $topicConf->set('auto.offset.reset', 'smallest');
-
-        $conf->setDefaultTopicConf($topicConf);
-
-        $consumer = new \RdKafka\KafkaConsumer($conf);
-
-        $consumer->subscribe([$this->topic]);
-
-        echo "waiting for messages.....\n";
-        while(true) {
-            $message = $consumer->consume(120*1000);
-            switch ($message->err) {
-                case RD_KAFKA_RESP_ERR_NO_ERROR:
-                    echo "message payload....";
-                    $object->$callback($message->payload);
+            $rk = new \RdKafka\Consumer($rcf);
+            $rk->setLogLevel(LOG_DEBUG);
+            $rk->addBrokers("127.0.0.1");
+            $topic = $rk->newTopic("test", $cf);
+            //$topic->consumeStart(0, RD_KAFKA_OFFSET_BEGINNING);
+            while (true) {
+                $topic->consumeStart(0, RD_KAFKA_OFFSET_STORED);
+                $msg = $topic->consume(0, 1000);
+                dump($msg);
+                if ($msg->err) {
+                    echo $msg->errstr(), "\n";
                     break;
+                } else {
+                    echo $msg->payload, "\n";
+                }
+                $topic->consumeStop(0);
+                sleep(1);
             }
-            sleep(1);
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 
