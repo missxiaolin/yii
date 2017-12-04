@@ -14,7 +14,7 @@ class KafkaController extends Controller
     public function actionIndex()
     {
         $kafka = new Kafka();
-        $kafka->send(1);
+        $kafka->send();
     }
 
     /**
@@ -31,6 +31,7 @@ class KafkaController extends Controller
      */
     public function handle($message)
     {
+        dump($message);
         Yii::info($message);
     }
 }

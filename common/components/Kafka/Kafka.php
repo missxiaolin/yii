@@ -5,8 +5,8 @@ use RdKafka;
 
 class Kafka
 {
-    public $broker_list = 'localhost:9092';
-    public $topic = "test1";
+    public $broker_list = 'localhost';
+    public $topic = "test";
     public $partition = 0;
 
     //public $logFile = '@runtime/logs/kafka/info.log';
@@ -19,7 +19,7 @@ class Kafka
         if (empty($this->broker_list)) {
             throw new \yii\base\InvalidConfigException("broker not config");
         }
-        $rk = new RdKafka\Producer();
+        $rk = new \RdKafka\Producer();
         if (empty($rk)) {
             throw new \yii\base\InvalidConfigException("producer error");
         }
@@ -30,11 +30,25 @@ class Kafka
         $this->producer = $rk;
     }
 
-    public function send($messages = [])
+    public function send()
     {
-//        dump($messages);
-        $topic = $this->producer->newTopic($this->topic);
-        return $topic->produce(RD_KAFKA_PARTITION_UA, $this->partition, json_encode($messages));
+        try {
+            $rcf = new \RdKafka\Conf();
+            $rcf->set('group.id', 'test');
+            $cf = new \RdKafka\TopicConf();
+            $cf->set('offset.store.method', 'broker');
+            $cf->set('auto.offset.reset', 'smallest');
+
+            $rk = new \RdKafka\Producer($rcf);
+            $rk->setLogLevel(LOG_DEBUG);
+            $rk->addBrokers($this->broker_list);
+            $topic = $rk->newTopic("test", $cf);
+            for ($i = 0; $i < 1000; $i++) {
+                $topic->produce(0, 0, 'test' . $i);
+            }
+        } catch (\Exception $e) {
+            dump('error' . $e->getMessage());
+        }
     }
 
     public function consumer($object, $callback)
