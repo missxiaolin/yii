@@ -87,7 +87,7 @@ abstract class WebSocket extends Controller
 
     /**
      * @desc    WebSocket 连接到服务器
-     * @author  limx
+     * @author  xl
      * @param swoole_websocket_server $server
      * @param                         $request
      */
@@ -95,7 +95,7 @@ abstract class WebSocket extends Controller
 
     /**
      * @desc   WebSocket 收到客户端消息
-     * @author limx
+     * @author xl
      * @param swoole_websocket_server $server
      * @param swoole_websocket_frame $frame
      */
@@ -103,7 +103,7 @@ abstract class WebSocket extends Controller
 
     /**
      * @desc   WebSocket 断开连接
-     * @author limx
+     * @author xl
      * @param $ser
      * @param $fd
      * @return mixed
@@ -112,7 +112,7 @@ abstract class WebSocket extends Controller
 
     /**
      * @desc   准备开启服务器
-     * @author limx
+     * @author xl
      * @param swoole_websocket_server $server
      */
     protected function ready(swoole_websocket_server $server)
