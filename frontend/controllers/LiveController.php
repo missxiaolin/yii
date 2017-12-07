@@ -9,4 +9,9 @@ class LiveController extends BaseController
     {
         return $this->view('index');
     }
+
+    public function actionWatchr()
+    {
+        return $this->view('watchr');
+    }
 }
