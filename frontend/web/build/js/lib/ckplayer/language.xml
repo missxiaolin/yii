@@ -24,7 +24,7 @@
         [$timeh]:[$timei]:[$times]
     </liveAndVod>
     <live>
-        直播中 [$liveTimeY]-[$liveTimem]-[$liveTimed] [$liveTimeh]:[$liveTimei]:[$liveTimes]
+        直播中 <!--[$liveTimeY]-[$liveTimem]-[$liveTimed] [$liveTimeh]:[$liveTimei]:[$liveTimes]-->
     </live>
     <m3u8Definition>
         <name>流畅</name>
