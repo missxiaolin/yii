@@ -15,8 +15,7 @@ js/../pages/index/index.js
 js/../pages/live/watcher.js
 ----------------
 js/lib/jquery/jquery-2.0.0.min.js
-js/lib/video/video.min.js
-js/lib/video/videojs-ie8.min.js
+js/lib/ckplayer/ckplayer.js
 js/../pages/live/watcher.js
 
 js/../pages/socket/index.js

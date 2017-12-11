@@ -338,8 +338,8 @@ function ckplayerConfig() {
         this.errorSend = false;
         //控制栏是否隐藏
         this.controlBarIsShow = true;
-        //字体
-        this.fontFamily = '"Microsoft YaHei"; YaHei; "\5FAE\8F6F\96C5\9ED1"; SimHei; "\9ED1\4F53";Arial';
+        //字体 "Microsoft YaHei"; YaHei; "\5FAE\8F6F\96C5\9ED1"; SimHei; "\9ED1\4F53";Arial
+        this.fontFamily = '';
         if (obj) {
             this.embed(obj);
         }
@@ -6540,7 +6540,7 @@ function ckplayerConfig() {
          */
         log: function (val) {
             try {
-                console.log(val);
+                // console.log(val);
             } catch (e) {
             }
         },

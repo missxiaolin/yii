@@ -24,8 +24,7 @@
         {
             "name": "../pages/live/watcher",
             "include": [
-                "jquery",
-                "video"
+                "jquery"
             ],
             "exclude": [
                 "../js/lib/config"
