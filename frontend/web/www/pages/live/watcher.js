@@ -13,7 +13,7 @@ require(['jquery', 'ckplayer'], function ($) {
             scale: 2
         },
         config: '', //指定配置函数
-        debug: true, //是否开启调试模式
+        debug: false, //是否开启调试模式
         //flashplayer: true, //强制使用flashplayer
         drag: 'start', //拖动的属性
         live: false, //是否是直播
