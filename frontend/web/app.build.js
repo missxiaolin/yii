@@ -20,6 +20,34 @@
             "exclude": [
                 "../js/lib/config"
             ]
+        },
+        {
+            "name": "../pages/live/watcher",
+            "include": [
+                "jquery",
+                "video"
+            ],
+            "exclude": [
+                "../js/lib/config"
+            ]
+        },
+        {
+            "name": "../pages/socket/index",
+            "include": [
+                "jquery"
+            ],
+            "exclude": [
+                "../js/lib/config"
+            ]
+        },
+        {
+            "name": "../pages/socket/look",
+            "include": [
+                "jquery"
+            ],
+            "exclude": [
+                "../js/lib/config"
+            ]
         }
     ]
 }

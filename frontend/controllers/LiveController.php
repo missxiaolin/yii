@@ -10,8 +10,10 @@ class LiveController extends BaseController
         return $this->view('index');
     }
 
-    public function actionWatchr()
+    public function actionWatcher()
     {
-        return $this->view('watchr');
+        $this->file_css = 'css/live/video-js';
+        $this->file_js = 'pages/live/watcher';
+        return $this->view('watcher');
     }
 }
