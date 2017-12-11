@@ -24,7 +24,8 @@
         {
             "name": "../pages/live/watcher",
             "include": [
-                "jquery"
+                "jquery",
+                "ckplayer"
             ],
             "exclude": [
                 "../js/lib/config"

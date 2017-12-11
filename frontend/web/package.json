@@ -1,0 +1,12 @@
+{
+  "name": "require",
+  "version": "1.0.0",
+  "description": "r.js打包",
+  "main": "app.build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node tools/boot.js; r.js -o app.build.js"
+  },
+  "author": "xiaolin",
+  "license": "ISC"
+}
