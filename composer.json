@@ -43,7 +43,8 @@
         "ext-phalcon": "^3.2",
         "elasticsearch/elasticsearch": "^6.0",
         "mito/yii2-sentry": "^1.0",
-        "nmred/kafka-php": "v0.2.0.8"
+        "nmred/kafka-php": "v0.2.0.8",
+        "illuminate/support": "^5.5"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
