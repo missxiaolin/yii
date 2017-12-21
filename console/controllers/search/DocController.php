@@ -166,7 +166,28 @@ class DocController extends Controller
 //                     'term' => [
 //                         'name' => 'lin'
 //                     ],
+                    'bool' => [
+                        'filter' => [
+                            // 过滤 年龄小于24
+//                            [
+//                                'range' => [
+//                                    'age' => [
+//                                        'gte' => 24,
+//                                    ],
+//                                ],
+//                            ],
+                            'geo_distance' => [
+                                'distance' => '1km',
+                                'location' => [
+                                    'lat' => $lat,
+                                    'lon' => $lon,
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
+                'from' => 0,
+                'size' => 5,
             ],
         ];
         try {
