@@ -22,6 +22,10 @@ class DocController extends Controller
         echo 'geo           经纬度搜索文档' . PHP_EOL;
         echo 'term          精确查询搜索文档' . PHP_EOL;
         echo 'match         模糊匹配搜索文档' . PHP_EOL;
+        echo 'del           删除文档' . PHP_EOL;
+        echo 'delType       删除某类型的所有文档' . PHP_EOL;
+        echo 'delQuery      删除某些文档' . PHP_EOL;
+        echo 'count         某类型文档总数' . PHP_EOL;
     }
 
     /**
@@ -133,17 +137,22 @@ class DocController extends Controller
 
     /**
      * 读取
+     * @param $id
      */
-    public function actionGet()
+    public function actionGet($id)
     {
         $client = Client::getInstance();
         $params = [
             'index' => ES::ES_INDEX,
             'type' => ES::ES_TYPE_USER,
-            'id' => 1,
+            'id' => $id,
         ];
-        $res = $client->get($params);
-        dump($res);
+        try {
+            $res = $client->get($params);
+            dump($res);
+        } catch (\Exception $e) {
+            dump($e->getMessage());
+        }
     }
 
     /**
@@ -358,5 +367,103 @@ class DocController extends Controller
             $res = json_decode($ex->getMessage(), true);
             dd($res);
         }
+    }
+
+    /**
+     * 删除文档
+     * @param $id
+     */
+    public function actionDel($id)
+    {
+        $res = [];
+        $client = Client::getInstance();
+        $params = [
+            'index' => ES::ES_INDEX,
+            'type' => ES::ES_TYPE_USER,
+            'id' => $id,
+        ];
+        try {
+            $res = $client->get($params);
+        } catch (\Exception $ex) {
+            EsLogic::add($id);
+        }
+
+        try {
+            $res = $client->delete($params);
+        } catch (\Exception $ex) {
+            dd($ex->getMessage());
+        }
+
+        dd($res);
+    }
+
+    /**
+     * 删除某类型的所有文档
+     */
+    public function actionDelType()
+    {
+        $client = Client::getInstance();
+        try {
+            $params = [
+                'index' => ES::ES_INDEX,
+                'type' => ES::ES_TYPE_USER,
+                'body' => [
+                    'query' => [
+                        'match_all' => (object)[],
+                    ],
+                ],
+            ];
+            $res = $client->deleteByQuery($params);
+            dd($res);
+        } catch (\Exception $ex) {
+            dd($ex->getMessage());
+        }
+    }
+
+    /**
+     * 删除某些文档
+     */
+    public function actionDelQuery()
+    {
+        $res = [];
+        $client = Client::getInstance();
+        try {
+            $params = [
+                'index' => ES::ES_INDEX,
+                'type' => ES::ES_TYPE_USER,
+                'body' => [
+                    'query' => [
+                        'bool' => [
+                            'must' => [
+                                ['term' => ['book.author' => 'limx']],
+                            ],
+                        ],
+                    ],
+                ],
+            ];
+            $res = $client->deleteByQuery($params);
+        } catch (\Exception $ex) {
+            dd($ex->getMessage());
+        }
+        dd($res);
+    }
+
+    /**
+     * 某类型文档总数
+     */
+    public function actionCount()
+    {
+        $res = [];
+        $client = Client::getInstance();
+        try {
+            $params = [
+                'index' => ES::ES_INDEX,
+                'type' => ES::ES_TYPE_USER,
+            ];
+            $res = $client->count($params);
+        } catch (\Exception $ex) {
+            dd($ex->getMessage());
+        }
+        dd($res);
     }
 }
