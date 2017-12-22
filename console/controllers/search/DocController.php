@@ -20,7 +20,8 @@ class DocController extends Controller
         echo 'search        搜索' . PHP_EOL;
         echo 'update        跟新文档' . PHP_EOL;
         echo 'geo           经纬度搜索文档' . PHP_EOL;
-
+        echo 'term          精确查询搜索文档' . PHP_EOL;
+        echo 'match         模糊匹配搜索文档' . PHP_EOL;
     }
 
     /**
@@ -234,7 +235,7 @@ class DocController extends Controller
                     'name' => '老李',
                     'age' => rand(1, 99),
                     'birthday' => '1990-01-24',
-                ]
+                ],
             ],
             'refresh' => true,
         ];
@@ -267,11 +268,11 @@ class DocController extends Controller
                                 'distance' => '1km',
                                 'location' => [
                                     'lat' => $lat,
-                                    'lon' => $lon
+                                    'lon' => $lon,
                                 ],
                             ],
                         ],
-                    ]
+                    ],
                 ],
                 'from' => 0,
                 'size' => 5,
@@ -279,12 +280,74 @@ class DocController extends Controller
                     '_geo_distance' => [
                         'location' => [
                             'lat' => $lat,
-                            'lon' => $lon
+                            'lon' => $lon,
                         ],
                         'order' => 'asc',
                         'unit' => 'km',
                         'mode' => 'min',
                     ],
+                ],
+            ],
+        ];
+        try {
+            $res = $client->search($params);
+            dd($res);
+        } catch (\Exception $ex) {
+            $res = json_decode($ex->getMessage(), true);
+            dd($res);
+        }
+    }
+
+    /**
+     * 精确查询搜索文档
+     */
+    public function actionTerm()
+    {
+        $client = Client::getInstance();
+        $params = [
+            'index' => ES::ES_INDEX,
+            'type' => ES::ES_TYPE_USER,
+            'body' => [
+                'query' => [
+                    'term' => [
+                        'name' => 'xiaolin',
+                    ],
+                ],
+                'from' => 0,
+                'size' => 5,
+                'sort' => [
+                    'age' => 'asc',
+                ],
+            ],
+        ];
+        try {
+            $res = $client->search($params);
+            dd($res);
+        } catch (\Exception $ex) {
+            $res = json_decode($ex->getMessage(), true);
+            dd($res);
+        }
+    }
+
+    /**
+     * 模糊匹配搜索文档
+     */
+    public function actionMatch()
+    {
+        $client = Client::getInstance();
+        $params = [
+            'index' => ES::ES_INDEX,
+            'type' => ES::ES_TYPE_USER,
+            'body' => [
+                'query' => [
+                    'match' => [
+                        'name' => '小王',
+                    ],
+                ],
+                'from' => 0,
+                'size' => 5,
+                'sort' => [
+                    'age' => 'asc',
                 ],
             ],
         ];
