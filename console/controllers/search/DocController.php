@@ -18,6 +18,7 @@ class DocController extends Controller
         echo 'add           插入文档' . PHP_EOL;
         echo 'get           读取' . PHP_EOL;
         echo 'search        搜索' . PHP_EOL;
+        echo 'update        跟新文档' . PHP_EOL;
     }
 
     /**
@@ -216,4 +217,32 @@ class DocController extends Controller
         }
     }
 
+    /**
+     * 跟新文档
+     */
+    public function actionUpdate()
+    {
+        $client = Client::getInstance();
+        $params = [
+            'index' => ES::ES_INDEX,
+            'type' => ES::ES_TYPE_USER,
+            'id' => 1,
+            'body' => [
+                'doc' => [
+                    'name' => '老李',
+                    'age' => rand(1, 99),
+                    'birthday' => '1990-01-24',
+                ]
+            ],
+            'refresh' => true,
+        ];
+
+        try {
+            $res = $client->update($params);
+            dd($res);
+        } catch (\Exception $ex) {
+            $res = json_decode($ex->getMessage(), true);
+            dd($res);
+        }
+    }
 }
