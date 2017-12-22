@@ -167,6 +167,9 @@ class DocController extends Controller
 //                         'name' => 'lin'
 //                     ],
                     'bool' => [
+//                        'must' => [
+//                            ['match' => ['name' => '林']],
+//                        ],
                         'filter' => [
                             // 过滤 年龄小于24
 //                            [
@@ -188,6 +191,20 @@ class DocController extends Controller
                 ],
                 'from' => 0,
                 'size' => 5,
+                'sort' => [
+                    // 'age' => [
+                    //     'order' => 'desc'
+                    // ]
+                    '_geo_distance' => [
+                        'location' => [
+                            'lat' => $lat,
+                            'lon' => $lon,
+                        ],
+                        'order' => 'asc',
+                        'unit' => 'km',
+                        'mode' => 'min',
+                    ],
+                ],
             ],
         ];
         try {
