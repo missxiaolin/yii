@@ -19,6 +19,8 @@ class DocController extends Controller
         echo 'get           读取' . PHP_EOL;
         echo 'search        搜索' . PHP_EOL;
         echo 'update        跟新文档' . PHP_EOL;
+        echo 'geo           经纬度搜索文档' . PHP_EOL;
+
     }
 
     /**
@@ -239,6 +241,55 @@ class DocController extends Controller
 
         try {
             $res = $client->update($params);
+            dd($res);
+        } catch (\Exception $ex) {
+            $res = json_decode($ex->getMessage(), true);
+            dd($res);
+        }
+    }
+
+    /**
+     * 经纬度搜索文档
+     */
+    public function actionGeo()
+    {
+        $client = Client::getInstance();
+        $lat = EsLogic::getRandomLat();
+        $lon = EsLogic::getRandomLon();
+        $params = [
+            'index' => ES::ES_INDEX,
+            'type' => ES::ES_TYPE_USER,
+            'body' => [
+                'query' => [
+                    'bool' => [
+                        'filter' => [
+                            'geo_distance' => [
+                                'distance' => '1km',
+                                'location' => [
+                                    'lat' => $lat,
+                                    'lon' => $lon
+                                ],
+                            ],
+                        ],
+                    ]
+                ],
+                'from' => 0,
+                'size' => 5,
+                'sort' => [
+                    '_geo_distance' => [
+                        'location' => [
+                            'lat' => $lat,
+                            'lon' => $lon
+                        ],
+                        'order' => 'asc',
+                        'unit' => 'km',
+                        'mode' => 'min',
+                    ],
+                ],
+            ],
+        ];
+        try {
+            $res = $client->search($params);
             dd($res);
         } catch (\Exception $ex) {
             $res = json_decode($ex->getMessage(), true);
