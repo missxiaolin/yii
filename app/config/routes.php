@@ -23,8 +23,8 @@ Route::filter('cors', [
 ]);
 
 
-// 路由组
-Route::group(['prefix' => 'v1', 'filter' => 'auth|cors'], function () {
+// 路由组 auth|
+Route::group(['prefix' => 'v1', 'filter' => 'cors'], function () {
     // 子路由
     Route::any('user/index', 'v1/user/index');
 
