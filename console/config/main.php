@@ -57,7 +57,7 @@ return [
         'elasticsearch' => [
             'class' => 'yii\elasticsearch\Connection',
             'nodes' => [
-                ['http_address' => '127.0.0.1:32771'],
+                ['http_address' => '127.0.0.1:32769'],
                 // configure more hosts if you have a cluster
             ],
         ],
