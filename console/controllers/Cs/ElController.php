@@ -9,13 +9,14 @@ use Yii;
 
 class ElController extends Controller
 {
-    public function actionIndex()
+    /**
+     * @param $id
+     */
+    public function actionIndex($id)
     {
         try {
-            $shop_model = ShopsModel::find()->where(['shop_id' => 263])->one();
-//            dump(ShopsElModel::type());
-            $el_shop_model = new ShopsElModel();
-            $el_shop_model->primaryKey = $shop_model->shop_id;
+            $shop_model = ShopsModel::find()->where(['shop_id' => $id])->one();
+            $el_shop_model = new ShopsElModel();$el_shop_model->primaryKey = $shop_model->shop_id;
             $el_shop_model->shop_name = $shop_model->shop_name;
             $el_shop_model->longitude = $shop_model->longitude;
             $el_shop_model->latitude = $shop_model->latitude;
@@ -25,24 +26,12 @@ class ElController extends Controller
         }
     }
 
+    /**
+     * @param $keyword
+     */
     public function actionGetShop($keyword)
     {
         try {
-//            $el_shop_models = ShopsElModel::find()->all();
-//            $el_shop_models = ShopsElModel::find()
-//                ->query([
-//                    'multi_match' => [
-//                        'query' => '周',
-//                        'fields' => ['shop_id', 'shop_name', 'longitude', 'latitude'],
-//                    ],
-//                ])
-//                ->highlight([
-//                    'pre_tags'=>['<em>'],
-//                    'post_tags'=>['</em>'],
-//                    'fields'=>[
-//                        'shop_name'=> new \stdClass()
-//                    ]
-//                ])->all();
             $el_shop_models = ShopsElModel::find()
                 ->query([
                     'bool' => [
@@ -64,5 +53,14 @@ class ElController extends Controller
             dump($e->getMessage());
         }
 
+    }
+
+    public function actionList()
+    {
+        try{
+
+        }catch (\Exception $e){
+
+        }
     }
 }
