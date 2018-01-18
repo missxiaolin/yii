@@ -25,14 +25,9 @@ class CurlController extends Controller
 
     }
 
-    public function actionGet($params)
+    public function actionGet()
     {
-        $res = [];
-        foreach ($params as $i => $param) {
-            $res['key' . $i] = $param;
-        }
-        $body = http_build_query($res);
-        $url = "http://demo.phalcon.lmx0536.cn/test/api/api?" . $body;
+        $url = "http://www.xiaolinapi.com/v1/user/index";
         $ch = curl_init();
         // 设置抓取的url
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -58,7 +53,7 @@ class CurlController extends Controller
         //关闭URL请求
         curl_close($ch);
         $res = json_decode($result, true);
-        print_r($res);
+        dump($res);
     }
 
     /**
