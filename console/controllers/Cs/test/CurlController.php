@@ -16,7 +16,7 @@ class CurlController extends Controller
         echo 'curl函数参数测试' . PHP_EOL;
 
         echo 'Usage:' . PHP_EOL;
-        echo './yii Cs/test/array [action]' . PHP_EOL;
+        echo './yii Cs/test/curl [action]' . PHP_EOL;
 
         echo 'Actions:' . PHP_EOL;
 
