@@ -22,9 +22,143 @@ class CurlController extends Controller
 
         echo 'getbaidu              获取百度首页页面' . PHP_EOL;
         echo 'get                   get' . PHP_EOL;
-
+        echo 'postUrl               POST http_build_query方法' . PHP_EOL;
+        echo 'postJson              POST json方法' . PHP_EOL;
+        echo 'header                POST json方法' . PHP_EOL;
     }
 
+    public function actionHeader()
+    {
+        $res = [];
+        $body = http_build_query($res);
+        $url = "http://www.xiaolinapi.com/v1/user/index?key=1";
+        $ch = curl_init();
+        // 设置抓取的url
+        curl_setopt($ch, CURLOPT_URL, $url);
+        // 启用时会将头文件的信息作为数据流输出。
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        // 启用时将获取的信息以文件流的形式返回，而不是直接输出。
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // 启用时会将服务器服务器返回的"Location: "放在header中递归的返回给服务器，使用CURLOPT_MAXREDIRS可以限定递归返回的数量。
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        // 设置访问 方法
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        // 设置POST BODY
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+
+        // 设置header
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'APPID:' . uniqid(),
+            'APPSECRET:' . md5(uniqid()),
+        ]);
+
+        // 设置可以查看请求头的参数
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
+        //执行命令
+        $result = curl_exec($ch);
+        if ($result === false) {
+            echo 'Curl error: ' . curl_error($ch);
+            return false;
+        }
+        // 返回请求头
+        $header = curl_getinfo($ch, CURLINFO_HEADER_OUT);
+        dump($header);
+
+        //关闭URL请求
+        curl_close($ch);
+        $res = json_decode($result, true);
+        print_r($res);
+    }
+
+    /**
+     * @return bool
+     */
+    public function actionPostJson()
+    {
+        $res = [];
+        $res['sn'] = 1111;
+        $body = json_encode($res);
+        $url = "http://www.xiaolinapi.com/v1/user/index?key=1";
+        $ch = curl_init();
+        // 设置抓取的url
+        curl_setopt($ch, CURLOPT_URL, $url);
+        // 启用时会将头文件的信息作为数据流输出。
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        // 启用时将获取的信息以文件流的形式返回，而不是直接输出。
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // 启用时会将服务器服务器返回的"Location: "放在header中递归的返回给服务器，使用CURLOPT_MAXREDIRS可以限定递归返回的数量。
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        // 设置访问 方法
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        // 设置POST BODY
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        // 设置JSON HEADER
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($body),
+            'APPID:' . uniqid(),
+            'APPSECRET:' . md5(uniqid()),
+        ]);
+
+        //执行命令
+        $result = curl_exec($ch);
+        if ($result === false) {
+            echo 'Curl error: ' . curl_error($ch);
+            return false;
+        }
+        //关闭URL请求
+        curl_close($ch);
+        $res = json_decode($result, true);
+        print_r($res);
+    }
+
+    /**
+     * @return bool
+     */
+    public function actionPostUrl()
+    {
+        $res = [];
+        $body = http_build_query($res);
+        $url = "http://www.xiaolinapi.com/v1/user/index?key=1";
+        $ch = curl_init();
+        // 设置抓取的url
+        curl_setopt($ch, CURLOPT_URL, $url);
+        // 启用时会将头文件的信息作为数据流输出。
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        // 启用时将获取的信息以文件流的形式返回，而不是直接输出。
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // 启用时会将服务器服务器返回的"Location: "放在header中递归的返回给服务器，使用CURLOPT_MAXREDIRS可以限定递归返回的数量。
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+
+        // 设置访问 方法
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        // 设置POST BODY
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+
+        // 设置header
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'APPID:' . uniqid(),
+            'APPSECRET:' . md5(uniqid()),
+        ]);
+
+        //执行命令
+        $result = curl_exec($ch);
+        if ($result === false) {
+            echo 'Curl error: ' . curl_error($ch);
+            return false;
+        }
+        //关闭URL请求
+        curl_close($ch);
+        $res = json_decode($result, true);
+        print_r($res);
+    }
+
+    /**
+     * @return bool
+     */
     public function actionGet()
     {
         $url = "http://www.xiaolinapi.com/v1/user/index";
