@@ -7,6 +7,8 @@ use Yii;
 
 class EncryptController extends Controller
 {
+    static private $iv = '00000000000000000000000000000000';
+
     /**
      * 初始化
      */
@@ -21,8 +23,73 @@ class EncryptController extends Controller
 
         echo 'Actions:' . PHP_EOL;
 
-        echo 'rsa           RSA加密测试' . PHP_EOL;
-        echo 'aes           AES加密测试' . PHP_EOL;
+        echo 'rsa               RSA加密测试' . PHP_EOL;
+        echo 'aes               AES加密测试' . PHP_EOL;
+        echo 'hex               Hex Str 转化测试' . PHP_EOL;
+        echo 'Mcrypt            aesMcrypt的AeS加密' . PHP_EOL;
+    }
+
+    public function actionMcrypt()
+    {
+        try {
+            $data = "41e0442edf5e1071b4a514409fec46cc";
+            $key = "41a10264c72a8fee55bc258ee24bc9c0";
+            dump('密文：' . $data);
+            dump('密钥：' . $key);
+            dump('解密：' . $this->decryptData($data, $key));
+        } catch (\Exception $e) {
+            dump($e->getMessage());
+        }
+    }
+
+    /**
+     * @param $content
+     * @param $key
+     * @return string
+     */
+    public function decryptData($content, $key)
+    {
+        $decrypt_data = mcrypt_decrypt(
+            MCRYPT_RIJNDAEL_128,
+            $this->hexToStr($key),
+            $this->hexToStr($content),
+            MCRYPT_MODE_ECB,
+            $this->hexToStr(self::$iv)
+        );
+        return $this->strToHex($decrypt_data);
+    }
+
+    /**
+     * Hex Str 转化测试
+     */
+    public function actionHex()
+    {
+        $key = '313233343536373839616263646566';
+
+        echo $this->hexToStr($key);
+        echo $this->strToHex($this->hexToStr($key));
+    }
+
+    /**
+     * @param $string
+     * @return string
+     */
+    private function strToHex($string)
+    {
+        return bin2hex($string);
+    }
+
+    /**
+     * @param $hex
+     * @return string
+     */
+    private function hexToStr($hex)
+    {
+        $str = "";
+        for ($i = 0; $i < strlen($hex) - 1; $i += 2) {
+            $str .= chr(hexdec($hex[$i] . $hex[$i + 1]));
+        }
+        return $str;
     }
 
     /**
@@ -30,7 +97,7 @@ class EncryptController extends Controller
      */
     public function actionAes()
     {
-        try{
+        try {
             $data = 'phpbest';
             dump('内容:' . $data);
             $key = base64_encode(openssl_random_pseudo_bytes(32));
@@ -45,7 +112,7 @@ class EncryptController extends Controller
             dump('解密:' . $decrypted);
 
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             dump($e->getMessage());
         }
     }
