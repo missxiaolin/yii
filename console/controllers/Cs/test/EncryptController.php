@@ -22,8 +22,37 @@ class EncryptController extends Controller
         echo 'Actions:' . PHP_EOL;
 
         echo 'rsa           RSA加密测试' . PHP_EOL;
+        echo 'aes           AES加密测试' . PHP_EOL;
     }
 
+    /**
+     * AES加密测试
+     */
+    public function actionAes()
+    {
+        try{
+            $data = 'phpbest';
+            dump('内容:' . $data);
+            $key = base64_encode(openssl_random_pseudo_bytes(32));
+            dump('KEY:' . $key);
+            $iv = base64_encode(openssl_random_pseudo_bytes(16)); //echo base64_encode(openssl_random_pseudo_bytes(16));
+            dump('IV:' . $iv);
+
+            $encrypted = openssl_encrypt($data, 'aes-256-cbc', base64_decode($key), OPENSSL_RAW_DATA, base64_decode($iv));
+            $encrypted = base64_encode($encrypted);
+            dump('加密:' . $encrypted);
+            $decrypted = openssl_decrypt(base64_decode($encrypted), 'aes-256-cbc', base64_decode($key), OPENSSL_RAW_DATA, base64_decode($iv));
+            dump('解密:' . $decrypted);
+
+
+        }catch (\Exception $e){
+            dump($e->getMessage());
+        }
+    }
+
+    /**
+     * RSA加密测试
+     */
     public function actionRsa()
     {
         $path = Yii::$app->basePath;
