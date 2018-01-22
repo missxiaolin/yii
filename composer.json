@@ -44,7 +44,8 @@
         "elasticsearch/elasticsearch": "^6.0",
         "mito/yii2-sentry": "^1.0",
         "nmred/kafka-php": "v0.2.0.8",
-        "illuminate/support": "^5.5"
+        "illuminate/support": "^5.5",
+        "overtrue/wechat": "^4.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
