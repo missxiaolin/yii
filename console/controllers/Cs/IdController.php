@@ -9,6 +9,7 @@ class IdController extends Controller
 {
     public function actionIndex()
     {
+        // 52908628381697
         $id = idClient::getInstance()->id(1, 1, intval(strtotime('2017-05-27')));
         dump(strlen($id));
     }
