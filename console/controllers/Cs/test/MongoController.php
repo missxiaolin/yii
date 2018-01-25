@@ -25,6 +25,31 @@ class MongoController extends Controller
         echo 'insert            新建记录' . PHP_EOL;
         echo 'query             查询' . PHP_EOL;
         echo 'count             聚合使用（统计7天之前用户访问个数）' . PHP_EOL;
+        echo 'del               删除测试' . PHP_EOL;
+        echo 'update            修改测试' . PHP_EOL;
+    }
+
+    /**
+     * 修改测试
+     * @param $id
+     */
+    public function actionUpdate($id)
+    {
+        $model = MessageMongo::find()->where(['_id'=>$id])->one();
+        if ($model){
+            $model->name = '小林';
+            dd($model->save());
+        }
+    }
+
+    /**
+     * 删除测试
+     * @param $id
+     */
+    public function actionDel($id)
+    {
+        $model = MessageMongo::find()->where(['_id' => $id])->one();
+        $model->delete();
     }
 
     /**
