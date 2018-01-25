@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "68a5a63d8c9e06155f87d93ade4b88fd",
+    "content-hash": "09f725b97fb59fe6a381579613407a55",
     "packages": [
         {
             "name": "amphp/amp",
@@ -3103,21 +3103,21 @@
         },
         {
             "name": "yiisoft/yii2-mongodb",
-            "version": "2.1.4",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-mongodb.git",
-                "reference": "ec67acfdfe104dd83055c6e43606cfb80265a588"
+                "reference": "7cd01dfa65d36de34e1dd6061ab2957c4f190fe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-mongodb/ec67acfdfe104dd83055c6e43606cfb80265a588.zip",
-                "reference": "ec67acfdfe104dd83055c6e43606cfb80265a588",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-mongodb/7cd01dfa65d36de34e1dd6061ab2957c4f190fe2.zip",
+                "reference": "7cd01dfa65d36de34e1dd6061ab2957c4f190fe2",
                 "shasum": ""
             },
             "require": {
                 "ext-mongodb": ">=1.0.0",
-                "yiisoft/yii2": "~2.0.5"
+                "yiisoft/yii2": "~2.0.13"
             },
             "type": "yii2-extension",
             "extra": {
@@ -3148,7 +3148,7 @@
                 "mongodb",
                 "yii2"
             ],
-            "time": "2017-06-23T09:29:41+00:00"
+            "time": "2017-11-03T11:45:14+00:00"
         },
         {
             "name": "yiisoft/yii2-queue",
