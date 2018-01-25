@@ -24,30 +24,41 @@ class MongoController extends Controller
 
         echo 'insert            新建记录' . PHP_EOL;
         echo 'query             查询' . PHP_EOL;
-        echo 'count             聚合使用' . PHP_EOL;
+        echo 'count             聚合使用（统计7天之前用户访问个数）' . PHP_EOL;
     }
 
     /**
-     * 聚合使用
+     * 聚合使用(统计7天之前用户访问个数)
      */
     public function actionCount()
     {
-        $query = MessageMongo::find();
+        $log_counts = [];
         $today = mktime(0, 0, 0, date('n'), date('j'), date('Y'));
-        $targetTime = $today - (1 * 3600 * 24);
-        $ops = array(
-            array('$match' => array('name' => 'xiaolin')),
-            array('$match' => array('>=', 'time', $targetTime)),
-            array('$match' => array('<', 'time', ($targetTime + 3600 * 24))),
-        );
-        //统计类型
-        if (!empty($type)) {
-            $ops[] = array('$match' => array('type' => $type));
+        $sectionData = [];
+        $user_count_log = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $targetTime = $today - ($i * 3600 * 24);
+            $sectionData[] = date('m-d', $targetTime);
+            $query = MessageMongo::find();
+            $ops = array(
+                array('$match' => array('name' => 'xiaolin')),
+                array('$match' => array('>=', 'time', $targetTime)),
+                array('$match' => array('<', 'time', ($targetTime + 3600 * 24))),
+            );
+            //统计类型
+            if (!empty($type)) {
+                $ops[] = array('$match' => array('type' => $type));
+            }
+            $ops[] = array('$group' => array("_id" => '$user_id', 'count' => ['$sum' => 1]));
+            $count = $query
+                ->getCollection()->aggregate($ops);
+            $user_count_log[] = count($count);
         }
-        $ops[] = array('$group' => array("_id" => '$user_id', 'count' => ['$sum' => 1]));
-        $count = $query
-            ->getCollection()->aggregate($ops);
-        dd($count);
+        $log_counts = [
+            $sectionData,
+            $user_count_log,
+        ];
+        dd($log_counts);
     }
 
     /**
