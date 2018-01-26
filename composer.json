@@ -33,7 +33,7 @@
         "riverslei/payment": "~3.1",
         "chrisboulton/php-resque": "dev-master",
         "chrisboulton/php-resque-scheduler": "dev-master",
-        "hightman/xunsearch": "*@beta",
+        "hightman/xunsearch": "^1.4",
         "yiisoft/yii2-mongodb": "^2.1",
         "riverslei/xmpush": "~1.0.0",
         "cyneek/yii2-routes": "^0.0.4",

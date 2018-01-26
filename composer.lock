@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "09f725b97fb59fe6a381579613407a55",
+    "content-hash": "a31eebb2b61ca09aefcde0b188e65e70",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1176,16 +1176,16 @@
         },
         {
             "name": "hightman/xunsearch",
-            "version": "1.4.10",
+            "version": "1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hightman/xs-sdk-php.git",
-                "reference": "20ecf25fd4281b8490594557d039ad1a5b3b16f6"
+                "reference": "137efda12030235ff4a4de88fdd791d90f1f3ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/hightman/xs-sdk-php/20ecf25fd4281b8490594557d039ad1a5b3b16f6.zip",
-                "reference": "20ecf25fd4281b8490594557d039ad1a5b3b16f6",
+                "url": "https://files.phpcomposer.com/files/hightman/xs-sdk-php/137efda12030235ff4a4de88fdd791d90f1f3ca2.zip",
+                "reference": "137efda12030235ff4a4de88fdd791d90f1f3ca2",
                 "shasum": ""
             },
             "require": {
@@ -1230,7 +1230,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-03-23T15:34:06+00:00"
+            "time": "2017-11-19T07:33:51+00:00"
         },
         {
             "name": "illuminate/contracts",
@@ -3643,8 +3643,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "chrisboulton/php-resque": 20,
-        "chrisboulton/php-resque-scheduler": 20,
-        "hightman/xunsearch": 10
+        "chrisboulton/php-resque-scheduler": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
