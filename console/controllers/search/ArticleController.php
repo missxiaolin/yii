@@ -3,7 +3,6 @@ namespace console\controllers\search;
 
 use Carbon\Carbon;
 use console\controllers\utils\Elasticsearch\Client;
-use console\controllers\utils\Elasticsearch\ES;
 use yii\console\Controller;
 use Yii;
 
