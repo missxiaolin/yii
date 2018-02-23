@@ -81,10 +81,6 @@ abstract class Queue extends Controller
                         $this->process++;
                     }
                 }
-            } else {
-                if (is_int($this->waittime) && $this->waittime > 0) {
-                    sleep($this->waittime);
-                }
             }
         }
     }
@@ -128,7 +124,7 @@ abstract class Queue extends Controller
                 while (swoole_process::wait(false)) {
                     $this->process--;
                 }
-
+            // no break
             default:
                 break;
         }
