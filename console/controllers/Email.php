@@ -26,7 +26,8 @@ class Email implements JobInterface
     public function handle()
     {
         // TODO: Implement handle() method.
-        $this->sendEmail();
+//        $this->sendEmail();
+        dump('测试脚本');
     }
 
     /**
