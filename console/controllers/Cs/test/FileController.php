@@ -1,6 +1,7 @@
 <?php
 namespace console\controllers\Cs\test;
 
+use common\components\File\File;
 use moonland\phpexcel\Excel;
 use Phalcon\Image\Adapter\Gd;
 use yii\console\Controller;
@@ -31,6 +32,7 @@ class FileController extends Controller
         echo 'save              文件储存' . PHP_EOL;
         echo 'img               图片裁剪' . PHP_EOL;
         echo 'WriteCsv          写入csv文件' . PHP_EOL;
+        echo 'File类测试         写入' . PHP_EOL;
     }
 
     /**
@@ -122,5 +124,15 @@ class FileController extends Controller
             dump($e->getMessage());
         }
 
+    }
+
+    public function actionFilePut()
+    {
+        try {
+            $content = 55127;
+            File::getInstance()->put($this->path . '/data/pids/queue', $content);
+        } catch (\Exception $e) {
+            dump($e->getMessage());
+        }
     }
 }
