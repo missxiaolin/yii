@@ -7,6 +7,8 @@ use console\controllers\Sys;
 use yii\console\Controller;
 use Yii;
 use swoole_process;
+use console\controllers\Email;
+use console\controllers\utils\Queue;
 
 class EmailController extends QueueController
 {
@@ -45,5 +47,32 @@ class EmailController extends QueueController
         $mail->setHtmlBody($request['body']);
         $data = $mail->send();
         dump($data);
+    }
+
+    /**
+     * 测试数据
+     */
+    public function actionTest()
+    {
+        $redis = Yii::$app->redis;
+        $data = [
+            'email' => '462441355@qq.com',
+            'title' => '请验证您的邮箱',
+            'body' => '内容',
+        ];
+        $redis->lpush($this->queueKey, json_encode($data));
+//        while (true){
+//            $data = $redis->brpop($this->queueKey, 3);
+//            dump($data);
+//        }
+    }
+
+    /**
+     * 延迟脚本
+     */
+    public function actionEmail()
+    {
+        $email = new Email(1, 2, 3);
+        Queue::delay($email, 5);
     }
 }
