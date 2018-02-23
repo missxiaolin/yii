@@ -46,7 +46,8 @@
         "nmred/kafka-php": "v0.2.0.8",
         "illuminate/support": "^5.5",
         "overtrue/wechat": "^4.0",
-        "symfony/finder": "^4.0"
+        "symfony/finder": "^4.0",
+        "limingxinleo/x-redis": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "192d3708e1f180c8f1b690452651bc86",
+    "content-hash": "b1d121643f193ce983324c49a337964f",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1332,6 +1332,46 @@
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
             "time": "2017-10-17T12:18:29+00:00"
+        },
+        {
+            "name": "limingxinleo/x-redis",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/limingxinleo/x-redis.git",
+                "reference": "9c1d5b226b940268cc7550f187f263b6e92b1231"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/limingxinleo/x-redis/9c1d5b226b940268cc7550f187f263b6e92b1231.zip",
+                "reference": "9c1d5b226b940268cc7550f187f263b6e92b1231",
+                "shasum": ""
+            },
+            "require": {
+                "ext-redis": "^3.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Xin\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "李铭昕",
+                    "email": "715557344@qq.com"
+                }
+            ],
+            "description": "Redis Client for phpredis",
+            "time": "2017-11-21T13:59:41+00:00"
         },
         {
             "name": "linslin/yii2-curl",

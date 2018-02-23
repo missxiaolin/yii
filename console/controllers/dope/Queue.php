@@ -4,6 +4,7 @@ namespace console\controllers\dope;
 declare(ticks = 1);
 
 use common\components\File\File;
+use Xin\Redis;
 use yii\console\Controller;
 use Yii;
 use swoole_process;
@@ -11,7 +12,7 @@ use swoole_process;
 abstract class Queue extends Controller
 {
     // 最大进程数
-    protected $maxProcesses = 2;
+    protected $maxProcesses = 500;
 
     // 当前进程数
     protected $process = 0;
@@ -59,24 +60,31 @@ abstract class Queue extends Controller
      */
     protected function mainAction()
     {
-        ini_set('default_socket_timeout', -1);
+//        ini_set('default_socket_timeout', -1);
         if (!extension_loaded('swoole')) {
-            print_r('The swoole extension is not installed');
+            dump('The swoole extension is not installed');
             return;
         }
+        if (empty($this->queueKey)) {
+            dump('Please rewrite the queueKey');
+            return;
+        }
+
+        // 写入锁
+        File::getInstance()->put($this->lockPath, time());
+        // 写入PID
+        File::getInstance()->put($this->pidPath, $this->pid);
 
         // install signal handler for dead kids
         pcntl_signal(SIGCHLD, [$this, "signalHandler"]);
         set_time_limit(0);
-        $redis = Yii::$app->redis;
+        $redis = Redis::getInstance('127.0.0.1', 'xiaolin',1, 6379, 'main');
+
+
         while (true) {
             // 等待
             sleep($this->waitTime);
-
-            // 写入锁
-            File::getInstance()->put($this->lockPath, time());
-            // 写入PID
-            File::getInstance()->put($this->pidPath, $this->pid);
+//            echo $this->process;
             // 监听延时队列
             if (!empty($this->delayKey) && $delay_data = $redis->zrangebyscore($this->delayKey, 0, time())) {
                 foreach ($delay_data as $data) {
@@ -85,7 +93,6 @@ abstract class Queue extends Controller
                     $redis->zrem($this->delayKey, $data);
                 }
             }
-
             // 监听消息队列
             if ($this->process < $this->maxProcesses) {
                 // 获取消息列表数量
@@ -156,7 +163,7 @@ abstract class Queue extends Controller
      */
     public function task(swoole_process $worker)
     {
-        $this->QueueRun($worker);
+        $this->again($worker);
 //        swoole_event_add($worker->pipe, function ($pipe) use ($worker) {
 //            // 从主进程中读取到的数据
 //            $recv = $worker->read();
@@ -171,9 +178,9 @@ abstract class Queue extends Controller
      * @author limx
      * @return mixed
      */
-    protected function QueueRun(&$worker)
+    protected function again(&$worker)
     {
-        $redis = Yii::$app->redis;
+        $redis = Redis::getInstance('127.0.0.1', 'xiaolin',1, 6379, uniqid());
         $number = 0;
         while (true) {
             // 判断主进程是否退出
@@ -184,44 +191,6 @@ abstract class Queue extends Controller
             // 当子进程处理次数高于一个临界值后，释放进程
             if (isset($this->processHandleMaxNumber) && $this->processHandleMaxNumber < (++$number)) {
                 break;
-            }
-
-            // 无任务时,阻塞等待
-            $data = $redis->brpop($this->queueKey, 3);
-            if (!$data) {
-                break;
-            }
-            if ($data[0] != $this->queueKey) {
-                // 消息队列KEY值不匹配
-                continue;
-            }
-            if (isset($data[1])) {
-                $this->handle($data[1]);
-            }
-        }
-    }
-
-    /**
-     * @desc   消息队列子进程逻辑
-     * @author limx
-     * @return mixed
-     */
-    public function again($recv)
-    {
-        $this->handle($recv);
-        $redis = Yii::$app->redis;
-        $number = 0;
-        while (true) {
-            // 当子进程处理次数高于一个临界值后，释放进程
-            if (isset($this->processHandleMaxNumber) && $this->processHandleMaxNumber < (++$number)) {
-                break;
-            }
-
-            // 验证锁是否超时，超时后释放进程
-            if ($time = File::getInstance()->get($this->lockPath)) {
-                if (time() - $time > $this->expireTime) {
-                    break;
-                }
             }
 
             // 无任务时,阻塞等待
