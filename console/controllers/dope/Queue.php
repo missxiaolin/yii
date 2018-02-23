@@ -7,7 +7,7 @@ use yii\console\Controller;
 use Yii;
 use swoole_process;
 
-abstract class QueueController extends Controller
+abstract class Queue extends Controller
 {
     // 最大进程数
     protected $maxProcesses = 2;

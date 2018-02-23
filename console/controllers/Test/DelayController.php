@@ -3,11 +3,12 @@ namespace console\controllers\Test;
 
 
 use console\controllers\contract\JobInterface;
+use console\controllers\dope\Queue;
 use console\controllers\dope\QueueController;
 use Yii;
 use yii\base\Exception;
 
-class DelayController extends QueueController
+class DelayController extends Queue
 {
     public $description = '默认消息执行脚本';
 
