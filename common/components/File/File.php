@@ -72,6 +72,7 @@ class File
      * Get the returned value of a file.
      * @param $path
      * @return mixed
+     *
      * @throws FileNotFoundException
      */
     public function getRequire($path)
