@@ -47,6 +47,10 @@ return [
         'response' => [
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
+                \Yii::$app->response->headers->set('Access-Control-Allow-Origin', '*');
+                \Yii::$app->response->headers->set('Access-Control-Allow-Credentials', 'true');
+                \Yii::$app->response->headers->set('Access-Control-Allow-Headers', 'origin, x-requested-with, content-type');
+                \Yii::$app->response->headers->set('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
                 $response = $event->sender;
                 $response->format = yii\web\Response::FORMAT_JSON;
             },
