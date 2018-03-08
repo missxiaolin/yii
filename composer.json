@@ -47,7 +47,8 @@
         "illuminate/support": "^5.5",
         "overtrue/wechat": "^4.0",
         "symfony/finder": "^4.0",
-        "limingxinleo/x-redis": "^1.0"
+        "limingxinleo/x-redis": "^1.0",
+        "workerman/workerman": "^3.5"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
