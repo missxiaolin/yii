@@ -25,7 +25,7 @@ class CsController extends Controller
         $data = [
             'email' => '462441355@qq.com',
             'title' => '请验证您的邮箱',
-            'body' => '内容'
+            'body' => '内容',
         ];
         $redis->lpush($this->queueKey, json_encode($data));
 //        while (true){
@@ -36,7 +36,7 @@ class CsController extends Controller
 
     public function actionEmail()
     {
-        $email = new Email(1,2,3);
+        $email = new Email(1, 2, 3);
         Queue::delay($email, 5);
     }
 
