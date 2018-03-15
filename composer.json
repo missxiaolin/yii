@@ -48,7 +48,8 @@
         "overtrue/wechat": "^4.0",
         "symfony/finder": "^4.0",
         "limingxinleo/x-redis": "^1.0",
-        "workerman/workerman": "^3.5"
+        "workerman/workerman": "^3.5",
+        "php-ai/php-ml": "^0.6.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
