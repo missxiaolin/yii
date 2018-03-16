@@ -9,6 +9,7 @@ class CsController extends Controller
 {
     public function actionTest()
     {
-//        DistrictService::getInstance()->crawl();
+        $res = DistrictService::getInstance()->crawl();
+        dd($res);
     }
 }

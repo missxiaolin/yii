@@ -15,4 +15,13 @@ class DistrictsModel extends ActiveRecord
     {
         return '{{%poi_districts}}';
     }
+
+    /**
+     * 查询子集
+     * @return \yii\db\ActiveQuery
+     */
+    public function children()
+    {
+        return $this->hasMany(DistrictsModel::className(), ['parent_oid' => 'oid']);
+    }
 }
