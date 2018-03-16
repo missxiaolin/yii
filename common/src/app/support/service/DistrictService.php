@@ -13,4 +13,15 @@ class DistrictService
     {
 
     }
+
+    /**
+     * @desc   返回处理到哪个城市
+     * @param $id
+     * @author limx
+     * @return int
+     */
+    public function crawl($id = 0)
+    {
+
+    }
 }
