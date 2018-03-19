@@ -53,6 +53,7 @@ class DistrictService
                     sleep(1);
                 }
             }
+            return $rid;
         }
     }
 }
