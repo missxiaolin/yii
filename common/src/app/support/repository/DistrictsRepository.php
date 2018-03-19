@@ -30,15 +30,13 @@ class DistrictsRepository extends Repository implements DistrictsInterface
 
     /**
      * @param int $level
-     * @param int $id
-     * @param int $limit
      * @return $this
      */
-    public function findByLevelAndId($level = 3, $limit = 10)
+    public function findByLevelAndId($level = 3)
     {
         $query = DistrictsModel::find();
         $query->where(['level' => $level]);
-        $model = $query->limit($limit)->all();
+        $model = $query->all();
         return $model;
     }
 }

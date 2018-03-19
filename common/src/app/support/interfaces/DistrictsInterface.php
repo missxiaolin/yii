@@ -8,8 +8,7 @@ interface DistrictsInterface extends Repository
 {
     /**
      * @param $level
-     * @param $limit
      * @return mixed
      */
-    public function findByLevelAndId($level, $limit);
+    public function findByLevelAndId($level);
 }
