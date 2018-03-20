@@ -5,9 +5,11 @@ namespace common\src\app\support\service;
 
 use common\components\Common\InstanceTrait;
 use common\components\TencentMapClient;
+use common\components\Train;
 use common\src\app\support\models\DistrictsModel;
 use common\src\app\support\models\DistrictsTrainModel;
 use common\src\app\support\repository\DistrictsRepository;
+use common\src\app\support\repository\DistrictsTrainRepository;
 
 class DistrictService
 {
@@ -20,7 +22,7 @@ class DistrictService
      */
     public function crawl()
     {
-        $res = DistrictsRepository::getInstance()->findByLevelAndId(3);
+        $res = DistrictsRepository::getInstance()->findByLevel(3);
         $rid = 0;
         /** @var DistrictsModel $item */
         foreach ($res as $item) {
@@ -59,5 +61,43 @@ class DistrictService
             }
         }
         return $rid;
+    }
+
+    /**
+     * 初始化数据
+     * @param int $id
+     * @return int|mixed
+     */
+    public function init($id = 0)
+    {
+        $res = DistrictsRepository::getInstance()->findByLevelAndId(3, $id);
+        $rid = 0;
+        /** @var DistrictsModel $item */
+        foreach ($res as $item) {
+            $rid = $item->oid;
+            $children = $item->children;
+            /** @var DistrictsModel $child */
+            foreach ($children as $child) {
+                DistrictsTrainRepository::getInstance()->add($child->lat, $child->lon, $child->oid);
+                if (isset($child->children)) {
+                    foreach ($child->children as $v) {
+                        DistrictsTrainRepository::getInstance()->add($v->lat, $v->lon, $child->oid);
+                    }
+                }
+            }
+        }
+
+        return $rid;
+    }
+
+    /**
+     * 计算经纬度所在地区
+     * @param $lat
+     * @param $lon
+     * @return mixed
+     */
+    public function predict($lat, $lon)
+    {
+        return Train::getInstance()->predict([$lat, $lon]);
     }
 }

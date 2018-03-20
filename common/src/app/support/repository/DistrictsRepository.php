@@ -32,11 +32,26 @@ class DistrictsRepository extends Repository implements DistrictsInterface
      * @param int $level
      * @return $this
      */
-    public function findByLevelAndId($level = 3)
+    public function findByLevel($level = 3)
     {
         $query = DistrictsModel::find();
         $query->where(['level' => $level]);
         $model = $query->all();
+        return $model;
+    }
+
+    /**
+     * @param int $level
+     * @param int $id
+     * @param int $limit
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function findByLevelAndId($level = 3, $id = 0, $limit = 10)
+    {
+        $query = DistrictsModel::find();
+        $query = $query->where(['>', 'oid', $id]);
+        $query->where(['level' => $level]);
+        $model = $query->limit($limit)->all();
         return $model;
     }
 }

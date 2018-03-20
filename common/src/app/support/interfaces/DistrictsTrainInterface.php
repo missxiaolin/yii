@@ -12,4 +12,12 @@ interface DistrictsTrainInterface extends Repository
      * @return mixed
      */
     public function findById($id, $limit);
+
+    /**
+     * @param $lat
+     * @param $lon
+     * @param $oid
+     * @return mixed
+     */
+    public function add($lat, $lon, $oid);
 }

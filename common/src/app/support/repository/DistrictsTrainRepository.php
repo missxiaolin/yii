@@ -41,4 +41,17 @@ class DistrictsTrainRepository extends Repository implements DistrictsTrainInter
         $model = $query->all();
         return $model;
     }
+
+    public function add($lat, $lon, $oid)
+    {
+        $model = new DistrictsTrainModel();
+        $model->lon = $lon;
+        $model->lat = $lat;
+        $model->oid = $oid;
+        try {
+            return $model->save();
+        } catch (\Exception $ex) {
+
+        }
+    }
 }
