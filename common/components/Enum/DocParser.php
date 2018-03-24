@@ -1,5 +1,5 @@
 <?php
-namespace console\controllers\Cs\enum;
+namespace common\components\Enum;
 
 class DocParser
 {
@@ -18,6 +18,7 @@ class DocParser
         if (preg_match_all('#^\s*\*(.*)#m', $comment, $lines) === false)
             return $this->params;
         $this->parseLines($lines [1]);
+        dd($this->params);
         return $this->params;
     }
 
@@ -51,15 +52,14 @@ class DocParser
             return false; // Empty line
 
         if (strpos($line, '@') === 0) {
-            if (strpos($line, '(') > 0) {
-                $param = substr($line, 1, strpos($line, '(') - 1);
-                $str = substr($line, strlen($param) + 3);
-                $value = substr($str, 0, strpos($str, ')') - 1);
+            if (strpos($line, ' ') > 0) {
+                // Get the parameter name
+                $param = substr($line, 1, strpos($line, ' ') - 1);
+                $value = substr($line, strlen($param) + 2); // Get the value
             } else {
                 $param = substr($line, 1);
                 $value = '';
             }
-
             // Parse the line and return false if the parameter is valid
             if ($this->setParam($param, $value))
                 return false;
