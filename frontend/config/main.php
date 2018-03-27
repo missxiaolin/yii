@@ -38,8 +38,8 @@ return [
             ],
         ],
         'errorHandler' => [
-            'class' => 'common\components\Error',
-//            'errorAction' => 'site/error',
+//            'class' => 'common\components\Error',
+            'errorAction' => 'site/error',
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
