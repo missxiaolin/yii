@@ -36,4 +36,10 @@ class EcsJs
     {
         return base64_encode(openssl_encrypt($data, "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv));
     }
+
+    public static function mcrypt($data, $key = self::KEY, $iv = self::IV)
+    {
+        error_reporting(E_ALL & ~E_DEPRECATED);
+        return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_CBC, $iv));
+    }
 }

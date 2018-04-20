@@ -14,6 +14,7 @@ class EcsController extends Controller
         dump('原始字符串:' . $mobile);
         $encode = EcsJs::encryptWithOpenssl($mobile);
         dump("加密后：" . $encode);
+        dump("mcrypt加密后" . EcsJs::mcrypt($mobile));
         $decode = EcsJs::decryptWithOpenssl($encode);
         dump('解密后：' . $decode);
     }
