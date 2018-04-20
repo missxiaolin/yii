@@ -1,4 +1,5 @@
 require(['jquery', 'zeropadding'], function ($) {
+
     var IV = '1234567890123412';
 
     var KEY = 'd48d03c3322006ec772a7eefd8532c88';
@@ -7,14 +8,14 @@ require(['jquery', 'zeropadding'], function ($) {
      * 加密
      */
     function encrypt(str) {
-        key = CryptoJS.enc.Utf8.parse(KEY);// 秘钥
+        var key = CryptoJS.enc.Utf8.parse(KEY);// 秘钥
         var iv = CryptoJS.enc.Utf8.parse(IV);//向量iv
         var encrypted = CryptoJS.AES.encrypt(str, key, {
             iv: iv,
             mode: CryptoJS.mode.CBC,
             padding: CryptoJS.pad.ZeroPadding
         });
-        return encrypted.toString();
+        return encrypted.toString(); //返回的是base64格式的密文
     }
 
     /**
