@@ -2,7 +2,7 @@
 
 namespace console\controllers\Unit\Others;
 
-use common\components\Ecs;
+use common\components\EcsJs;
 use yii\console\Controller;
 use Yii;
 
@@ -12,9 +12,9 @@ class EcsController extends Controller
     {
         $mobile = '17135501105';
         dump('原始字符串:' . $mobile);
-        $encode = Ecs::encryptWithOpenssl($mobile);
+        $encode = EcsJs::encryptWithOpenssl($mobile);
         dump("加密后：" . $encode);
-        $decode = Ecs::decryptWithOpenssl($encode);
+        $decode = EcsJs::decryptWithOpenssl($encode);
         dump('解密后：' . $decode);
     }
 }

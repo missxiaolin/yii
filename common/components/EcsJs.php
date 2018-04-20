@@ -4,7 +4,7 @@ namespace common\components;
 
 use Yii;
 
-class Ecs
+class EcsJs
 {
     /**向量
      * @var string
@@ -23,7 +23,7 @@ class Ecs
      */
     public static function decryptWithOpenssl($data, $key = self::KEY, $iv = self::IV)
     {
-        return openssl_decrypt(base64_decode($data), "aes-256-cbc", $key, OPENSSL_RAW_DATA, $iv);
+        return openssl_decrypt(base64_decode($data), "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv);
     }
 
     /**
@@ -34,6 +34,6 @@ class Ecs
      */
     public static function encryptWithOpenssl($data, $key = self::KEY, $iv = self::IV)
     {
-        return base64_encode(openssl_encrypt($data, "aes-256-cbc", $key, OPENSSL_RAW_DATA, $iv));
+        return base64_encode(openssl_encrypt($data, "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv));
     }
 }
