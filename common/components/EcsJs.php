@@ -13,7 +13,7 @@ class EcsJs
     /**
      * 默认秘钥
      */
-    const KEY = 'd48d03c3322006ec772a7eefd8532c88';// 32位
+    const KEY = '201707eggplant99';// 16位
 
     /**
      * 解密字符串

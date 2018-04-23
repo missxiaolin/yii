@@ -14,6 +14,6 @@ require.config({
     },
     shim: {
         'video': ['video-ie8'],
-        'zeropadding': ['ecs','md5']
+        'zeropadding': ['ecs', 'md5'],
     }
 });
