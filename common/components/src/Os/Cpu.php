@@ -9,7 +9,26 @@
 namespace common\components\src\Os;
 
 
-class Cpu
-{
+use common\components\src\Model\Memory;
+use common\components\src\Model\Cpu as CPUModel;
 
+abstract class Cpu
+{
+    public $cpu;
+
+    public function __construct()
+    {
+        $this->cpu = $this->initCPU();
+    }
+
+    public function getCPU()
+    {
+        return $this->cpu;
+    }
+
+    abstract protected function initCPU(): CPUModel;
+
+    abstract protected function initUptime(): string;
+
+    abstract protected function initMemory(): Memory;
 }
