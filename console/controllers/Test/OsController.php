@@ -19,4 +19,22 @@ class OsController extends Controller
         $os = Os::getInstance();
         dd(Os\Darwin::getInstance()->svr_darwin());
     }
+
+    public function actionCpu()
+    {
+        dump('cpu');
+        dd(Os\Darwin::getInstance()->getCPU());
+    }
+
+    public function actionMemory()
+    {
+        dump('内存');
+        dd(Os\Darwin::getInstance()->getMemory());
+    }
+
+    public function actionUptime()
+    {
+        dump('获取服务器运行时间');
+        dd(Os\Darwin::getInstance()->getUptime());
+    }
 }

@@ -16,14 +16,30 @@ abstract class Cpu
 {
     public $cpu;
 
+    public $uptime;
+
+    public $memory;
+
     public function __construct()
     {
         $this->cpu = $this->initCPU();
+        $this->uptime = $this->initUptime();
+        $this->memory = $this->initMemory();
     }
 
     public function getCPU()
     {
         return $this->cpu;
+    }
+
+    public function getUptime()
+    {
+        return $this->uptime;
+    }
+
+    public function getMemory()
+    {
+        return $this->memory;
     }
 
     abstract protected function initCPU(): CPUModel;
