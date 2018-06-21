@@ -10,9 +10,9 @@ namespace common\components\Calculater;
 
 
 use common\components\Calculater\Adapter\Adder;
+use common\components\Calculater\Adapter\Minuser;
 use common\components\Calculater\Exceptions\CalculaterException;
 use common\components\Common\InstanceTrait;
-use common\components\Enum\ErrorCode;
 use common\src\foundation\domain\exceptions\Exception;
 
 class Calculater
@@ -21,6 +21,7 @@ class Calculater
 
     public $adapter = [
         '+' => Adder::class,
+        '-' => Minuser::class,
     ];
 
     /**
