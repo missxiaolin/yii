@@ -11,5 +11,5 @@ namespace common\components\Calculater;
 
 interface CalculaterInterface
 {
-
+    public function handle();
 }

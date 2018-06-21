@@ -25,15 +25,15 @@ class FunctionController extends Controller
         ];
 
         $string = '+ (1) (+ (1) (2))';
-        $result = Calculater::getInstance()->calculater($string, $params);
+        $result = Calculater::getInstance()->calculate($string, $params);
         dump(['原来' . 5, '转换后' . $result]);
 
         $string = '+ (1) (+ (1) 2)';
-        $result = Calculater::getInstance()->calculater($string, $params);
+        $result = Calculater::getInstance()->calculate($string, $params);
         dump(['原来' . 4, '转换后' . $result]);
 
         $string = '+ (1) (+ 1 (11))';
-        $result = Calculater::getInstance()->calculater($string, $params);
+        $result = Calculater::getInstance()->calculate($string, $params);
         dump(['原来' . 125, '转换后' . $result]);
     }
 }

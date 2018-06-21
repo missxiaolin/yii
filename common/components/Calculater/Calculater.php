@@ -9,6 +9,8 @@
 namespace common\components\Calculater;
 
 
+use common\components\Calculater\Adapter\Adder;
+use common\components\Calculater\Exceptions\CalculaterException;
 use common\components\Common\InstanceTrait;
 use common\components\Enum\ErrorCode;
 use common\src\foundation\domain\exceptions\Exception;
@@ -17,7 +19,7 @@ class Calculater
 {
     use InstanceTrait;
 
-    public $calculater = [
+    public $adapter = [
         '+' => Adder::class,
     ];
 
@@ -25,13 +27,14 @@ class Calculater
      * @param $string
      * @param array $params
      * @return mixed
+     * @throws CalculaterException
      */
-    public function calculater($string, $params = [])
+    public function calculate($string, $params = [])
     {
         list($cal, $string) = explode(' ', $string, 2);
 
-        if (!isset($this->calculater[$cal])) {
-            throw new Exception(ErrorCode::$ENUM_SYSTEM_ERROR);
+        if (!isset($this->adapter[$cal])) {
+            throw new CalculaterException('Calcaulater Adapter is not defined.');
         }
 
         $string = trim($string);
@@ -63,19 +66,19 @@ class Calculater
             } else {
                 preg_match('/^\((.*)\)$/', $argument, $result);
                 if (!isset($result[1])) {
-                    throw new Exception(ErrorCode::$ENUM_CALCULATER_STRING_INVALID);
+                    throw new Exception('参数格式不合法');
                 }
 
                 if (is_numeric($result[1])) {
-                    $arguments[] = $params[$result[1]];
+                    $arguments[] = $argument;
                 } else {
-                    $arguments[] = $this->calculater($result[1], $params);
+                    $arguments[] = $this->calculate($result[1], $params);
                 }
             }
         }
 
-        $calculater = new $this->calculater[$cal](...$arguments);
-        return $calculater->handle();
+        $adapter = new $this->adapter[$cal]($arguments, $params);
+        return $adapter->handle();
     }
 
 }
