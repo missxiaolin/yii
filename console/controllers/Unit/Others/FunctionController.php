@@ -15,17 +15,20 @@ use Yii;
 
 class FunctionController extends Controller
 {
+    public $params = [
+        1 => 1,
+        2 => 3,
+        10 => 22,
+        11 => 123,
+    ];
+
     /**
+     * 加法
      * @throws \common\components\Calculater\Exceptions\CalculaterException
      */
     public function actionIndex()
     {
-        $params = [
-            1 => 1,
-            2 => 3,
-            10 => 22,
-            11 => 123,
-        ];
+        $params = $this->params;
 
         $string = '+ (1) (+ (1) (2))';
         $result = Calculater::getInstance()->calculate($string, $params);
@@ -38,5 +41,16 @@ class FunctionController extends Controller
         $string = '+ (1) (+ 1 (11))';
         $result = Calculater::getInstance()->calculate($string, $params);
         dump(['原来' . 125, '转换后' . $result]);
+    }
+
+    /**
+     * 减法
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
+    public function actionMinuse()
+    {
+        $string = '+ (1) (- (1) (2))';
+        $result = Calculater::getInstance()->calculate($string, $this->params);
+        dump(['原来' . -1, '转换后' . $result]);
     }
 }
