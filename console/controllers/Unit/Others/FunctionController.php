@@ -15,6 +15,9 @@ use Yii;
 
 class FunctionController extends Controller
 {
+    /**
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
     public function actionIndex()
     {
         $params = [

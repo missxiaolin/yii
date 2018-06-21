@@ -52,7 +52,8 @@ class Calculater
             $param .= $char;
 
             if ($depth === 0) {
-                if (!empty(trim($param))) {
+                $param = trim($param);
+                if (!empty($param)) {
                     $pre_arguments[] = $param;
                 }
                 $param = '';
