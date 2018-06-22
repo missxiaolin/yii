@@ -10,8 +10,10 @@ namespace common\components\Calculater;
 
 
 use common\components\Calculater\Adapter\Adder;
+use common\components\Calculater\Adapter\Divisier;
 use common\components\Calculater\Adapter\Minuser;
 use common\components\Calculater\Adapter\Multiplier;
+use common\components\Calculater\Adapter\RangeAdder;
 use common\components\Calculater\Exceptions\CalculaterException;
 use common\components\Common\InstanceTrait;
 use common\src\foundation\domain\exceptions\Exception;
@@ -24,6 +26,8 @@ class Calculater
         '+' => Adder::class,
         '-' => Minuser::class,
         '*' => Multiplier::class,
+        '/' => Divisier::class,
+        '++' => RangeAdder::class,
     ];
 
     /**
