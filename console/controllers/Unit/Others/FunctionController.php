@@ -53,4 +53,34 @@ class FunctionController extends Controller
         $result = Calculater::getInstance()->calculate($string, $this->params);
         dump(['原来' . -1, '转换后' . $result]);
     }
+
+    /**
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
+    public function actionMultiplier()
+    {
+        $string = '+ (1) (* (1) (2))';
+        $result = Calculater::getInstance()->calculate($string, $this->params);
+        dump($result);
+    }
+
+    /**
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
+    public function actionRange()
+    {
+        $string = '+ (1) (++ 1 5)';
+        $result = Calculater::getInstance()->calculate($string, $this->params);
+        dump($result);
+    }
+
+    /**
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
+    public function actionDivisier()
+    {
+        $string = '+ (1) (/ (5) (2))';
+        $result = Calculater::getInstance()->calculate($string, $this->params);
+        dump($result);
+    }
 }
