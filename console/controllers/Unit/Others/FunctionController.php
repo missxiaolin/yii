@@ -83,4 +83,15 @@ class FunctionController extends Controller
         $result = Calculater::getInstance()->calculate($string, $this->params);
         dump($result);
     }
+
+    /**
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
+    public function actionAverage()
+    {
+        $string = 'AVERAGE 1 5';
+        $result = Calculater::getInstance()->calculate($string, $this->params);
+        dump(25.4);
+        dump($result);
+    }
 }

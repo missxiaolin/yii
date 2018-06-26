@@ -10,10 +10,12 @@ namespace common\components\Calculater;
 
 
 use common\components\Calculater\Adapter\Adder;
+use common\components\Calculater\Adapter\Averager;
 use common\components\Calculater\Adapter\Divisier;
 use common\components\Calculater\Adapter\Minuser;
 use common\components\Calculater\Adapter\Multiplier;
 use common\components\Calculater\Adapter\RangeAdder;
+use common\components\Calculater\Adapter\Sumer;
 use common\components\Calculater\Exceptions\CalculaterException;
 use common\components\Common\InstanceTrait;
 use common\src\foundation\domain\exceptions\Exception;
@@ -24,10 +26,16 @@ class Calculater
 
     public $adapter = [
         '+' => Adder::class,
+        'ADD' => Adder::class,
         '-' => Minuser::class,
+        'MINUS' => Minuser::class,
         '*' => Multiplier::class,
+        'MULTI' => Multiplier::class,
         '/' => Divisier::class,
-        '++' => RangeAdder::class,
+        'DIVIS' => Divisier::class,
+        '++' => Sumer::class,
+        'SUM' => Sumer::class,
+        'AVERAGE' => Averager::class,
     ];
 
     /**
