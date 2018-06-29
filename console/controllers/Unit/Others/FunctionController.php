@@ -94,4 +94,22 @@ class FunctionController extends Controller
         dump(25.4);
         dump($result);
     }
+
+    /**
+     * @throws \common\components\Calculater\Exceptions\CalculaterException
+     */
+    public function actionParamsMoreThan10()
+    {
+        $params = [];
+        for ($i = 0; $i < 17; $i++) {
+            $params[] = 7;
+        }
+        $string = '++ 0 16';
+        $result = Calculater::getInstance()->calculate($string, $params);
+        dump($result);
+
+        $string = '+ (0) 16';
+        $result = Calculater::getInstance()->calculate($string, $params);
+        dump($result);
+    }
 }

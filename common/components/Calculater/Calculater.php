@@ -66,10 +66,10 @@ class Calculater
             }
             $param .= $char;
 
-            if ($depth === 0) {
-                $param = trim($param);
-                if (!empty($param)) {
-                    $pre_arguments[] = $param;
+            $isSuccess = $depth === 0 && (trim($char) === '' || $i == strlen($string) - 1);
+            if ($isSuccess) {
+                if (trim($param) !== '') {
+                    $pre_arguments[] = trim($param);
                 }
                 $param = '';
             }
