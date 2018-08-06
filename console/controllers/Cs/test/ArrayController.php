@@ -1,4 +1,5 @@
 <?php
+
 namespace console\controllers\Cs\test;
 
 use yii\console\Controller;
@@ -39,6 +40,7 @@ class ArrayController extends Controller
         echo 'flip                      KEY和VALUE互换' . PHP_EOL;
         echo 'fillKeys                  填充数据' . PHP_EOL;
         echo 'arrayGet                  提取数据' . PHP_EOL;
+        echo 'arrayArrayWalk            循环数据' . PHP_EOL;
     }
 
     /**
@@ -317,7 +319,7 @@ class ArrayController extends Controller
         echo '原数组：' . PHP_EOL;
         dump($arr);
         echo '结果：' . PHP_EOL;
-        dump(array_fill_keys($arr,''));
+        dump(array_fill_keys($arr, ''));
     }
 
     /**
@@ -328,6 +330,18 @@ class ArrayController extends Controller
         $arr = [
             'shop_no' => 5325210415012312,
         ];
-        dump(ArrayHelper::getValue($arr,'shop_no'));
+        dump(ArrayHelper::getValue($arr, 'shop_no'));
+    }
+
+    public function actionArrayWalk()
+    {
+        $arr = [
+            'a' => 1,
+            'b' => 2,
+        ];
+        array_walk($arr, function ($v, $k) use (&$arr) {
+            $arr[$k] = $v * 2;
+        });
+        dump($arr);
     }
 }
