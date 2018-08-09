@@ -50,7 +50,8 @@
         "limingxinleo/x-redis": "^1.0",
         "workerman/workerman": "^3.5",
         "php-ai/php-ml": "^0.6.2",
-        "xiaolin/enum": "^0.0.1"
+        "xiaolin/enum": "^0.0.1",
+        "yiisoft/yii2-authclient": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",
@@ -81,7 +82,7 @@
     "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
+            "url": "https://packagist.laravel-china.org"
         }
     }
 }
