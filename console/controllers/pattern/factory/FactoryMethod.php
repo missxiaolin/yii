@@ -8,6 +8,7 @@
 
 namespace console\controllers\pattern\factory;
 
+// 工厂模式
 abstract class FactoryMethod
 {
     const CHEAP = 'cheap';

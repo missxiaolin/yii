@@ -11,6 +11,7 @@ namespace console\controllers\pattern\build;
 use console\controllers\pattern\build\parts\Vehicle;
 
 /**
+ * 建造者模式
  * Director 类是建造者模式的一部分。 它可以实现建造者模式的接口
  * 并在构建器的帮助下构建一个复杂的对象
  *
