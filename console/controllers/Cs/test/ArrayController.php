@@ -193,9 +193,13 @@ class ArrayController extends Controller
         echo '原数组：' . PHP_EOL;
         dump($arr);
         echo '结果：' . PHP_EOL;
-        dump(array_map(function ($val) {
-            return $val > 2 ? $val : '';
-        }, $arr));
+        $data = array_map(function ($val) {
+            if ($val > 2){
+                return $val;
+            }
+//            return $val > 2 ? $val : '';
+        }, $arr);
+        dump($data);
     }
 
     /**
